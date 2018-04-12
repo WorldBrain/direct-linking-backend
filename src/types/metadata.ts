@@ -1,6 +1,11 @@
+export interface ImageMap {
+    [type : string] : string
+}
+
 export interface PageMetadata {
     title? : string
     description? : string
-    imageUrls? : {[type : string] : string}
-    cachedImageUrls? : string
+    imageUrls? : ImageMap
+    externalImageUrls? : ImageMap
+    cachedImageUrls? : ImageMap
 }
