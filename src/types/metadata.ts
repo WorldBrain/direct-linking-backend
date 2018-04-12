@@ -1,6 +1,6 @@
 export interface PageMetadata {
     title? : string
     description? : string
-    imageURL? : string
-    cachedImageURL? : string
+    imageUrls? : {[type : string] : string}
+    cachedImageUrls? : string
 }

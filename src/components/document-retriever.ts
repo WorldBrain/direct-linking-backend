@@ -1,5 +1,7 @@
+// const _ = require('lodash')
 import * as request from 'request-promise-native'
-import { PageMetadata } from '../types/metadata';
+import { PageMetadata } from '../types/metadata'
+import { asyncMapValues } from '../utils/async'
 
 export interface RetrievedDocument {
   content : string
@@ -12,9 +14,13 @@ export interface RetrievedDocumentImage {
   mime : string
 }
 
-export interface DocumentRetriever {
-  retrieveDocument({url} : {url : string}) : Promise<RetrievedDocument>
-  retrieveDocumentImage({metadata} : {metadata : PageMetadata}) : Promise<RetrievedDocumentImage>
+export abstract class DocumentRetriever {
+  abstract retrieveDocument({url} : {url : string}) : Promise<RetrievedDocument>
+  abstract retrieveDocumentImage({metadata, type} : {metadata : PageMetadata, type : string}) : Promise<RetrievedDocumentImage>
+
+  async retrieveDocumentImages({metadata} : {metadata : PageMetadata}) : Promise<{[type : string]: RetrievedDocumentImage}> {
+    return await asyncMapValues(metadata.imageUrls, (imageUrl, type) => this.retrieveDocumentImage({metadata, type}))
+  }
 }
 
 //
@@ -24,14 +30,14 @@ export interface DocumentRetriever {
 export interface SingleDocument {
   url : string
   document : RetrievedDocument
-  image : RetrievedDocumentImage
+  images : {[type : string]: RetrievedDocumentImage}
 }
 
 export class SingleDocumentRetrievalError extends Error {}
 
-export class SingleDocumentRetriever implements DocumentRetriever {
+export class SingleDocumentRetriever extends DocumentRetriever {
   constructor(private single : SingleDocument) {
-
+    super()
   }
 
   async retrieveDocument({url} : {url : string}) {
@@ -42,16 +48,16 @@ export class SingleDocumentRetriever implements DocumentRetriever {
     return {...this.single.document}
   }
 
-  async retrieveDocumentImage({metadata}) {
+  async retrieveDocumentImage({metadata, type}) {
     const content = new Buffer('')
-    this.single.image.content.copy(content)
-    return {...this.single.image, content}
+    this.single.images[type].content.copy(content)
+    return {...this.single.images[type], content}
   }
 }
 
 // Actual implementation of DocumentRetriever
 
-export class HttpDocumentRetriever implements DocumentRetriever {
+export class HttpDocumentRetriever extends DocumentRetriever {
   async retrieveDocument({url}) {
     const response = await request({
       uri: url,
@@ -60,9 +66,9 @@ export class HttpDocumentRetriever implements DocumentRetriever {
     return {url, content: response.body, mime: response.headers['content-type'].split(';')[0]}
   }
 
-  async retrieveDocumentImage({metadata}) {
+  async retrieveDocumentImage({metadata, type}) {
     const response = await request({
-      uri: metadata.imageUrl,
+      uri: metadata.imageUrls[type],
       resolveWithFullResponse: true,
       encoding: null
     })

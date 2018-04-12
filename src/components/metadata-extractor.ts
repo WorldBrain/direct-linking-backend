@@ -5,6 +5,10 @@ export interface MetadataExtractor {
     extractPageMetadata(document : RetrievedDocument) : Promise<PageMetadata>
 }
 
+//
+// For unit tests: always returns the same meta data, only for one given URL
+//
+
 export class DummyMetadata {
     expectedUrl : string
     metdata : PageMetadata

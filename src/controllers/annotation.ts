@@ -40,11 +40,11 @@ import { normalizeUrlForStorage, normalizeUrlForRetrieval } from '../utils/urls'
       const storageUrl = normalizeUrlForStorage(annotation.url)
       const document = await documentRetriever.retrieveDocument({url: normalizeUrlForRetrieval(annotation.url)})
       const metadata = await metadataExtractor.extractPageMetadata(document)
-      const image = await documentRetriever.retrieveDocumentImage({metadata})
+      const images = await documentRetriever.retrieveDocumentImages({metadata})
       await Promise.all([
         storage.storeMetadata({url: storageUrl, metadata}),
         storage.storeDocument({url: storageUrl, document}),
-        storage.storeDocumentImage({url: storageUrl, image})
+        storage.storeDocumentImages({url: storageUrl, images})
       ])
       
       // Only store annotation after everything else has been stored successfuly

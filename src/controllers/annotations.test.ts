@@ -34,7 +34,7 @@ describe('Annotation upload controller integration test', () => {
             documentRetriever: new SingleDocumentRetriever({
                 url: retrievalUrl,
                 document: dummyDocument,
-                image: dummyImage
+                images: {logo: dummyImage}
             }),
             metadataExtractor: new DummyMetadataExtractor({expectedUrl: inputUrl, metdata: dummyMetadata})
         })

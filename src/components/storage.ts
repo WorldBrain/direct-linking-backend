@@ -1,3 +1,4 @@
+const _ = require('lodash')
 import * as DataUri from 'datauri'
 import { Annotation } from "../types/annotations"
 import { PageMetadata } from '../types/metadata'
@@ -13,8 +14,8 @@ export interface Storage {
   storeMetadata({url, metadata} : {url : string, metadata : PageMetadata}) : Promise<void>
   getStoredMetadataForUrl(url : string) : Promise<PageMetadata>
 
-  storeDocumentImage({url, image} : {url : string, image : RetrievedDocumentImage}) : Promise<void>
-  getCachedDocumentImageUrl(url : string) : Promise<string>
+  storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) : Promise<void>
+  getCachedDocumentImageUrl({url, type} : {url : string, type : string}) : Promise<string>
 
   storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void>
   getCachedDocument(url : string) : Promise<RetrievedDocument>
@@ -49,13 +50,18 @@ export class MemoryStorage implements Storage {
     return this.metadata[url]
   }
 
-  async storeDocumentImage({url, image} : {url : string, image : RetrievedDocumentImage}) {
+  async storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) {
+    await Promise.all(_.map(images, (image, type) => this.storeDocumentImage({url, type, image})))
+  }
+
+  async storeDocumentImage({url, type, image} : {url : string, type : string, image : RetrievedDocumentImage}) {
     const format = image.mime.split('/')[1]
-    this.images[url] = {content: image.content, format}
+    this.images[url] = this.images[url] || {}
+    this.images[url][type] = {content: image.content, format}
   }
   
-  async getCachedDocumentImageUrl(url : string) {
-    const image = this.images[url]
+  async getCachedDocumentImageUrl({url, type}) {
+    const image = this.images[url][type]
     const dataUri = new DataUri()
     dataUri.format('.' + image.format, image.content)
     return dataUri.content

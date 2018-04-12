@@ -64,8 +64,8 @@ describe('HTTP Document retriever', () => {
                 const url = 'http://localhost:1237/test.png'
                 const documentRetriever = new HttpDocumentRetriever()
                 const documentImage = await documentRetriever.retrieveDocumentImage({metadata: {
-                    imageUrl: url
-                }})
+                    imageUrls: {logo: url}
+                }, type: 'logo'})
                 expect(Buffer.isBuffer(documentImage.content)).to.be.true
                 expect(documentImage.content.length).to.equal(fs.statSync(imagePath).size)
                 expect(documentImage.mime).to.equal('image/png')
