@@ -1,11 +1,12 @@
 import { expect } from 'chai'
 import { createDummyAnnotationValidator } from '../components/annotation-validator'
 import { AnnotationLinkBuilder } from '../components/annotation-link-builder'
+import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-generator'
 import { SingleDocumentRetriever } from '../components/document-retriever'
 import { DummyMetadataExtractor } from '../components/metadata-extractor'
 import { MemoryStorage } from '../components/storage'
 import { Annotation } from '../types/annotations'
-import * as controllers from './annotation'
+import * as controllers from './annotations'
 
 describe('Annotation upload controller integration test', () => {
     it('should work under expected conditions', async () => {
@@ -30,7 +31,8 @@ describe('Annotation upload controller integration test', () => {
         const controller = controllers.putAnnotation({
             annotationValidator: createDummyAnnotationValidator({isAlwaysValid: true}),
             annotationLinkBuilder: new AnnotationLinkBuilder({baseUrl: 'https://memex.link'}),
-            storage: storage,
+            annotationSkeletonGenerator: new AnnotationSkeletonGenerator(),
+            storage,
             documentRetriever: new SingleDocumentRetriever({
                 url: retrievalUrl,
                 document: dummyDocument,

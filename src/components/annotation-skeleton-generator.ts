@@ -9,15 +9,15 @@ export class AnnotationSkeletonGenerator {
         <head>
             <title></title>
             ${metadata.title && `<meta name="og:title" content="${metadata.title}">`}
-            ${metadata.description && `<meta name="og:description" content="${metadata.title}">`}
+            ${metadata.description && `<meta name="og:description" content="${metadata.description}">`}
             ${metadata.externalImageUrls && metadata.externalImageUrls.social &&
-              `<meta name="og:title" content="${metadata.externalImageUrls.social}">`}
+              `<meta name="og:image" content="${metadata.externalImageUrls.social}">`}
             <link rel=stylesheet href="/styles.css">
             <script src="/script.js"></script>
         </head>
         <body>
         </body>
-        <html>
+        </html>
         `
     }
 }

@@ -54,23 +54,7 @@ describe('Express app', () => {
     }
   }
 
-  it('should route proxy requests correctly', async () => {
-    await testRoute({
-      name: 'proxy',
-      path: '/__/test/one/two',
-      params: {url: 'test/one/two'}
-    })
-   })
-   
-   it('should route annotation retrievals correctly', async () => {
-    await testRoute({
-      name: 'retrieveAnnotation',
-      path: '/xyz/test.com/foo',
-      params: {id: 'xyz', url: 'test.com/foo'}
-    })
-   })
-   
-   it('should route annotation uploads correctly', async () => {
+  it('should route annotation uploads correctly', async () => {
     await testRoute({
       name: 'putAnnotation',
       path: '/',

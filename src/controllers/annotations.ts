@@ -6,6 +6,7 @@ import { DocumentRetriever } from '../components/document-retriever'
 // import { compareUrlsQuickAndDirty } from '../utils/urls'
 import { MetadataExtractor } from '../components/metadata-extractor';
 import { normalizeUrlForStorage, normalizeUrlForRetrieval } from '../utils/urls'
+import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-generator';
 
 // export function retrieveAnnotation(
 //     {storage, documentRetriever} :
@@ -27,8 +28,9 @@ import { normalizeUrlForStorage, normalizeUrlForRetrieval } from '../utils/urls'
 //   }
   
   export function putAnnotation(
-    {annotationValidator, annotationLinkBuilder, storage, documentRetriever, metadataExtractor} :
-    {annotationValidator : AnnotationValidator, annotationLinkBuilder : AnnotationLinkBuilder,
+    {annotationValidator, annotationLinkBuilder, annotationSkeletonGenerator, storage, documentRetriever, metadataExtractor} :
+    {annotationValidator : AnnotationValidator, annotationLinkBuilder : AnnotationLinkBuilder
+     annotationSkeletonGenerator : AnnotationSkeletonGenerator,
      storage : Storage, documentRetriever : DocumentRetriever, metadataExtractor : MetadataExtractor}
   ) {
     return async function handleAnnotationPutRequest({unvalidatedAnnotation}) {
@@ -50,6 +52,9 @@ import { normalizeUrlForStorage, normalizeUrlForRetrieval } from '../utils/urls'
       // Only store annotation after everything else has been stored successfuly
       // TODO: Since the image costs the most data, maybe we should store the image last?
       const {id} = await storage.storeAnnotation({annotation})
+      const skeleton = annotationSkeletonGenerator.generateSkeleton({annotation, metadata})
+      await storage.storeAnnotationSkeleton({annotation, skeleton})
+
       const link = await annotationLinkBuilder.buildAnnotationLink({id, url: annotation.url})
       return {link, id, storageUrl}
     }

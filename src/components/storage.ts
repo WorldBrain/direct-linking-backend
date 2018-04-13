@@ -6,8 +6,7 @@ import { Annotation } from "../types/annotations"
 import { PageMetadata } from '../types/metadata'
 import { normalizeUrlForStorage } from '../utils/urls';
 import { RetrievedDocument, RetrievedDocumentImage } from './document-retriever'
-import { AnnotationSkeletonStorage } from './annotation-skeleton-storage'
-import { mkdirSyncIfNotExists } from '../utils/fs';
+import { mkdirSyncIfNotExists, mkdirPathSync } from '../utils/fs';
 
 export class AnnotationAlreadyExists extends Error {}
 
@@ -99,7 +98,7 @@ export class DiskStorage {
 
     const annotationDir = this._createAnnotationDirIfNecessary({annotation})
     const annotationPath = path.join(annotationDir, 'annotation.json')
-    fs.writeFileSync(annotationPath, JSON.stringify(annotationPath))
+    fs.writeFileSync(annotationPath, JSON.stringify(annotation))
 
     return {id: annotation.id}
   }
@@ -150,8 +149,13 @@ export class DiskStorage {
   }
 
   async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
-    const annotationDir = this._createAnnotationDirIfNecessary({annotation})  
-    const htmlPath = path.join(annotationDir, 'index.html')
+    const annotationDir = this._createAnnotationDirIfNecessary({annotation})
+    if (!annotation.storageUrl) {
+      // TODO: Throw an error?
+    }
+    const htmlDir = path.join(annotationDir, annotation.storageUrl)
+    mkdirPathSync(htmlDir)
+    const htmlPath = path.join(htmlDir, 'index.html')
     fs.writeFileSync(htmlPath, skeleton)
   }
 
@@ -166,12 +170,12 @@ export class DiskStorage {
   }
 
   _getUrlDirPath({url}) : string {
-    return path.join(this.basePath, url)
+    return path.join(this.basePath, encodeURIComponent(url))
   }
 
   _createUrlDirIfNecessary({url} : {url : string}) : string {
     const urlDir = this._getUrlDirPath({url})
-    mkdirSyncIfNotExists(urlDir)
+    mkdirPathSync(urlDir)
     return urlDir
   }
 

@@ -1,6 +1,5 @@
 import * as normalizeUrl from 'normalize-url'
-import { stripStringPrefix } from "./string"
-import { _cleanNormalizedUrl } from './urls';
+import { stripStringPrefix } from './string'
 
 const BASE_NORMALIZATION_OPTIONS = {
   normalizeProtocol: true,
@@ -8,8 +7,6 @@ const BASE_NORMALIZATION_OPTIONS = {
   stripFragment: false,
   stripWWW: true,
   removeTrailingSlash: true,
-  removeDirectoryIndex: false,
-  sortQueryParameters: true
 }
 
 export function normalizeUrlForStorage(url : string) : string {

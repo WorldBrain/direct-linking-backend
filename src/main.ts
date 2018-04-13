@@ -1,11 +1,13 @@
 require('source-map-support').install()
-// require('regenerator-runtime/runtime')
-// import * as _ from 'lodash'
-// import * as path from 'path'
-import * as http from 'http'
+// import { setupDebugGlobal } from './debug'
 import createApp from './express/app'
-import { createAppComponents } from './components/index';
-import { createAppRoutes } from './express/routes/index';
+import { createAppComponents } from './components'
+import { createAppRoutes } from './express/routes'
+import { createAppControllers } from './controllers'
+import { parseCommandLineOptions } from './options'
+import { executeDevShortcuts } from './dev-shortcuts'
+import { createHttpServer } from './server'
+import { setupDevServer } from './dev-server';
 
 
 const DEVELOPMENT_MODE = process.env.NODE_ENV === 'dev';
@@ -31,18 +33,14 @@ export async function main(config = null) : Promise<any> {
   //   }
   // }
 
+    // setupDebugGlobal()
+    const options = parseCommandLineOptions()
     const components = createAppComponents({baseUrl: 'http://localhost:3000'})
-    const routes = createAppRoutes(components)
-    const app = createApp({routes})
-
-    const server = http.createServer(app)
-    await new Promise((resolve, reject) => {
-      server.listen(parseInt(process.env.PORT) || 5678, (err) => {
-        if (err) { return reject(err) }
-        resolve(server)
-      })
-    })
-
+    const controllers = createAppControllers(components)
+    const routes = createAppRoutes(controllers)
+    const app = createApp({ routes, preConfigure: setupDevServer })
+    const server = await createHttpServer(app)
+    await executeDevShortcuts({components, controllers, config: options.dev})
     return server
 }
 
