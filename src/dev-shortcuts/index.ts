@@ -10,7 +10,7 @@ export async function executeDevShortcuts(
 ) {
     const shortcutMap = _createDevShortcutMap(shortcuts)
     for (const shortcutConfig of config) {
-        await shortcutMap[shortcutConfig.name].handler({components, controllers, ...config})
+        await shortcutMap[shortcutConfig.name].handler({components, controllers, ...shortcutConfig.options})
     }
 }
 

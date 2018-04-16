@@ -15,7 +15,7 @@ export class AnnotationSkeletonGenerator {
             <link rel=stylesheet href="/styles.css">
             <script src="/script.js"></script>
         </head>
-        <body>
+        <body class='loading'>
         </body>
         </html>
         `

@@ -7,8 +7,9 @@ export function parseCommandLineOptions() {
         .array('dev')
         .parse()
     
-    options.dev = <DevShortcutsConfig>options.dev.map(configString => {
-        const [name, optionsString] = configString.split(':')
+    options.dev = <DevShortcutsConfig>(options.dev || []).map(configString => {
+        const [name, ...optionsParts] = configString.split(':')
+        const optionsString = optionsParts.join(':')
         
         let options = {}
         if (optionsString) {
