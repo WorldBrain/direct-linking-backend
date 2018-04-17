@@ -76,3 +76,12 @@ On a high-level, the application consists of:
 * **Dev shortcuts**: Configurable routines for repetitive actions to test the application while developing. These are triggered and configured by passing in one or more --dev commands.
 
 This seperation allows every component to be unit/integration tested with various levels of isolation. In main.ts, you can see how these parts are glued together  :)
+
+## Front-end
+
+Currently, the front-end consist of:
+* The HTML template, which has some simple data replaced, marked with $TITLE$, $URL$ and $QUOTE$ tags
+* The CSS, preprocessed with precss and postcss in dev-server.ts
+* The JS, currently not transpiled
+
+When editing the CSS, please edit assets/src/styles.less (not actually LESS, but named as such to make IDE happy.) The HTML and JS can be directly edited in assets/build/.
