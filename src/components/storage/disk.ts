@@ -5,9 +5,10 @@ import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
 import { normalizeUrlForStorage } from '../../utils/urls'
 import { RetrievedDocument, RetrievedDocumentImage } from '../document-retriever'
-import { mkdirSyncIfNotExists, mkdirPathSync } from '../../utils/fs';
+import { mkdirSyncIfNotExists, mkdirPathSync } from '../../utils/fs'
+import { Storage } from './types'
 
-export class DiskStorage {
+export class DiskStorage implements Storage {
     public basePath : string
   
     constructor({basePath} : {basePath : string}) {
@@ -53,9 +54,9 @@ export class DiskStorage {
     }
     
     async getCachedDocumentImageUrl({url, type}) {
-      const urlDir = this._getUrlDirPath({url})
+      const urlDir = encodeURIComponent(url)
       const filePath = path.join(urlDir, `image-${type}`)
-      return fs.readFileSync(filePath)
+      return '/' + filePath
     }
   
     async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {

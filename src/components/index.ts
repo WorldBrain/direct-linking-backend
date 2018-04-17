@@ -4,7 +4,7 @@ import { AnnotationValidator, defaultAnnotationValidator } from './annotation-va
 import { DocumentRetriever, HttpDocumentRetriever } from './document-retriever'
 import { AnnotationSkeletonGenerator } from './annotation-skeleton-generator'
 import { HtmlMetadataExtractor } from './metadata-extractor'
-import Storage from '../../../fastindex/src/storage'
+import { Storage } from './storage/types'
 import { DiskStorage } from './storage/disk'
 
 export interface AppComponents {
