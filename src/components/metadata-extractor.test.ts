@@ -30,7 +30,7 @@ describe('HtmlMetadataExtractor', () => {
             title: "Graph title",
             description: "Graph description",
             externalImageUrls: {
-                social: "Graph title",
+                social: "https://social/image.png",
             },
             embeddable: false
         })
