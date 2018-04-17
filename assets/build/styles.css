@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+  font-family: Lato;
+}
+
+body {
+  color: #777777;
+  font-size: 16px;
+}
+
+body.content-embeddable {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 60%;
+  padding: 0;
+  margin: 0;
+}
+
+.middle {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.content-not-embeddable .info-bar .content {
+    display: block;
+  }
+
+.content-not-embeddable .logo {
+    width: 200px;
+    padding: 20px;
+  }
+
+.content-not-embeddable .info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+.content-not-embeddable .intro {
+    order: 1;
+    padding: 20px 0;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+.content-not-embeddable .title-and-url {
+    order: 3;
+  }
+
+.content-not-embeddable .title {
+    font-size: 0.95em;
+    color: #173766;
+  }
+
+.content-not-embeddable .url {
+    font-size: 0.85em;
+    font-weight: bold;
+  }
+
+.content-not-embeddable .quote {
+    order: 2;
+    padding-bottom: 10px;
+  }
+
+.content-not-embeddable .search-text {
+    display: none;
+  }
+
+.content-not-embeddable .copy-button {
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8em;
+    border: 2px solid #777;
+    border-radius: 5px;
+  }
+
+.content-not-embeddable .divider {
+    display: flex;
+    padding: 50px 0;
+    width: 90px;
+    margin: 0 auto;
+  }
+
+.content-not-embeddable .divider .text:before {
+  content: "OR";
+}
+
+.content-not-embeddable .divider .text {
+  font-size: 1.1em;
+  font-style: italic;
+}
+
+.content-not-embeddable .divider .edge {
+      position: relative;
+      margin: 0 5px;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      width: 20px;
+      border-bottom: 2px solid #777;
+    }
+
+.content-not-embeddable .cta-container {
+    text-align: center;
+  }
+
+.content-not-embeddable .cta-line {
+    margin-bottom: 10px
+  }
+
+.content-not-embeddable .cta-line.skip span {
+  display: block;
+}
+
+.content-not-embeddable .cta-button {
+    display: flex;
+    width: 250px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid #777;
+    border-radius: 5px;
+  }
+
+.content-not-embeddable .cta-button span {
+      display: block;
+      padding-top: 2px;
+      margin-right: 10px;
+    }
+
+.content-not-embeddable .cta-button img {
+      display: block;
+      width: 125px;
+      height: auto;
+    }
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.content-not-embeddable .minimize {
+  display: none;
+}
+
+.minimize {
+  text-align: center;
+}
+
+.iframe-container {
+  position: relative;
+  flex-grow: 1;
+}
+
+iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
