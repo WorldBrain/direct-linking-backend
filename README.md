@@ -36,7 +36,7 @@ To see on a high level what happens when an annotation link is created, see [thi
 **Clone this repo:**
 
 ```sh
-$ git clone https://github.com/WorldBrain/Memex
+$ git clone https://github.com/WorldBrain/direct-linking-backend.git
 ```
 
 **Run `npm install` to install dependencies**
