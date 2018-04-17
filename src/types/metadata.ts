@@ -8,4 +8,5 @@ export interface PageMetadata {
     imageUrls? : ImageMap
     externalImageUrls? : ImageMap
     cachedImageUrls? : ImageMap
+    embeddable? : boolean
 }

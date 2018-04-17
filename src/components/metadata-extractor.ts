@@ -40,6 +40,7 @@ export class HtmlMetadataExtractor implements MetadataExtractor {
             title: _extractTitleFromDom(doc),
             description: _extractDescriptionFromDom(doc),
             externalImageUrls: {social: _extractTitleFromDom(doc)},
+            embeddable: document.embeddable,
         }
         return metadata
     }

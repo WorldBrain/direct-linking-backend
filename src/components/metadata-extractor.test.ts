@@ -23,7 +23,8 @@ describe('HtmlMetadataExtractor', () => {
         const retrievedDocument : RetrievedDocument = {
             url: 'https://test.com',
             mime: 'text/html',
-            content
+            content,
+            embeddable: false
         }
         expect(await extractor.extractPageMetadata(retrievedDocument)).to.deep.equal({
             title: "Graph title",
@@ -31,6 +32,7 @@ describe('HtmlMetadataExtractor', () => {
             externalImageUrls: {
                 social: "Graph title",
             },
+            embeddable: false
         })
     })
 })

@@ -17,7 +17,8 @@ describe('Annotation upload controller integration test', () => {
         const dummyDocument = {
             content: '<strong>Test!</strong>',
             mime: 'text/html',
-            url: inputUrl
+            url: inputUrl,
+            embeddable: false,
         }
         const dummyImage = {
             content: new Buffer('dwqedweqd'),
@@ -36,7 +37,7 @@ describe('Annotation upload controller integration test', () => {
             documentRetriever: new SingleDocumentRetriever({
                 url: retrievalUrl,
                 document: dummyDocument,
-                images: {logo: dummyImage}
+                images: {logo: dummyImage},
             }),
             metadataExtractor: new DummyMetadataExtractor({expectedUrl: inputUrl, metdata: dummyMetadata})
         })

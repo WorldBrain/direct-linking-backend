@@ -7,6 +7,7 @@ export interface RetrievedDocument {
   content : string
   mime : string
   url : string
+  embeddable : boolean
 }
 
 export interface RetrievedDocumentImage {
@@ -63,7 +64,9 @@ export class HttpDocumentRetriever extends DocumentRetriever {
       uri: url,
       resolveWithFullResponse: true
     })
-    return {url, content: response.body, mime: response.headers['content-type'].split(';')[0]}
+    const mime = response.headers['content-type'].split(';')[0]
+    const embeddable = _deduceEmbeddableFromHeaders(response.headers)
+    return {url, content: response.body, mime, embeddable}
   }
 
   async retrieveDocumentImage({metadata, type}) {
@@ -77,4 +80,8 @@ export class HttpDocumentRetriever extends DocumentRetriever {
       mime: response.headers['content-type'].split(';')[0]
     }
   }
+}
+
+export function _deduceEmbeddableFromHeaders(headers : {[key : string] : string}) : boolean {
+  return headers['x-frame-options'] !== 'sameorigin'
 }

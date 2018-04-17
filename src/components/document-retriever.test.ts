@@ -43,7 +43,32 @@ describe('HTTP Document retriever', () => {
                 expect(document).to.deep.equal({
                     content: 'yello!',
                     mime: 'text/plain',
-                    url
+                    url,
+                    embeddable: true
+                })
+            } finally {
+                closeServer(server)
+            }
+        })
+
+        it('should be able to detect a document is not embeddable', async () => {
+            const server = await setupServer(app => {
+                app.get('/test', (req, res) => {
+                    res.set('X-Frame-Options', 'sameorigin')
+                    res.type('text/plain')
+                    res.send('yello!')
+                })
+            })
+            
+            try {
+                const url = 'http://localhost:1237/test'
+                const documentRetriever = new HttpDocumentRetriever()
+                const document = await documentRetriever.retrieveDocument({url})
+                expect(document).to.deep.equal({
+                    content: 'yello!',
+                    mime: 'text/plain',
+                    url,
+                    embeddable: false
                 })
             } finally {
                 closeServer(server)
