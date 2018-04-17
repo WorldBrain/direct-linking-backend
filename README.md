@@ -66,6 +66,8 @@ $ npm run devmon -- --dev create-annotation:url='https://my-custom-url/'
 $ npm run devmon -- --dev create-annotation:id=my-custom-annotation-id,url='https://my-custom-url/'
 ```
 
+If have tmux installed, you can execute ./dev.sh which creates one tmux session (dl_prepare) for the TypeScript compiler, and one (dl_devmon) with the devmon command prepared that you can customize and run.
+
 ## Architecture
 
 On a high-level, the application consists of:
