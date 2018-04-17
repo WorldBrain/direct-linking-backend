@@ -1,5 +1,5 @@
 import { Annotation } from '../types/annotations'
-import { Storage } from '../components/storage'
+import { Storage } from '../components/storage/types'
 import { AnnotationValidator } from '../components/annotation-validator'
 import { AnnotationLinkBuilder } from '../components/annotation-link-builder'
 import { DocumentRetriever } from '../components/document-retriever'

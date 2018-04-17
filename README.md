@@ -71,8 +71,8 @@ If have tmux and nvm (with Node.js 6) installed, you can execute ./dev.sh which 
 ## Architecture
 
 On a high-level, the application consists of:
-* **Storage**: The classes storing and retrieving the data processed by the back-end, with implementation for in-memory (for unit tests and local dev), on-disk (local dev) and AWS (staging and prod) storage.
 * **Components**: Invidual classes responsible for small tasks, such as extraction of metadata from an HTML page. Collected in a convient contained object in src/components/index.ts.
+* **Storage**: The implementation class, of which only one is used, storing and retrieving the data processed by the back-end, with implementation for in-memory (for unit tests and local dev), on-disk (local dev) and AWS (staging and prod) storage. This storage object being the single point of data storage and retrieval, is one of the components.
 * **Controllers**: Business logic independent of specific storage engines or protocols such as HTTP, with storage and components as injected dependencies, constructed in src/controllers/index.ts.
 * **Express app and routes**: Handle routing to right controllers, unpacking parameters from HTTP request, and wrapping response data in JSON, HTTP, etc.
 * **Dev shortcuts**: Configurable routines for repetitive actions to test the application while developing. These are triggered and configured by passing in one or more --dev commands.
@@ -87,3 +87,7 @@ Currently, the front-end consist of:
 * The JS, currently not transpiled
 
 When editing the CSS, please edit assets/src/styles.less (not actually LESS, but named as such to make IDE happy.) The HTML and JS can be directly edited in assets/build/.
+
+## Conventions
+
+**Type declarations**: Types are defined on the most-local level. If type is only used by one function/class, it's stored in the same file. If it's used specific to one module, it's stored there (see src/components/storage/types.ts). If there's a type that concerns the whole program, it's stored in the root types/ directory (like src/types/annotations.ts).
