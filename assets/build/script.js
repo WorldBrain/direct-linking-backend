@@ -112,6 +112,26 @@ function injectGoogleFonts() {
     })
 }
 
+function attachCopyAndGoListener() {
+    document.querySelector('.copy-button').addEventListener('click', function() {
+        copyQuoteAndGoToPage()
+    })
+}
+
+function copyQuoteAndGoToPage() {
+    copyToClipboard(state.annotation.anchors[0].quote)
+    window.location.href = state.annotation.url
+}
+
+function copyToClipboard(text){
+    var dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute('value', text);
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
+
 Promise.all([
     fetchInnerHTML(),
     fetchMetadata(),
@@ -119,6 +139,7 @@ Promise.all([
     injectGoogleFonts(),
 ]).then(function() {
     replaceInnerHTML()
+    attachCopyAndGoListener()
     if (state.metadata.embeddable) {
         injectIframe()
     }
