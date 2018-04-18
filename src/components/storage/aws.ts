@@ -27,11 +27,8 @@ export class AwsStorage implements Storage {
   }
 
   async storeAnnotation({annotation} : {annotation : Annotation}) {
-    annotation.id = annotation.id || this._generateAnnotationId()
+    annotation.id = annotation.id
     annotation.storageUrl = normalizeUrlForStorage(annotation.url)
-
-    const annotationDir = this._createAnnotationDirIfNecessary({annotation})
-    const annotationPath = path.join(annotationDir, 'annotation.json')
     const params = {
       Body: JSON.stringify(annotation),
       Bucket: this.aws_config.bucketName,
@@ -140,29 +137,5 @@ export class AwsStorage implements Storage {
     AWS.S3.putObject(params, function(err, data) {
       console.log(err, data)
     })
-  }
-
-  _getAnnotationDirPath({annotation} : {annotation : Annotation}) : string {
-    return path.join(this.basePath, annotation.id)
-  }
-
-  _createAnnotationDirIfNecessary({annotation} : {annotation : Annotation}) : string {
-    const annotationDir = this._getAnnotationDirPath({annotation})
-    mkdirSyncIfNotExists(annotationDir)
-    return annotationDir
-  }
-
-  _getUrlDirPath({url}) : string {
-    return path.join(this.basePath, encodeURIComponent(url))
-  }
-
-  _createUrlDirIfNecessary({url} : {url : string}) : string {
-    const urlDir = this._getUrlDirPath({url})
-    mkdirPathSync(urlDir)
-    return urlDir
-  }
-
-  _generateAnnotationId() {
-    return fs.readdirSync(this.basePath).length.toString()
   }
 }
