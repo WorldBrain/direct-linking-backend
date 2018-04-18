@@ -65,7 +65,6 @@ Select a load balancer type
 2) application
 3) network
 (default is 1): **1**
-
 ```
 
 ## SSH access

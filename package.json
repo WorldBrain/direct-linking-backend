@@ -13,7 +13,9 @@
     "prepare-and-test": "npm run prepare && mocha build/**/*.test.js",
     "test": "mocha --require ts-node/register 'src/**/*.test.ts'",
     "test:watch": "mocha -r ts-node/register 'src/**/*.test.ts' -R min --watch --watch-extensions ts",
-    "test:watch-verbose": "mocha -r ts-node/register 'src/**/*.test.ts' --watch --watch-extensions ts"
+    "test:watch-verbose": "mocha -r ts-node/register 'src/**/*.test.ts' --watch --watch-extensions ts",
+    "deploy:staging": "eb deploy staging",
+    "deploy:production": "read -p 'Deploying production version, last chance to change your mind by pressing CTRL+C. Press ENTER to continue:' -n 1 -r && eb deploy production"
   },
   "betterScripts": {
     "devmon": {

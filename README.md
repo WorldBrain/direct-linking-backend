@@ -68,6 +68,14 @@ $ npm run devmon -- --dev create-annotation:id=my-custom-annotation-id,url='http
 
 If have tmux and nvm (with Node.js 6) installed, you can execute ./dev.sh which creates one tmux session (dl_prepare) for the TypeScript compiler, and one (dl_devmon) with the devmon command prepared that you can customize and run.
 
+## Deployment
+
+After setting up the AWS and EB CLI as described [here](./docs/aws-management.md), you can deploy a new version by executing one of these commands:
+```sh
+$ npm run deploy:staging
+$ npm run deploy:production
+```
+
 ## Architecture
 
 On a high-level, the application consists of:
