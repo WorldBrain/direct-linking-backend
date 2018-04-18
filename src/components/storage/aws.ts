@@ -53,14 +53,19 @@ export class AwsStorage implements Storage {
       Bucket: this.aws_config.bucketName,
       Key: id,
     }
-    return AWS.S3.getObject(params).Body
+    const data = await new Promise((resolve, reject) => {
+      AWS.S3.getObject(params, (err, data) => {
+        err ? reject(err) : resolve(data)
+      })
+    })
+    return data.Body
   }
 
   async storeMetadata({url, metadata} : {url : string, metadata : PageMetadata}) {
     const params = {
       Body: JSON.stringify(metadata),
       Bucket: this.aws_config.bucketName,
-      Key: url,
+      Key: url + '-meta',
       ServerSideEncryption: "AES256",
     }
     AWS.S3.putObject(params, function(err, data) {
@@ -76,7 +81,12 @@ export class AwsStorage implements Storage {
       Bucket: this.aws_config.bucketName,
       Key: url,
     }
-    return AWS.S3.getObject(params).Body
+    const data = await new Promise((resolve, reject) => {
+      AWS.S3.getObject(params, (err, data) => {
+        err ? reject(err) : resolve(data)
+      })
+    })
+    return data.Body
   }
 
   async storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) {
@@ -85,7 +95,7 @@ export class AwsStorage implements Storage {
 
   async storeDocumentImage({url, type, image} : {url : string, type : string, image : RetrievedDocumentImage}) {
     const params = {
-      Key: path.join(url, `image-${type}`),
+      Key: path.join(url, `-image-${type}`),
       Body: image,
       Bucket: this.aws_config.bucketName,
     }
@@ -95,15 +105,13 @@ export class AwsStorage implements Storage {
   }
   
   async getCachedDocumentImageUrl({url, type}) {
-    const urlDir = encodeURIComponent(url)
-    const filePath = path.join(urlDir, `image-${type}`)
-    return '/' + filePath
+    return 'http://' + this.aws_config.bucketName + '.s3-website.' + this.aws_config.bucketRegion + '.amazonaws.com/' + url
   }
 
   async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {
     const params = {
       Bucket: this.aws_config.bucketName,
-      Key: url,
+      Key: url + '-document',
       Body: JSON.stringify(document),
     }
     AWS.S3.putObject(params, function(err, data) {
@@ -112,9 +120,16 @@ export class AwsStorage implements Storage {
   }
 
   async getCachedDocument(url : string) : Promise<RetrievedDocument> {
-    const urlDir = this._getUrlDirPath({url})
-    const filePath = path.join(urlDir, 'document.json')
-    return JSON.parse(fs.readFileSync(filePath).toString())
+    const params = {
+      Bucket: this.aws_config.bucketName,
+      Key: url + '-document',
+    }
+    const data = await new Promise((resolve, reject) => {
+      AWS.S3.getObject(params, (err, data) => {
+        err ? reject(err) : resolve(data)
+      })
+    })
+    return data.Body
   }
 
   async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
