@@ -38,7 +38,7 @@ export async function main(config = null) : Promise<any> {
     const components = createAppComponents({baseUrl: 'http://localhost:3000'})
     const controllers = createAppControllers(components)
     const routes = createAppRoutes(controllers)
-    const app = createApp({ routes, preConfigure: setupDevServer })
+    const app = createApp({ routes, preConfigure: DEVELOPMENT_MODE ? setupDevServer : () => {} })
     const server = await createHttpServer(app)
     await executeDevShortcuts({components, controllers, config: options.dev})
     return server
