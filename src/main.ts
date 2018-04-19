@@ -43,6 +43,7 @@ export async function main(config = null) : Promise<any> {
     if (DEVELOPMENT_MODE) {
       await executeDevShortcuts({components, controllers, config: options.dev})
     }
+    console.log('Server started  :)')
     return server
 }
 
