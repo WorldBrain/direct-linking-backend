@@ -81,6 +81,16 @@ export class DiskStorage implements Storage {
       const htmlPath = path.join(htmlDir, 'index.html')
       fs.writeFileSync(htmlPath, skeleton)
     }
+
+    async getStoredAnnotationSkeleton({annotation} : {annotation : Annotation}) : Promise<string> {
+      if (!annotation.storageUrl) {
+        // TODO: Throw an error?
+      }
+      const annotationDir = this._getAnnotationDirPath({annotation})
+      const htmlDir = path.join(annotationDir, annotation.storageUrl)
+      const htmlPath = path.join(htmlDir, 'index.html')
+      return fs.readFileSync(htmlPath).toString()
+    }
   
     _getAnnotationDirPath({annotation} : {annotation : Annotation}) : string {
       return path.join(this.basePath, annotation.id)

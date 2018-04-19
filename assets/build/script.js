@@ -68,7 +68,7 @@ function fetchMetadata() {
 }
 
 function fetchInnerHTML() {
-    return fetchResource('/inner.html', 'text', 'fetchingHTML', 'innerHTMLTemplate')
+    return fetchResource('/assets/inner.html', 'text', 'fetchingHTML', 'innerHTMLTemplate')
 }
 
 function fetchAnnotation() {

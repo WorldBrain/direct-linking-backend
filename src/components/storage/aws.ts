@@ -2,6 +2,7 @@ import * as AWS from 'aws-sdk'
 const _ = require('lodash')
 import * as fs from 'fs'
 import * as path from 'path'
+import * as randomstring from 'randomstring'
 import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
 import { normalizeUrlForStorage } from '../../utils/urls'
@@ -17,73 +18,37 @@ export interface AwsStorageConfig {
 
 export class AwsStorage implements Storage {
   public _s3
-  public aws_config
-  public basePath : string
+  public bucketName : string
 
-  constructor({config, basePath} : {config : AwsStorageConfig, basePath : string}) {
-    AWS.config.update({region: 'eu-west-1'})
+  constructor({bucketName} : {bucketName : string}) {
+    AWS.config.update({region: process.env.AWS_REGION})
     this._s3 = new AWS.S3({apiVersion: '2006-03-01'})
-    this.aws_config = config
+    this.bucketName = bucketName
   }
 
   async storeAnnotation({annotation} : {annotation : Annotation}) {
-    annotation.id = annotation.id
+    annotation.id = annotation.id || await this._generateAnnotationId()
     annotation.storageUrl = normalizeUrlForStorage(annotation.url)
-    const params = {
-      Body: JSON.stringify(annotation),
-      Bucket: this.aws_config.bucketName,
-      ServerSideEncryption: "AES256",
-      Key: annotation.id,
-    }
-    AWS.S3.putObject(params, function(err, data) {
-      if (err)
-        console.log(err, err.stack)
-      else
-        console.log(data)
-    })
+
+    const key = annotation.id + '/annotation.json';
+    await this._putObject({key, body: annotation, type: 'json'})
 
     return {id: annotation.id}
   }
 
   async getAnnotationById(id) {
-    const params = {
-      Bucket: this.aws_config.bucketName,
-      Key: id,
-    }
-    const data = await new Promise((resolve, reject) => {
-      AWS.S3.getObject(params, (err, data) => {
-        err ? reject(err) : resolve(data)
-      })
-    })
-    return data.Body
+    const key = id + '/annotation.json'
+    return await this._getObject({key, type: 'json'})
   }
 
   async storeMetadata({url, metadata} : {url : string, metadata : PageMetadata}) {
-    const params = {
-      Body: JSON.stringify(metadata),
-      Bucket: this.aws_config.bucketName,
-      Key: url + '-meta',
-      ServerSideEncryption: "AES256",
-    }
-    AWS.S3.putObject(params, function(err, data) {
-      if (err)
-        console.log(err)
-      else
-        console.log(data)
-    })
+    const key = encodeURIComponent(url) + '/metadata.json';
+    await this._putObject({key, body: metadata, type: 'json'})
   }
 
   async getStoredMetadataForUrl(url : string) {
-    const params = {
-      Bucket: this.aws_config.bucketName,
-      Key: url,
-    }
-    const data = await new Promise((resolve, reject) => {
-      AWS.S3.getObject(params, (err, data) => {
-        err ? reject(err) : resolve(data)
-      })
-    })
-    return data.Body
+    const key = encodeURIComponent(url) + '/metadata.json'
+    return await this._getObject({key, type: 'json'})
   }
 
   async storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) {
@@ -91,51 +56,104 @@ export class AwsStorage implements Storage {
   }
 
   async storeDocumentImage({url, type, image} : {url : string, type : string, image : RetrievedDocumentImage}) {
-    const params = {
-      Key: path.join(url, `-image-${type}`),
-      Body: image,
-      Bucket: this.aws_config.bucketName,
-    }
-    AWS.S3.upload(params, function(err, data) {
-      console.log(err, data)
-    })
+    const key = path.join(encodeURIComponent(url), `image-${type}`)
+    await this._putObject({key, body: image.content, type: 'buffer', mime: image.mime})
   }
   
   async getCachedDocumentImageUrl({url, type}) {
-    return 'http://' + this.aws_config.bucketName + '.s3-website.' + this.aws_config.bucketRegion + '.amazonaws.com/' + url
+    return `http://${this.bucketName}.s3-website.${process.env.AWS_REGION}.amazonaws.com/${url}`
   }
 
   async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {
-    const params = {
-      Bucket: this.aws_config.bucketName,
-      Key: url + '-document',
-      Body: JSON.stringify(document),
-    }
-    AWS.S3.putObject(params, function(err, data) {
-      console.log(err, data)
-    })
+    const key = encodeURIComponent(url) + '/document.json'
+    await this._putObject({key, body: document, type: 'json'})
   }
 
   async getCachedDocument(url : string) : Promise<RetrievedDocument> {
-    const params = {
-      Bucket: this.aws_config.bucketName,
-      Key: url + '-document',
-    }
-    const data = await new Promise((resolve, reject) => {
-      AWS.S3.getObject(params, (err, data) => {
-        err ? reject(err) : resolve(data)
-      })
-    })
-    return data.Body
+    const key = encodeURIComponent(url) + '/document.json'
+    return await this._getObject({key, type: 'json'})
   }
 
   async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
+    const key = `${annotation.id}/${annotation.storageUrl}/index.html`
+    await this._putObject({key, body: skeleton, type: 'html'})
+  }
+
+  async getStoredAnnotationSkeleton({annotation}) {
+    const key = `${annotation.id}/${annotation.storageUrl}/index.html`
+    return await this._getObject({key, type: 'text'})
+  }
+
+  async _getObject({key, type} : {key : string, type? : 'json' | 'text'}) {
     const params = {
-      Key: 'skeleton_' + annotation.id,
-      Body: skeleton,
+      Bucket: this.bucketName,
+      Key: key,
     }
-    AWS.S3.putObject(params, function(err, data) {
-      console.log(err, data)
+
+    const data = await new Promise((resolve, reject) => {
+      this._s3.getObject(params, (err, data) => {
+        err ? reject(err) : resolve(data)
+      })
+    })
+
+    if (type === 'text') {
+      return data['Body'].toString()
+    }
+    if (type === 'json') {
+      return JSON.parse(data['Body'])
+    }
+    return data
+  }
+
+  async _putObject({key, body, type, mime} : {key : string, body, type? : 'html' | 'json' | 'buffer', mime? : string}) {
+    if (type === 'json') {
+      body = JSON.stringify(body)
+    }
+
+    const contentType = mime || {
+      json: 'application/json',
+      html: 'text/html',
+      'image-png': 'image/png',
+      'image-jpg': 'image/jpeg'
+    }[type]
+    const params = {
+      ACL: 'public-read',
+      Key: key,
+      Body: body,
+      Bucket: this.bucketName,
+      ContentType: contentType
+    }
+
+    const method = type === 'buffer' ? 'upload' : 'putObject'
+    await new Promise((resolve, reject) => {
+      this._s3[method].bind(this._s3)(params, (err, data) => {
+        err ? reject(err) : resolve()
+      })
     })
   }
+
+  async _generateAnnotationId() {
+    const id = _generateRandomId()
+    const isFree = _isPathFree(this._s3, this.bucketName, id + '/annotation.json');
+    return isFree ? id : await this._generateAnnotationId()
+  }
+}
+
+function _generateRandomId() {
+  return randomstring.generate({
+    length: 12,
+    charset: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  })
+}
+
+function _isPathFree(s3, bucket, key) {
+  return s3.headObject({Bucket: bucket, Key: key}).promise()
+    .then(() => Promise.resolve(false))
+    .catch(function (err) {
+      if (err.code == 'NotFound') {
+        return Promise.resolve(true)
+      } else {
+        return Promise.reject(err)
+      }
+    })
 }

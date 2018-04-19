@@ -11,6 +11,7 @@ export class MemoryStorage implements Storage {
     public metadata = {}
     public images = {}
     public documents = {}
+    public skeletons = {}
     
     async storeAnnotation({annotation} : {annotation : Annotation}) {
       annotation.id = annotation.id || Object.keys(this.annotations).length.toString()
@@ -61,7 +62,11 @@ export class MemoryStorage implements Storage {
     }
   
     async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
-      // TODO: Implement so it can can be unit tested
+      this.skeletons[annotation.storageUrl] = skeleton
+    }
+
+    async getStoredAnnotationSkeleton({annotation} : {annotation : Annotation}) : Promise<string> {
+      return this.skeletons[annotation.storageUrl]
     }
   }
   

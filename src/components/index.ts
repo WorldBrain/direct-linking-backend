@@ -6,6 +6,7 @@ import { AnnotationSkeletonGenerator } from './annotation-skeleton-generator'
 import { HtmlMetadataExtractor } from './metadata-extractor'
 import { Storage } from './storage/types'
 import { DiskStorage } from './storage/disk'
+import { AwsStorage } from './storage';
 
 export interface AppComponents {
   annotationLinkBuilder : AnnotationLinkBuilder
@@ -18,23 +19,30 @@ export interface AppComponents {
 
 export interface AppComponentsConfig {
   baseUrl : string
+  awsBucket? : string
   overrides? : object
 }
 
-export function createAppComponents({baseUrl, overrides} : AppComponentsConfig) : AppComponents {
+export function createAppComponents(config : AppComponentsConfig) : AppComponents {
   function allowOverride<T>(name : string, _default : () => T) : T {
-    const override = overrides && overrides[name]
+    const override = config.overrides && config.overrides[name]
     return override ? override : _default()
   }
 
   return {
-    annotationLinkBuilder: allowOverride('annotationLinkBuilder', () => new AnnotationLinkBuilder({baseUrl})),
+    annotationLinkBuilder: allowOverride('annotationLinkBuilder', () => new AnnotationLinkBuilder(config)),
     annotationSkeletonGenerator: allowOverride('annotationSkeletonGenerator', () => new AnnotationSkeletonGenerator()),
     annotationValidator: allowOverride('annotationValidator', () => defaultAnnotationValidator),
     documentRetriever: allowOverride('documentRetriever', () => new HttpDocumentRetriever()),
     metadataExtractor: allowOverride('metadataExtractor', () => new HtmlMetadataExtractor()),
-    storage: allowOverride('storage', () => new DiskStorage({
-      basePath: path.join(__dirname, '../../public')
-    })),
+    storage: allowOverride('storage', () => {
+      if (config.awsBucket) {
+        return new AwsStorage({bucketName: config.awsBucket})
+      } else {
+        return new DiskStorage({
+          basePath: path.join(__dirname, '../../public')
+        })
+      }
+    }),
   }
 }

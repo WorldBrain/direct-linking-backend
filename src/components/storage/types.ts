@@ -18,4 +18,5 @@ export interface Storage {
     getCachedDocument(url : string) : Promise<RetrievedDocument>
 
     storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void>
+    getStoredAnnotationSkeleton({annotation} : {annotation : Annotation}) : Promise<string>
 }

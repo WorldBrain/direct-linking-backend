@@ -12,8 +12,8 @@ export class AnnotationSkeletonGenerator {
             ${metadata.description ? `<meta name="og:description" content="${metadata.description}">` : ''}
             ${metadata.externalImageUrls && metadata.externalImageUrls.social ?
               `<meta name="og:image" content="${metadata.externalImageUrls.social}">` : ''}
-            <link rel=stylesheet href="/styles.css">
-            <script src="/script.js"></script>
+            <link rel=stylesheet href="/assets/styles.css">
+            <script src="/assets/script.js"></script>
         </head>
         <body class='loading'>
         </body>
