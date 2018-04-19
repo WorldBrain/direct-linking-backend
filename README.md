@@ -66,6 +66,12 @@ $ npm run devmon -- --dev create-annotation:url='https://my-custom-url/'
 $ npm run devmon -- --dev create-annotation:id=my-custom-annotation-id,url='https://my-custom-url/'
 ```
 
+To start styling with an embeddable and non-embeddable page (see Styling section below), execute this command:
+```
+sh
+$ npm run dev -- --dev create-annotation:url=embeddable --dev create-annotation:url=non-embeddable
+```
+
 If have tmux and nvm (with Node.js 6) installed, you can execute ./dev.sh which creates one tmux session (dl_prepare) for the TypeScript compiler, and one (dl_devmon) with the devmon command prepared that you can customize and run.
 
 ## Deployment
