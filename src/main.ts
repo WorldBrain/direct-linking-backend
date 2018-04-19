@@ -19,20 +19,6 @@ export async function setup() {
 
 
 export async function main(config = null) : Promise<any> {
-  // if (!config) {
-  //   try {
-  //     config = require('../config.json')
-  //   } catch(e) {
-  //     if (DEVELOPMENT_MODE) {
-  //       config = {
-  //         sessionSecret: 'dev session secret'
-  //       }
-  //     } else {
-  //       throw e
-  //     }
-  //   }
-  // }
-
     // setupDebugGlobal()
     const options = parseCommandLineOptions()
     const components = createAppComponents({baseUrl: process.env.BASE_URL || 'http://localhost:3000'})
@@ -50,8 +36,3 @@ export async function main(config = null) : Promise<any> {
 if(require.main === module){
   main()
 }
-
-// process.on('unhandledRejection', (reason, p) => {
-  // console.log('Unhandled Rejection at: ', p, 'reason:', reason);
-  // application specific logging, throwing an error, or other logic here
-// });

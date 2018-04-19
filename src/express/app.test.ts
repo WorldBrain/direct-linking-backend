@@ -12,16 +12,9 @@ describe('Express app', () => {
 
   async function initApp(routes) {
     app = createApp({routes, allowUndefinedRoutes: true})
-    // app.listen(3000,)
     return app
   }
-
-  // afterEach(async () => {
-  //   await new Promise((resolve, reject) => {
-  //     app.close(err => err ? reject(err) : resolve())
-  //   })
-  // })
-
+  
   function createLoggerRoute() {
     log = {
       called: false,
