@@ -96,6 +96,12 @@ Currently, the front-end consist of:
 
 When editing the CSS, please edit assets/src/styles.less (not actually LESS, but named as such to make IDE happy.) The HTML and JS can be directly edited in assets/build/.
 
+### Styling
+
+The Direct Link page has two versions: 1) a page that annotates an embeddable source, displaying the Memex bar on top of an iFrame with the source embedded, and 2) a page that annotates a non-embeddable source, taking up the whole page and displaying a Copy Quote and Go to Page button.
+
+When the page is loaded initially, it's empty with just the script and the CSS loaded, with a loading CSS class attached to the body. This is an opportunity to show a loading indicator while the rest of the data is loaded. After this, the inner HTML is loaded and either a content-embeddable or content-not-embeddable CSS class is attached to the body, and the loading CSS class is removed.
+
 ## Conventions
 
 **Type declarations**: Types are defined on the most-local level. If type is only used by one function/class, it's stored in the same file. If it's used specific to one module, it's stored there (see src/components/storage/types.ts). If there's a type that concerns the whole program, it's stored in the root types/ directory (like src/types/annotations.ts).
