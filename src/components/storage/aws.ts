@@ -27,7 +27,7 @@ export class AwsStorage implements Storage {
   }
 
   async storeAnnotation({annotation} : {annotation : Annotation}) {
-    annotation.id = annotation.id || await this._generateAnnotationId()
+    annotation.id = await this._generateAnnotationId()
     annotation.storageUrl = normalizeUrlForStorage(annotation.url)
 
     const key = annotation.id + '/annotation.json';
