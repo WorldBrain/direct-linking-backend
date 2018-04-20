@@ -2,7 +2,7 @@ import * as AWS from 'aws-sdk'
 const _ = require('lodash')
 import * as fs from 'fs'
 import * as path from 'path'
-import * as randomstring from 'randomstring'
+import * as shortid from 'shortid'
 import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
 import { normalizeUrlForStorage } from '../../utils/urls'
@@ -133,17 +133,10 @@ export class AwsStorage implements Storage {
   }
 
   async _generateAnnotationId() {
-    const id = _generateRandomId()
+    const id = shortid.generate()
     const isFree = _isPathFree(this._s3, this.bucketName, id + '/annotation.json');
     return isFree ? id : await this._generateAnnotationId()
   }
-}
-
-function _generateRandomId() {
-  return randomstring.generate({
-    length: 12,
-    charset: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  })
 }
 
 function _isPathFree(s3, bucket, key) {
