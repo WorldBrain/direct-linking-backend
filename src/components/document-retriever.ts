@@ -60,9 +60,12 @@ export class SingleDocumentRetriever extends DocumentRetriever {
 
 export class HttpDocumentRetriever extends DocumentRetriever {
   async retrieveDocument({url}) {
+    // THROWS: RequestError: Error: ESOCKETTIMEDOUT
+
     const response = await request({
       uri: url,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout: 3 * 1000
     })
     const mime = response.headers['content-type'].split(';')[0]
     const embeddable = _deduceEmbeddableFromHeaders(response.headers)
@@ -70,10 +73,13 @@ export class HttpDocumentRetriever extends DocumentRetriever {
   }
 
   async retrieveDocumentImage({metadata, type}) {
+    // THROWS: RequestError: Error: ESOCKETTIMEDOUT
+    
     const response = await request({
       uri: metadata.imageUrls[type],
       resolveWithFullResponse: true,
-      encoding: null
+      encoding: null,
+      timeout: 3 * 1000
     })
     return {
       content: new Buffer(response.body),
