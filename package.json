@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/main.js",
+    "start": "node --trace-warnings build/main.js",
     "dev": "better-npm-run dev",
     "devmon": "better-npm-run devmon",
     "prepare": "tsc",

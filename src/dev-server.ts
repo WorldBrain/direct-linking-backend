@@ -8,6 +8,7 @@ export function setupDevServer(expressApp) {
 
     const assetsPath = path.join(__dirname, '../assets')
     const publicPath = path.join(__dirname, '../public')
+    const publicAssetsPath = path.join(__dirname, '../public/assets')
     
     expressApp.use(require('connect-livereload')({
         port: 35729
@@ -18,17 +19,17 @@ export function setupDevServer(expressApp) {
     // On startup, update all assets
     const knownAssets = ['src/styles.less', 'build/styles.css', 'build/script.js', 'build/inner.html', 'build/logo.png', 'build/memex.png']
     for (const asset of knownAssets) {
-        handleAssetEvent({dependencies, assetsPath, publicPath, event: 'update', fromPath: `assets/${asset}`})
+        handleAssetEvent({dependencies, assetsPath, publicAssetsPath, event: 'update', fromPath: `assets/${asset}`})
     }
     
     dependencies.watch(assetsPath, {recursive: true}, (event, fromPath) => {
-        handleAssetEvent({dependencies, assetsPath, publicPath, event, fromPath})
+        handleAssetEvent({dependencies, assetsPath, publicAssetsPath, event, fromPath})
     })
 }
 
-function handleAssetEvent({assetsPath, publicPath, fromPath, dependencies, event}) {
+function handleAssetEvent({assetsPath, publicAssetsPath, fromPath, dependencies, event}) {
     const relPath = path.relative(assetsPath, fromPath)
-    const toPublicPath = path.join(publicPath, relPath).replace(/src|build\//, '')
+    const toPublicPath = path.join(publicAssetsPath, relPath).replace(/src|build\//, '')
     
     const isBuilt = relPath.indexOf('build') >= 0
     if (isBuilt) {

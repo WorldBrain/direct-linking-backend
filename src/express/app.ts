@@ -10,7 +10,7 @@ export default function createApp(
     if (!f && allowUndefinedRoutes) {
       f = () => {}
     }
-    return f
+    return (req, res) => f({req, res})
   }
 
   const app = express()

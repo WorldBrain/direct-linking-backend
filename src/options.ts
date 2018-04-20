@@ -48,7 +48,7 @@ export function getAwsBucketName({tier}) {
     if (tier === 'development') {
         return shouldUseAws({tier}) ? 'staging.memex.link' : null
     }
-    return tier === 'production' ? process.env.PRODUCTION_TIER : process.env.STAGING_TIER
+    return tier === 'production' ? process.env.PRODUCTION_BUCKET : process.env.STAGING_BUCKET
 }
 
 export function getBaseUrl({tier, awsBucket}) {
