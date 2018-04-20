@@ -133,7 +133,9 @@ export class AwsStorage implements Storage {
   }
 
   async _generateAnnotationId() {
-    return shortid.generate()
+    const id = shortid.generate()
+    const isFree = _isPathFree(this._s3, this.bucketName, id + '/annotation.json');
+    return isFree ? id : await this._generateAnnotationId()
   }
 }
 
