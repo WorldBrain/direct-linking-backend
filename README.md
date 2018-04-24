@@ -100,7 +100,7 @@ Currently, the front-end consist of:
 * The CSS, preprocessed with precss and postcss in dev-server.ts
 * The JS, currently not transpiled
 
-When editing the CSS, please edit assets/src/styles.less (not actually LESS, but named as such to make IDE happy.) The HTML and JS can be directly edited in assets/build/.
+When editing the CSS, please edit assets/src/styles.less (not actually LESS, but named as such to make IDE happy.) The JS is edited in assets/src/js, with main.js being the main entry point. The HTML and images can be directly edited in assets/build/.
 
 ### Styling
 
