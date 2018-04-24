@@ -93,6 +93,7 @@ Temporary Items
 
 ./db
 /build
+browserify-cache.json
 
 # Used as root for local development server
 public
