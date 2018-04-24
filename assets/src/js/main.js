@@ -80,6 +80,12 @@ function replaceTemplateVars(html) {
     return html 
 }
 
+function replaceTitle() {
+    const domainMatch = state.annotation.url.match(/https?:\/\/([^\/]+)\//)
+    const domain = domainMatch[1]
+    document.querySelector('title').innerHTML = 'Memex Link: ' + domain
+}
+
 function replaceInnerHTML() {
     document.querySelector('body').innerHTML = replaceTemplateVars(state.innerHTMLTemplate)
     modifyState('replacedHTML', true)
@@ -122,23 +128,28 @@ function copyQuoteAndGoToPage() {
 }
 
 function copyToClipboard(text){
-    var dummy = document.createElement("input");
-    document.body.appendChild(dummy);
-    dummy.setAttribute('value', text);
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
+    var dummy = document.createElement("input")
+    document.body.appendChild(dummy)
+    dummy.setAttribute('value', text)
+    dummy.select()
+    document.execCommand("copy")
+    document.body.removeChild(dummy)
 }
 
-Promise.all([
-    fetchInnerHTML(),
-    fetchMetadata(),
-    fetchAnnotation(),
-    injectGoogleFonts(),
-]).then(function() {
+async function main() {
+    await Promise.all([
+        fetchInnerHTML(),
+        fetchMetadata(),
+        fetchAnnotation(),
+        injectGoogleFonts(),
+    ])
+    
+    replaceTitle()
     replaceInnerHTML()
     attachCopyAndGoListener()
     if (state.metadata.embeddable) {
         injectIframe()
     }
-})
+}
+
+main()
