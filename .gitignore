@@ -94,6 +94,7 @@ Temporary Items
 ./db
 /build
 browserify-cache.json
+assets/build/script.js
 
 # Used as root for local development server
 public
