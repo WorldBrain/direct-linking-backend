@@ -1,155 +1,20 @@
-const state = {
-    fetchingHTML: 'pristine',
-    replacedHTML: false,
-    innerHTMLTemplate: null,
+import * as router from './router'
+router.init()
 
-    fetchingMetadata: 'pristine',
-    metadata: null,
-
-    fetchingAnnotation: 'pristine',
-    annotation: null
-}
-
-function modifyState(key, value) {
-    // console.log('State change "%s" from %o to %o', key, state[key], value)
-    state[key] = value
-    updateBodyClasses()
-}
-
-function updateBodyClasses() {
-    const body = document.querySelector('body')
+// async function main() {
+//     await Promise.all([
+//         fetchInnerHTML(),
+//         fetchMetadata(),
+//         fetchAnnotation(),
+//         injectGoogleFonts(),
+//     ])
     
-    const loading = !(state.fetchingHTML === 'done' && state.fetchMetadata === 'done' && state.fetchAnnotation === 'done')
-    if (!loading) {
-        body.classList.remove('loading')
-    }
+//     replaceTitle()
+//     replaceInnerHTML()
+//     attachCopyAndGoListener()
+//     if (state.metadata.embeddable) {
+//         injectIframe()
+//     }
+// }
 
-    if (state.metadata) {
-        const embeddable = state.metadata.embeddable ? 'content-embeddable' : 'content-not-embeddable'
-        body.classList.add(embeddable)
-    }
-}
-
-function deduceDocumentUrlWithoutProtocol() {
-    const curPath = window.location.pathname
-    const url = curPath.split('/').slice(2).join('/')
-    const withoutTrailingSlash = url.substr(url.length - 1) === '/' ? url.slice(0, -1) : url
-    return withoutTrailingSlash
-}
-
-function deduceMetadataUrl() {
-    return '/' + encodeURIComponent(encodeURIComponent(deduceDocumentUrlWithoutProtocol())) + '/metadata.json'
-}
-
-function deduceDocumentUrl() {
-    return 'http://' + deduceDocumentUrlWithoutProtocol()
-}
-
-function deduceAnnotationUrl() {
-    const curPath = window.location.pathname
-    const id = curPath.split('/')[1]
-    const url = '/' + id + '/annotation.json'
-    return url
-}
-
-async function fetchResource(url, type, progressKey, contentKey) {
-    modifyState(progressKey, 'running')
-
-    const response = await fetch(url)
-    const data = await response[type].bind(response)()
-    modifyState(progressKey, 'done')
-    modifyState(contentKey, data)
-}
-
-function fetchMetadata() {
-    return fetchResource(deduceMetadataUrl(), 'json', 'fetchingMetadata', 'metadata')
-}
-
-function fetchInnerHTML() {
-    return fetchResource('/assets/inner.html', 'text', 'fetchingHTML', 'innerHTMLTemplate')
-}
-
-function fetchAnnotation() {
-    return fetchResource(deduceAnnotationUrl(), 'json', 'fetchingAnnotation', 'annotation')
-}
-
-function replaceTemplateVars(html) {
-    html = html.replace('$TITLE$', state.metadata.title)
-    html = html.replace('$URL$', state.annotation.url)
-    html = html.replace('$QUOTE$', state.annotation.anchors[0].quote)
-    return html 
-}
-
-function replaceTitle() {
-    const domainMatch = state.annotation.url.match(/https?:\/\/([^\/]+)\//)
-    const domain = domainMatch[1]
-    document.querySelector('title').innerHTML = 'Memex Link: ' + domain
-}
-
-function replaceInnerHTML() {
-    document.querySelector('body').innerHTML = replaceTemplateVars(state.innerHTMLTemplate)
-    modifyState('replacedHTML', true)
-}
-
-function injectIframe() {
-    const url = deduceDocumentUrl()
-    const iframe = document.createElement('iframe')
-    iframe.src = url
-    iframe.innerHTML = 'Yello there! Is this visible and stylable?'
-    document.querySelector('.iframe-container').appendChild(iframe)
-}
-
-function injectGoogleFonts() {
-    return new Promise(function (resolve, reject) {
-        window.WebFontConfig = {
-            google: { families: ['Lato'] },
-            active: resolve,
-            inactive: resolve
-         };
-      
-         (function(d) {
-            var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
-            wf.async = true;
-            s.parentNode.insertBefore(wf, s);
-        })(document);
-    })
-}
-
-function attachCopyAndGoListener() {
-    document.querySelector('.copy-button').addEventListener('click', function() {
-        copyQuoteAndGoToPage()
-    })
-}
-
-function copyQuoteAndGoToPage() {
-    copyToClipboard(state.annotation.anchors[0].quote)
-    window.location.href = state.annotation.url
-}
-
-function copyToClipboard(text){
-    var dummy = document.createElement("input")
-    document.body.appendChild(dummy)
-    dummy.setAttribute('value', text)
-    dummy.select()
-    document.execCommand("copy")
-    document.body.removeChild(dummy)
-}
-
-async function main() {
-    await Promise.all([
-        fetchInnerHTML(),
-        fetchMetadata(),
-        fetchAnnotation(),
-        injectGoogleFonts(),
-    ])
-    
-    replaceTitle()
-    replaceInnerHTML()
-    attachCopyAndGoListener()
-    if (state.metadata.embeddable) {
-        injectIframe()
-    }
-}
-
-main()
+// main()

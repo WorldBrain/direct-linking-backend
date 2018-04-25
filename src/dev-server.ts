@@ -22,7 +22,12 @@ export async function setupDevServer(expressApp) {
     await recompileJavascript({assetsPath})
 
     // On startup, update all assets
-    const knownAssets = ['src/styles.less', 'build/styles.css', 'build/script.js', 'build/inner.html', 'build/logo.png', 'build/memex.png']
+    const knownAssets = [
+        'src/styles.less', 'build/styles.css',
+        'build/script.js',
+        'build/demo.html', 'build/inner-annotation.html', 'build/inner-demo.html',
+        'build/logo.png', 'build/memex.png'
+    ]
     for (const asset of knownAssets) {
         handleAssetEvent({dependencies, assetsPath, publicAssetsPath, event: 'update', fromPath: `assets/${asset}`})
     }
@@ -79,13 +84,14 @@ async function recompileJavascript({assetsPath}) {
     const browserify = Browserify({...browserifyIncremental.args})
     browserifyIncremental(browserify, {cacheFile: './browserify-cache.json'})
     browserify.transform("babelify", {
-        "plugins": [
+        plugins: [
             "transform-regenerator",
             ["transform-runtime", {
                 "polyfill": false
             }]
         ],
-        "presets": ["es2015", "stage-1"]
+        presets: ["es2015", "stage-1"],
+        // sourceMaps: true
     })
     browserify.add(path.join(assetsPath, 'src/js/main.js'))
     await new Promise((resolve, reject) => {
