@@ -256,20 +256,20 @@ iframe {
         display: flex;
         flex-direction: row;
         margin: 0;
-        width: auto
+        width: auto;
     }
 
     .info {
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
+        text-align: left;
     }
 
     .intro {
         order: 1;
         padding: 20px 0;
         font-size: 1.2em;
-        text-align: center;
     }
 
     .title-and-url {
@@ -300,7 +300,10 @@ iframe {
     }
 
     .search-text {
-        display: none;
+        display: block;
+        margin-top: 10px;
+        font-size: 1em;
+        text-align: center;
     }
 
     .copy-button {
@@ -323,7 +326,7 @@ iframe {
     .divider {
         display: flex;
         width: 110px;
-        margin: 0 auto;
+        margin: 0 30px;
         justify-content: center;
         align-items: center;
 
@@ -369,12 +372,11 @@ iframe {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        text-align: center;
+        text-align: right;
+        margin: 10px 30px;
     }
 
     .cta-line {
-        margin: 10px 10px;
-
         &.skip  {
             display: none;
         }
@@ -385,8 +387,8 @@ iframe {
         text-decoration: none;
         display: flex;
         width: 250px;
-        margin: 30px auto 0 auto;
-        padding: 10px 30px 10px 30px;
+        margin: 10px 0 10px 0;
+        padding: 10px 0 10px 0;
         border-radius: 5px;
         cursor: pointer;
         align-items: center;
