@@ -164,3 +164,51 @@ iframe {
   height: 100%;
   border: 0;
 }
+
+.demo {
+  display: flex;
+}
+
+.demo .left, .demo .right {
+    width: 300px;
+  }
+
+.demo .tooltip-container {
+    display: none
+  }
+
+.demo .tooltip-container.active {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.demo .tooltip {
+    display: block;
+    position: absolute;
+    border: 1px solid black;
+    background: white;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center
+  }
+
+.demo .tooltip > * {
+  display: none;
+}
+
+.demo .create-link-button {
+    cursor: pointer;
+  }
+
+.demo .tooltip.state-initial .create-link-button { display: inline; }
+
+.demo .tooltip.state-creating-link .progress-indicator { display: inline; }
+
+.demo .tooltip.state-created-link .created-message { display: inline; }
+
+.demo .tooltip.state-link-error .error-message { display: inline; }

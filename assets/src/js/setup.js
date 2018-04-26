@@ -1,13 +1,4 @@
-let LOADED = false
-
-export async function injectGoogleFonts() {
-    if (LOADED) {
-        return
-    }
-
-    await loadGoogleFonts()
-    LOADED = true
-}
+import { loader } from './utils'
 
 function loadGoogleFonts() {
     return new Promise(function (resolve, reject) {
@@ -25,3 +16,5 @@ function loadGoogleFonts() {
         })(document);
     })
 }
+
+export const injectGoogleFonts = loader(loadGoogleFonts)

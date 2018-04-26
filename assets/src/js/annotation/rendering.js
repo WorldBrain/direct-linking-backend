@@ -23,8 +23,7 @@ export function replaceTitle() {
     document.title = 'Memex Link: ' + domain
 }
 
-export function renderAnnotationTemplate() {
-    console.log('rendering')
+export function renderTemplate() {
     document.querySelector('body').innerHTML = replaceTemplateVars(getResource('annotationTemplate'))
     modifyState('replacedHTML', true)
 }

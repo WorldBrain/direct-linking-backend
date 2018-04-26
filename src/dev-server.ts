@@ -10,6 +10,7 @@ export async function setupDevServer(expressApp) {
     const dependencies = _importDevDependencies()
 
     const assetsPath = path.join(__dirname, '../assets')
+    const staticPath = path.join(__dirname, '../static')
     const publicPath = path.join(__dirname, '../public')
     const publicAssetsPath = path.join(__dirname, '../public/assets')
     
@@ -25,7 +26,7 @@ export async function setupDevServer(expressApp) {
     const knownAssets = [
         'src/styles.less', 'build/styles.css',
         'build/script.js',
-        'build/demo.html', 'build/inner-annotation.html', 'build/inner-demo.html',
+        'build/inner-annotation.html', 'build/inner-demo.html',
         'build/logo.png', 'build/memex.png'
     ]
     for (const asset of knownAssets) {
@@ -34,6 +35,11 @@ export async function setupDevServer(expressApp) {
     
     dependencies.watch(assetsPath, {recursive: true}, (event, fromPath) => {
         handleAssetEvent({dependencies, assetsPath, publicAssetsPath, event, fromPath})
+    })
+
+    shell.cp('-r', `${staticPath}/*`, publicPath)
+    dependencies.watch(staticPath, {recursive: true}, (event, fromPath) => {
+        shell.cp('-r', `${staticPath}/*`, publicPath)
     })
 }
 
