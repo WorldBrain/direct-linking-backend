@@ -1,10 +1,20 @@
 import { loader } from '../utils'
 import * as state from '../state'
 import * as backend from './backend'
+import * as actions from './actions'
 import * as rendering from './rendering'
 import * as interactions from './interactions'
 
-export const load = loader(async () => {
+window.demoBackend = backend
+
+export const load = loader(async ({annotationId} = {}) => {
+    await Promise.all([
+        actions.fetchDemoTemplate(),
+        annotationId ? actions.fetchDemoAnnotation({id: annotationId}) : Promise.resolve()
+    ])
+})
+
+export async function init() {
     state.addStateListener('tooltip', (event => {
         rendering.renderTooltip(state.getState('tooltip'))
     }))
@@ -15,12 +25,6 @@ export const load = loader(async () => {
         rendering.renderLinkUrl(event.newValue)
     }))
 
-    await Promise.all([
-        backend.fetchDemoTemplate(),
-    ])
-})
-
-export async function init() {
     rendering.renderTemplate()
     rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
     interactions.setupSelectionHandler()

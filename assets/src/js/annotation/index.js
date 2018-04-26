@@ -1,6 +1,6 @@
 import { loader } from '../utils'
 import * as state from '../state'
-import * as backend from './backend'
+import * as actions from './actions'
 import * as rendering from './rendering'
 import * as interactions from './interactions'
 
@@ -8,9 +8,9 @@ export const load = loader(async () => {
     state.addStateListener('resources', () => rendering.updateBodyClasses())
 
     await Promise.all([
-        backend.fetchAnnotationTemplate(),
-        backend.fetchMetadata(),
-        backend.fetchAnnotation(),
+        actions.fetchAnnotationTemplate(),
+        actions.fetchMetadata(),
+        actions.fetchAnnotation(),
     ])
 })
 

@@ -1,11 +1,24 @@
-import { fetchResource } from '../state'
+const BACKEND_ORIGIN = window.location.hostname === 'localhost' ? window.location.origin : `//dyn.${window.location.hostname}`
 
-export function fetchDemoTemplate() {
-    return fetchResource({url: '/assets/inner-demo.html', type: 'text', key: 'demoTemplate'})
-}
-
-export function createAnnotationLink() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve({url: 'http://memex.link/aefdawfe/memex.link/demo'}), 2000)
+export async function createAnnotationLink() {
+    const data = {annotation: {
+        url: `http://${window.location.host}/demo`,
+        achors: []
+    }}
+    const response = await fetch(BACKEND_ORIGIN, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        redirect: 'error',
+        body: JSON.stringify(data)
     })
+    const json = await response.json()
+    
+    return {url: json.link}
+
+    // return await new Promise((resolve, reject) => {
+    //     setTimeout(() => resolve({url: 'http://memex.link/aefdawfe/memex.link/demo'}), 2000)
+    // })
 }

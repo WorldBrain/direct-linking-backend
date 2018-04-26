@@ -18,7 +18,9 @@ export async function setupDevServer(expressApp) {
         port: 35729
     }))
     expressApp.use(dependencies.serveStatic(publicPath))
-    dependencies.livereload.createServer().watch(publicPath)
+    dependencies.livereload.createServer().watch([
+       publicAssetsPath
+    ])
 
     await recompileJavascript({assetsPath})
 

@@ -2,9 +2,9 @@
 export function loader(promiseCreator) {
     let promise
     
-    return () => {
+    return (...args) => {
         if (!promise) {
-            promise = promiseCreator()
+            promise = promiseCreator(...args)
         }
 
         return promise

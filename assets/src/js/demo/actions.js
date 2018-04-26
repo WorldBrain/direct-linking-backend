@@ -1,4 +1,4 @@
-import { modifyState, getState } from '../state'
+import { modifyState, getState, fetchResource } from '../state'
 import { copyToClipboard } from '../utils'
 import * as backend from './backend'
 
@@ -22,4 +22,13 @@ export async function requestCreateLinkToClipboard() {
     
     modifyState('link.url', result.url)
     modifyState('link.progress', 'done')
+}
+
+export function fetchDemoTemplate() {
+    return fetchResource({url: '/assets/inner-demo.html', type: 'text', key: 'demoTemplate'})
+}
+
+export function fetchDemoAnnotation({id}) {
+    console.log('fetching demo annotation', id)
+    return fetchResource({url: `/${id}/annotation.json`, type: 'json', key: 'demoAnnotation'})
 }

@@ -15,6 +15,16 @@ export function init() {
             demo.init()
         }
     })
+    router.addRoute({
+        path: `/{id}/${window.location.host}/demo/`,
+        handler: async (req) => {
+            await Promise.all([
+                setup.injectGoogleFonts(),
+                demo.load({annotationId: req.params.id})
+            ])
+            demo.init()
+        }
+    })
     router.set404({
         handler: async () => {
             await Promise.all([
