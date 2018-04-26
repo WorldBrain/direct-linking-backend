@@ -34,10 +34,6 @@ body {
         padding: 20px;
     }
 
-.content-not-embeddable .logo img {
-            background-color: white;
-        }
-
 .content-not-embeddable .info {
         display: flex;
         flex-direction: column;
@@ -47,8 +43,9 @@ body {
 .content-not-embeddable .intro {
         order: 1;
         padding: 20px 0;
-        font-size: 1.2em;
+        font-size: 1.5em;
         text-align: center;
+        font-weight: 510;
     }
 
 .content-not-embeddable .title-and-url {
@@ -56,18 +53,33 @@ body {
     }
 
 .content-not-embeddable .title {
+        display: inline-block;
+        background-color: white;
         font-size: 0.95em;
         color: #173766;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
 .content-not-embeddable .url {
+        display: inline-block;
+        background-color: white;
         font-size: 0.85em;
         font-weight: bold;
+        color: #777;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
     }
 
 .content-not-embeddable .quote {
         order: 2;
         padding-bottom: 20px;
+        font-style: italic;
     }
 
 .content-not-embeddable .search-text {
@@ -158,7 +170,7 @@ body {
 
 .logo img {
     display: block;
-    width: 100%;
+    width: 150px;
     height: auto;
 }
 
@@ -190,7 +202,8 @@ iframe {
         position: absolute;
         top: 0;
         height: auto;
-        display: flex;flex-direction: column;
+        display: flex;
+        flex-direction: column;
         background-color: #3eb995;
     }
 
@@ -200,6 +213,7 @@ iframe {
         flex-direction: row;
         background-color: #3eb995;
         color: white;
+        justify-content: space-between;
     }
 
 
@@ -207,11 +221,6 @@ iframe {
         width: 200px;
         padding: 20px;
     }
-
-
-.content-embeddable .logo img {
-            background-color: white;
-        }
 
 
 .content-embeddable .middle {
@@ -233,31 +242,47 @@ iframe {
 .content-embeddable .intro {
         order: 1;
         padding: 20px 0;
-        font-size: 1.2em;
+        font-size: 1.5em;
+        font-weight: 510;
     }
 
 
 .content-embeddable .title-and-url {
-        order: 2;
+        order: 3;
         margin-bottom: 20px;
     }
 
 
 .content-embeddable .title {
+        display:inline-block;
         font-size: 0.95em;
         color: #173766;
+        background-color: white;
+        max-width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
 
 .content-embeddable .url {
+        display: inline-block;
         font-size: 0.85em;
         font-weight: bold;
+        color: #777;
+        background-color: white;
+        margin-top: 5px;
+        max-width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
 
 .content-embeddable .quote {
-        order: 3;
+        order: 2;
         padding-bottom: 20px;
+        font-style: italic;
     }
 
 
@@ -299,7 +324,7 @@ iframe {
 .content-embeddable .divider {
         display: flex;
         width: 110px;
-        margin: 0 30px 0 60px;
+        margin: 0 0 0 20px;
         justify-content: center;
         align-items: center;
     }
@@ -398,7 +423,7 @@ iframe {
         align-items: center;
         justify-content: center;
         text-align: right;
-        margin: 10px 30px;
+        margin: 10px 20px 10px 20px;
     }
 
 
@@ -423,7 +448,6 @@ iframe {
 
 .content-embeddable .cta-button span {
             display: block;
-            padding-top: 2px;
             margin-right: 10px;
             font-size: 1.2em;
             background-color: transparent;
@@ -431,7 +455,8 @@ iframe {
 
 
 .content-embeddable .cta-button img {
+            content: url('/assets/Memex Logo Horizontal_white_noicon.png');
             display: block;
-            height: 35px;
+            height: 30px;
             width: auto;
         }
