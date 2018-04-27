@@ -16,6 +16,5 @@ export function copyToClipboard(text){
     document.body.appendChild(dummy)
     dummy.setAttribute('value', text)
     dummy.select()
-    console.log('Browser allowed copying:', document.execCommand("copy"))
     document.body.removeChild(dummy)
 }

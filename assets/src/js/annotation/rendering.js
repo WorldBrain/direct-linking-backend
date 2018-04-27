@@ -1,4 +1,5 @@
 import { modifyState, getResource } from '../state'
+import { deduceDocumentUrl } from './utils'
 
 export function updateBodyClasses() {
     if (!document.body) {
@@ -36,7 +37,6 @@ export function injectIframeIfNeeded() {
     const url = deduceDocumentUrl()
     const iframe = document.createElement('iframe')
     iframe.src = url
-    iframe.innerHTML = 'Yello there! Is this visible and stylable?'
     document.querySelector('.iframe-container').appendChild(iframe)
 }
 

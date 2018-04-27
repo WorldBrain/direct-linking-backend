@@ -1,4 +1,4 @@
-import { STATE } from '../state'
+import { getResource } from '../state'
 import { copyToClipboard } from '../utils'
 
 export function attachCopyAndGoListener() {
@@ -8,6 +8,7 @@ export function attachCopyAndGoListener() {
 }
 
 function copyQuoteAndGoToPage() {
-    copyToClipboard(STATE.resources.annotation.content.anchors[0].quote)
-    window.location.href = state.annotation.url
+    const annotation = getResource('annotation')
+    copyToClipboard(annotation.anchors[0].quote)
+    window.location.href = annotation.url
 }
