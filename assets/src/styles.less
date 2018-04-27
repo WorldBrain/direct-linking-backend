@@ -14,6 +14,10 @@ body {
 .middle {
     margin: 0 auto;
     width: 500px;
+
+    @media(max-width: 500px) {
+        width: 90%;
+    }
 }
 
 .content-not-embeddable {
@@ -171,8 +175,8 @@ body {
 
 .logo img {
     display: block;
-    width: 150px;
-    height: auto;
+    width: auto;
+    height: 30px;
 }
 
 .content-not-embeddable .minimize {
@@ -262,7 +266,7 @@ iframe {
     }
 
     .logo {
-        width: 200px;
+        width: 10%;
         padding: 20px;
     }
 
@@ -270,7 +274,8 @@ iframe {
         display: flex;
         flex-direction: row;
         margin: 0;
-        width: auto;
+        width: 90%;
+        justify-content: space-between;
     }
 
     .info {
@@ -278,6 +283,8 @@ iframe {
         flex-direction: column;
         margin-bottom: 20px;
         text-align: left;
+        justify-content: space-between;
+        flex-grow: 3;
     }
 
     .intro {
@@ -290,6 +297,7 @@ iframe {
     .title-and-url {
         order: 3;
         margin-bottom: 20px;
+        max-width: 400px;
     }
 
     .title {
@@ -327,6 +335,7 @@ iframe {
         flex-direction: column;
         justify-content: center;
         margin-left: 20px;
+        flex-grow: 1;
     }
 
     .search-text {
@@ -337,7 +346,8 @@ iframe {
     }
 
     .copy-button {
-        width: 230px;
+        max-width: 230px;
+        width: 180px;
         margin: 0 auto;
         padding: 15px 15px;
         text-align: center;
@@ -353,12 +363,17 @@ iframe {
         }
     }
 
+    .search-text {
+        font-size: 0.8em;
+    }
+
     .divider {
         display: flex;
         width: 110px;
         margin: 0 0 0 20px;
         justify-content: center;
         align-items: center;
+        flex-grow: 1;
 
         .text {
             &:before {
@@ -404,6 +419,7 @@ iframe {
         justify-content: center;
         text-align: right;
         margin: 10px 20px 10px 20px;
+        flex-grow: 2;
     }
 
     .cta-line {
