@@ -1,0 +1,3 @@
+[submodule "external/incubator-annotator"]
+	path = external/incubator-annotator
+	url = git@github.com:WorldBrain/incubator-annotator.git

@@ -1,4 +1,6 @@
+import * as dom from '@annotator/dom'
 import { modifyState, getState } from '../state'
+import { selectionToDescriptor } from '../utils/annotations'
 import { requestCreateLinkToClipboard } from './actions'
 
 export function setupSelectionHandler() {
@@ -19,8 +21,9 @@ export function setupSelectionHandler() {
 }
 
 export function setupCreationLink() {
-    document.querySelector('.create-link-button').addEventListener('click', () => {
-        requestCreateLinkToClipboard()
+    document.querySelector('.create-link-button').addEventListener('mousedown', async () => {
+        console.log(await extractAnchor())
+        // requestCreateLinkToClipboard()
     })
 }
 
@@ -34,4 +37,11 @@ function activateToolTipIfNeeded() {
     if (userSelectedText) {
         modifyState('tooltip.active', true)
     }
+}
+
+async function extractAnchor() {
+    return {descriptor: await selectionToDescriptor({
+        selection: document.getSelection(),
+        corpus: document.querySelector('.area.middle')
+    })}
 }

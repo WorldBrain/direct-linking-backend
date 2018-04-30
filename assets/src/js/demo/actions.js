@@ -2,7 +2,7 @@ import { modifyState, getState, fetchResource } from '../state'
 import { copyToClipboard } from '../utils'
 import * as backend from './backend'
 
-export async function requestCreateLinkToClipboard() {
+export async function requestCreateLinkToClipboard({selection}) {
     if (getState('link.progress') !== 'pristine') {
         return
     }
