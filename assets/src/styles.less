@@ -1,169 +1,205 @@
 * {
-  box-sizing: border-box;
-  font-family: Lato;
+    font-family: Lato;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  color: #777777;
-  font-size: 16px;
-}
-
-body.content-embeddable {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  height: 60%;
-  padding: 0;
-  margin: 0;
+    color: #777;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
 }
 
 .middle {
-  margin: 0 auto;
-  width: 500px;
+    margin: 0 auto;
+    width: 500px;
+
+    @media(max-width: 500px) {
+        width: 90%;
+    }
 }
 
 .content-not-embeddable {
-  .info-bar .content {
-    display: block;
-  }
-
-  .logo {
-    width: 200px;
-    padding: 20px;
-  }
-
-  .info {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5px;
-  }
-
-  .intro {
-    order: 1;
-    padding: 20px 0;
-    font-size: 1.2em;
-    text-align: center;
-  }
-
-  .title-and-url {
-    order: 3;
-  }
-
-  .title {
-    font-size: 0.95em;
-    color: #173766;
-  }
-
-  .url {
-    font-size: 0.85em;
-    font-weight: bold;
-  }
-
-  .quote {
-    order: 2;
-    padding-bottom: 10px;
-  }
-
-  .search-text {
-    display: none;
-  }
-
-  .copy-button {
-    width: 200px;
-    margin: 0 auto;
-    padding: 10px;
-    text-align: center;
-    font-size: 0.8em;
-    border: 2px solid #777;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .divider {
-    display: flex;
-    padding: 50px 0;
-    width: 90px;
-    margin: 0 auto;
-
-    .text {
-      &:before {
-        content: "OR"
-      }
-
-      font-size: 1.1em;
-      font-style: italic;
+    .info-bar {
+        display: block;
+        background-color: #3eb995;
+        color: white;
+        height: 100vh;
     }
 
-    .edge {
-      position: relative;
-      margin: 0 5px;
-      transform: translateY(-50%);
-      width: 20px;
-      border-bottom: 2px solid #777;
-    }
-  }
-
-  .cta-container {
-    text-align: center;
-  }
-
-  .cta-line {
-    margin-bottom: 10px;
-
-    &.skip span {
-      display: block;
-    }
-  }
-
-  .cta-button {
-    color: inherit;
-    text-decoration: none;
-    display: flex;
-    width: 250px;
-    margin: 30px auto;
-    padding: 20px;
-    border: 2px solid #777;
-    border-radius: 5px;
-    cursor: pointer;
-
-    span {
-      display: block;
-      padding-top: 2px;
-      margin-right: 10px;
+    .info-bar .content {
+        display: block;
+        background-color: #3eb995;
+        color: white;
     }
 
-    img {
-      display: block;
-      width: 125px;
-      height: auto;
+    .logo {
+        width: 200px;
+        padding: 20px;
     }
-  }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .intro {
+        order: 1;
+        padding: 20px 0;
+        font-size: 1.5em;
+        text-align: center;
+        font-weight: 510;
+    }
+
+    .title-and-url {
+        order: 3;
+    }
+
+    .title {
+        display: inline-block;
+        background-color: white;
+        font-size: 0.95em;
+        color: #173766;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .url {
+        display: inline-block;
+        background-color: white;
+        font-size: 0.85em;
+        font-weight: bold;
+        color: #777;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+    }
+
+    .quote {
+        order: 2;
+        padding-bottom: 20px;
+        font-style: italic;
+    }
+
+    .search-text {
+        display: none;
+    }
+
+    .copy-button {
+        width: 230px;
+        margin: 0 auto;
+        padding: 15px 15px;
+        text-align: center;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: white;
+        color: #3eb995;
+        font-weight: 500;
+
+        span {
+            background-color: white;
+        }
+    }
+
+    .divider {
+        display: flex;
+        padding: 50px 0;
+        width: 110px;
+        margin: 0 auto;
+        justify-content: center;
+
+        .text {
+            &:before {
+            content: "OR"
+            }
+
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .edge {
+            position: relative;
+            margin: 0 5px;
+            transform: translateY(-45%);
+            width: 30px;
+            border-bottom: 2px solid white;
+        }
+    }
+
+    .cta-container {
+        text-align: center;
+    }
+
+    .cta-line {
+        margin-bottom: 10px;
+
+        &.skip span {
+            display: block;
+        }
+    }
+
+    .cta-button {
+        color: #3eb995;
+        text-decoration: none;
+        display: flex;
+        width: 250px;
+        margin: 30px auto 0 auto;
+        padding: 10px 30px 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        align-items: center;
+        background-color: white;
+
+        span {
+            display: block;
+            padding-top: 2px;
+            margin-right: 10px;
+            font-size: 1.2em;
+            background-color: white;
+        }
+
+        img {
+            display: block;
+            height: 35px;
+            width: auto;
+        }
+    }
 }
 
 .logo img {
-  display: block;
-  width: 100%;
-  height: auto;
+    display: block;
+    width: auto;
+    height: 30px;
 }
 
 .content-not-embeddable .minimize {
-  display: none;
+    display: none;
 }
 
 .minimize {
-  text-align: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .iframe-container {
-  position: relative;
-  flex-grow: 1;
+    position: relative;
+    flex-grow: 1;
 }
 
 iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 0;
+    position: absolute;
+    width: 100%;
+    height: 320px;
+    border: 0;
+    top: 300px;
 }
 
 .demo {
@@ -209,4 +245,213 @@ iframe {
   .tooltip.state-creating-link .progress-indicator { display: inline; }
   .tooltip.state-created-link .created-message { display: inline; }
   .tooltip.state-link-error .error-message { display: inline; }
+}
+
+.content-embeddable {
+    .info-bar {
+        position: absolute;
+        top: 0;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: #3eb995;
+    }
+
+    .info-bar .content {
+        display: flex;
+        flex-direction: row;
+        background-color: #3eb995;
+        color: white;
+        justify-content: space-between;
+    }
+
+    .logo {
+        width: 10%;
+        padding: 20px;
+    }
+
+    .middle {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        width: 90%;
+        justify-content: space-between;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        text-align: left;
+        justify-content: space-between;
+        flex-grow: 3;
+    }
+
+    .intro {
+        order: 1;
+        padding: 20px 0;
+        font-size: 1.5em;
+        font-weight: 510;
+    }
+
+    .title-and-url {
+        order: 3;
+        margin-bottom: 20px;
+        max-width: 400px;
+    }
+
+    .title {
+        display:inline-block;
+        font-size: 0.95em;
+        color: #173766;
+        background-color: white;
+        max-width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .url {
+        display: inline-block;
+        font-size: 0.85em;
+        font-weight: bold;
+        color: #777;
+        background-color: white;
+        margin-top: 5px;
+        max-width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .quote {
+        order: 2;
+        padding-bottom: 20px;
+        font-style: italic;
+    }
+
+    .find-instructions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+        flex-grow: 1;
+    }
+
+    .search-text {
+        display: block;
+        margin-top: 10px;
+        font-size: 1em;
+        text-align: center;
+    }
+
+    .copy-button {
+        max-width: 230px;
+        width: 180px;
+        margin: 0 auto;
+        padding: 15px 15px;
+        text-align: center;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: white;
+        color: #3eb995;
+        font-weight: 500;
+
+        span {
+            background-color: white;
+        }
+    }
+
+    .search-text {
+        font-size: 0.8em;
+    }
+
+    .divider {
+        display: flex;
+        width: 110px;
+        margin: 0 0 0 20px;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+
+        .text {
+            &:before {
+                content: "OR";
+            }
+
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        &:before {
+            content: "";
+            position: relative;
+            width: 2px;
+            height: 40px;
+            background: white;
+            z-index: 1;
+            top: -40px;
+            left: 12.5px;
+        }
+
+        &:after {
+            content: "";
+            position: relative;
+            width: 2px;
+            height: 40px;
+            background: white;
+            z-index: 1;
+            top: 40px;
+            left: -12.5px;
+        }
+
+
+        .edge {
+           display: none;
+        }
+    }
+
+    .cta-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: right;
+        margin: 10px 20px 10px 20px;
+        flex-grow: 2;
+    }
+
+    .cta-line {
+        &.skip  {
+            display: none;
+        }
+    }
+
+    .cta-button {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        width: 250px;
+        margin: 10px 0 10px 0;
+        padding: 10px 0 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        align-items: center;
+        background-color: transparent;
+
+        span {
+            display: block;
+            margin-right: 10px;
+            font-size: 1.2em;
+            background-color: transparent;
+        }
+
+        img {
+            content: url('/assets/Memex Logo Horizontal_white_noicon.png');
+            display: block;
+            height: 30px;
+            width: auto;
+        }
+    }
 }
