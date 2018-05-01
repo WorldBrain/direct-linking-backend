@@ -21,9 +21,8 @@ export function setupSelectionHandler() {
 }
 
 export function setupCreationLink() {
-    document.querySelector('.create-link-button').addEventListener('mousedown', async () => {
-        console.log(await extractAnchor())
-        // requestCreateLinkToClipboard()
+    document.querySelector('.create-link-button').addEventListener('mousedown', async (event) => {
+        requestCreateLinkToClipboard({anchor: await extractAnchor()})
     })
 }
 
@@ -40,8 +39,12 @@ function activateToolTipIfNeeded() {
 }
 
 async function extractAnchor() {
-    return {descriptor: await selectionToDescriptor({
-        selection: document.getSelection(),
-        corpus: document.querySelector('.area.middle')
-    })}
+    const selection = document.getSelection()
+    return {
+        quote: selection.toString(),
+        descriptor: await selectionToDescriptor({
+            selection,
+            corpus: selection.baseNode
+        })
+    }
 }

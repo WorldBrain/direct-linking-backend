@@ -1,4 +1,6 @@
 import { getResource } from '../state'
+import { descriptorToRange } from '../utils/annotations'
+import markRange from '../utils/annotations/mark'
 
 export function renderTemplate() {
     document.querySelector('body').innerHTML = getResource('demoTemplate')
@@ -28,6 +30,14 @@ export function renderLinkCreationProgress({oldProgress, newProgress}) {
 
 export function renderLinkUrl(url) {
     document.querySelector('.tooltip .url').setAttribute('href', url)
+}
+
+export async function highlightAnnotation({annotation}) {
+    const descriptor = annotation.anchors[0].descriptor
+    console.log(descriptor)
+    const range = await descriptorToRange({corpus: document, descriptor: descriptor})
+    console.log(range)
+    markRange({range, cssClass: 'highlight'})
 }
 
 export function setTooltipVisible(value) {

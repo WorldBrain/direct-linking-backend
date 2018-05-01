@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import * as router from './router'
 import { injectGoogleFonts } from './setup'
 

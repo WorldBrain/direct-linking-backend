@@ -1,9 +1,9 @@
 const BACKEND_ORIGIN = window.location.hostname === 'localhost' ? window.location.origin : `//dyn.${window.location.hostname}`
 
-export async function createAnnotationLink() {
+export async function createAnnotationLink({anchor}) {
     const data = {annotation: {
         url: `http://${window.location.host}/demo`,
-        achors: []
+        anchors: [anchor]
     }}
     const response = await fetch(BACKEND_ORIGIN, {
         method: "POST",

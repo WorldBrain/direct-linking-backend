@@ -2,7 +2,7 @@ import { modifyState, getState, fetchResource } from '../state'
 import { copyToClipboard } from '../utils'
 import * as backend from './backend'
 
-export async function requestCreateLinkToClipboard({selection}) {
+export async function requestCreateLinkToClipboard({anchor}) {
     if (getState('link.progress') !== 'pristine') {
         return
     }
@@ -11,7 +11,7 @@ export async function requestCreateLinkToClipboard({selection}) {
     
     let result
     try {
-        result = await backend.createAnnotationLink()
+        result = await backend.createAnnotationLink({anchor})
     } catch (e) {
         modifyState('link.progress', 'error')
         modifyState('link.error', e)

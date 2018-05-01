@@ -455,5 +455,9 @@ iframe {
             height: 30px;
             width: auto;
         }
+.highlight {
+  background-color: #BFB;
+}
+
 .os-mac .only-not-mac { display: none; }
 .os-not-mac .only-mac { display: none; }

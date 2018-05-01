@@ -26,7 +26,13 @@ export async function init() {
     }))
 
     rendering.renderTemplate()
-    rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
-    interactions.setupSelectionHandler()
-    interactions.setupCreationLink()
+
+    const demoAnnotation = state.getResource('demoAnnotation')
+    if (demoAnnotation) {
+        rendering.highlightAnnotation({annotation: demoAnnotation})
+    } else {
+        rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
+        interactions.setupSelectionHandler()
+        interactions.setupCreationLink()
+    }
 }

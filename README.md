@@ -33,15 +33,21 @@ To see on a high level what happens when an annotation link is created, see [thi
 **This assumes a basic knowledge of `git`, `npm` and usage of the `command line`. Furthermore, this project is tested on Node.js version 6, which can be installed with NVM.**
 
 ### First steps:
-**Clone this repo:**
+**Clone this repo and it's submodules (!):**
 
 ```sh
-$ git clone https://github.com/WorldBrain/direct-linking-backend.git
+$ git clone https://github.com/WorldBrain/direct-linking-backend.git --recurse-submodules
 ```
 
 **Run `npm install` to install dependencies**
 ```sh
 $ npm install
+```
+**This could take a while....**
+
+**Build the Apache Annotator submodule**
+```sh
+$ cd external/incubator-annotator && yarn --ignore-engines && yarn build && cd -
 ```
 **This could take a while....**
 
@@ -98,15 +104,19 @@ This seperation allows every component to be unit/integration tested with variou
 Currently, the front-end consist of:
 * The HTML template, which has some simple data replaced, marked with $TITLE$, $URL$ and $QUOTE$ tags
 * The CSS, preprocessed with precss and postcss in dev-server.ts
-* The JS, currently not transpiled
+* The JS, compiled through Browserify & Babel
 
 When editing the CSS, please edit assets/src/styles.less (not actually LESS, but named as such to make IDE happy.) The JS is edited in assets/src/js, with main.js being the main entry point. The HTML and images can be directly edited in assets/build/.
 
-### Styling
+### Styling (direct link page)
 
 The Direct Link page has two versions: 1) a page that annotates an embeddable source, displaying the Memex bar on top of an iFrame with the source embedded, and 2) a page that annotates a non-embeddable source, taking up the whole page and displaying a Copy Quote and Go to Page button.
 
 When the page is loaded initially, it's empty with just the script and the CSS loaded, with a loading CSS class attached to the body. This is an opportunity to show a loading indicator while the rest of the data is loaded. After this, the inner HTML is loaded and either a content-embeddable or content-not-embeddable CSS class is attached to the body, and the loading CSS class is removed.
+
+### Styling (demo page)
+
+The Direct Linking demo can be found at http://localhost:3000/demo . 
 
 ## Conventions
 
