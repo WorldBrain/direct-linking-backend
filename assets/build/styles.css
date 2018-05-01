@@ -455,3 +455,5 @@ iframe {
             height: 30px;
             width: auto;
         }
+.os-mac .only-not-mac { display: none; }
+.os-not-mac .only-mac { display: none; }

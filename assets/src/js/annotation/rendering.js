@@ -1,3 +1,4 @@
+import * as os from 'os'
 import { modifyState, getResource } from '../state'
 import { deduceDocumentUrl } from './utils'
 
@@ -15,6 +16,12 @@ export function updateBodyClasses() {
     if (metadata) {
         const embeddable = metadata.embeddable ? 'content-embeddable' : 'content-not-embeddable'
         document.body.classList.add(embeddable)
+    }
+
+    if (os.platform() === 'darwin') {
+        document.body.classList.add('os-mac')
+    } else {
+        document.body.classList.add('os-not-mac')
     }
 }
 
