@@ -1,9 +1,14 @@
-import { getResource } from '../state'
+import { getResource, getState } from '../state'
 import { descriptorToRange } from '../utils/annotations'
 import markRange from '../utils/annotations/mark'
 
+export function updateBodyClasses() {
+    const hasAnnotation = !!getResource('demoAnnotation') ? 'demo-with-annotation' : 'demo-without-annotation'
+    document.body.classList.add(hasAnnotation)
+}
+
 export function renderTemplate() {
-    document.querySelector('body').innerHTML = getResource('demoTemplate')
+    document.body.innerHTML = getResource('demoTemplate')
 }
 
 export function renderTooltip({active, position}) {
@@ -32,11 +37,27 @@ export function renderLinkUrl(url) {
     document.querySelector('.tooltip .url').setAttribute('href', url)
 }
 
+export function positionInitialSelectionHelper() {
+    positionHelper({
+        $anchor: document.querySelector('.initial-selection'),
+        $helper: document.querySelector('.initial-selection-helper')
+    })
+}
+
+export function positionHighlightHelper() {
+    positionHelper({
+        $anchor: document.querySelector('.highlight'),
+        $helper: document.querySelector('.highlight-helper')
+    })
+}
+
+function positionHelper({$anchor, $helper}) {
+    $helper.style.marginTop = `${$anchor.offsetTop}px`
+}
+
 export async function highlightAnnotation({annotation}) {
     const descriptor = annotation.anchors[0].descriptor
-    console.log(descriptor)
     const range = await descriptorToRange({corpus: document, descriptor: descriptor})
-    console.log(range)
     markRange({range, cssClass: 'highlight'})
 }
 

@@ -25,14 +25,24 @@ export async function init() {
         rendering.renderLinkUrl(event.newValue)
     }))
 
+    rendering.updateBodyClasses()
     rendering.renderTemplate()
 
     const demoAnnotation = state.getResource('demoAnnotation')
     if (demoAnnotation) {
-        rendering.highlightAnnotation({annotation: demoAnnotation})
+        await rendering.highlightAnnotation({annotation: demoAnnotation})
+        rendering.positionHighlightHelper()
+        window.addEventListener('resize', () => {
+            rendering.positionHighlightHelper()
+        })
     } else {
-        rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
         interactions.setupSelectionHandler()
         interactions.setupCreationLink()
+
+        rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
+        rendering.positionInitialSelectionHelper()
+        window.addEventListener('resize', () => {
+            rendering.positionInitialSelectionHelper()
+        })
     }
 }

@@ -18,8 +18,6 @@ export async function requestCreateLinkToClipboard({anchor}) {
         throw e
     }
 
-    console.log('Received link:', result.url)
-    
     modifyState('link.url', result.url)
     modifyState('link.progress', 'done')
 }
@@ -29,6 +27,5 @@ export function fetchDemoTemplate() {
 }
 
 export function fetchDemoAnnotation({id}) {
-    console.log('fetching demo annotation', id)
     return fetchResource({url: `/${id}/annotation.json`, type: 'json', key: 'demoAnnotation'})
 }
