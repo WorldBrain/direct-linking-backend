@@ -285,31 +285,6 @@ body.content-embeddable .annotation .quote {
             font-style: italic;
         }
 
-body.content-embeddable .annotation .quote .truncated-text, body.content-embeddable .annotation .quote .toggle-truncation {
-                display: none;
-            }
-
-body.content-embeddable .annotation .quote.truncated .toggle-truncation {
-                    display: inline;
-}
-
-body.content-embeddable .annotation .quote.truncated .untruncated-text { display: none;
-}
-
-body.content-embeddable .annotation .quote.truncated .truncated-text { display: block;
-}
-
-body.content-embeddable .annotation .quote.truncated.show-more .untruncated-text { display: block;
-}
-
-body.content-embeddable .annotation .quote.truncated.show-more .truncated-text { display: none;
-}
-
-body.content-embeddable .annotation .quote .toggle-truncation {
-                font-weight: bold;
-                cursor: pointer;
-}
-
 body.content-embeddable .annotation .find-instructions {
             display: flex;
             flex-direction: column;
@@ -435,6 +410,31 @@ body.content-embeddable .annotation .cta-button img {
 .annotation .btn-live-demo {
         font-weight: bold;
         cursor: pointer;
+}
+
+.annotation .quote .truncated-text, .annotation .quote .toggle-truncation {
+            display: none;
+        }
+
+.annotation .quote.truncated .toggle-truncation {
+                display: inline;
+}
+
+.annotation .quote.truncated .untruncated-text { display: none;
+}
+
+.annotation .quote.truncated .truncated-text { display: block;
+}
+
+.annotation .quote.truncated.show-more .untruncated-text { display: block;
+}
+
+.annotation .quote.truncated.show-more .truncated-text { display: none;
+}
+
+.annotation .quote .toggle-truncation {
+            font-weight: bold;
+            cursor: pointer;
 }
 
 .demo {

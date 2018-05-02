@@ -283,29 +283,6 @@ body {
             order: 2;
             padding-bottom: 20px;
             font-style: italic;
-
-            .truncated-text, .toggle-truncation {
-                display: none;
-            }
-        
-            &.truncated {
-                .toggle-truncation {
-                    display: inline;
-                }
-
-                .untruncated-text { display: none; }
-                .truncated-text { display: block; }
-
-                &.show-more {
-                    .untruncated-text { display: block; }
-                    .truncated-text { display: none; }
-                }
-            }
-
-            .toggle-truncation {
-                font-weight: bold;
-                cursor: pointer;
-            }
         }
 
         .find-instructions {
@@ -437,6 +414,31 @@ body {
     .btn-live-demo {
         font-weight: bold;
         cursor: pointer;
+    }
+
+    .quote {
+        .truncated-text, .toggle-truncation {
+            display: none;
+        }
+    
+        &.truncated {
+            .toggle-truncation {
+                display: inline;
+            }
+
+            .untruncated-text { display: none; }
+            .truncated-text { display: block; }
+
+            &.show-more {
+                .untruncated-text { display: block; }
+                .truncated-text { display: none; }
+            }
+        }
+
+        .toggle-truncation {
+            font-weight: bold;
+            cursor: pointer;
+        }
     }
 }
 
