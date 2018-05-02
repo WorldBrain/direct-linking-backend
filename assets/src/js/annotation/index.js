@@ -17,6 +17,8 @@ export const load = loader(async () => {
 export async function init() {    
     rendering.replaceTitle()
     rendering.renderTemplate()
+    rendering.truncateQuote()
     interactions.attachCopyAndGoListener()
+    interactions.setupToggleTrunctation()
     rendering.injectIframeIfNeeded()
 }

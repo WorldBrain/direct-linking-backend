@@ -53,3 +53,19 @@ function replaceTemplateVars(html) {
     html = html.replace('$QUOTE$', getResource('annotation').anchors[0].quote)
     return html 
 }
+
+export function truncateQuote() {
+    const quoteCharLimit = 300
+
+    const $quote = document.querySelector('.quote')
+    const text = $quote.querySelector('.text-content').textContent
+    if (text.length < quoteCharLimit) {
+        return
+    }
+
+    const lastSpaceBeforeCutoff = text.lastIndexOf(' ', quoteCharLimit)
+    const trunctatedText = text.substr(0, lastSpaceBeforeCutoff)
+
+    $quote.classList.add('truncated')
+    document.querySelector('.truncated-text .text-content').innerHTML = trunctatedText
+}

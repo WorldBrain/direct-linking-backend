@@ -194,20 +194,19 @@ body.content-not-embeddable .annotation .minimize {
 .annotation .iframe-container {
         position: relative;
         flex-grow: 1;
+        background-color: white;
+        // background-color: red;
+        min-height: 50000px;
 }
 
 .annotation iframe {
         position: absolute;
         width: 100%;
-        height: 320px;
+        height: 100%;
         border: 0;
-        top: 300px;
 }
 
 body.content-embeddable .annotation .info-bar {
-            position: absolute;
-            top: 0;
-            height: auto;
             display: flex;
             flex-direction: column;
             background-color: #3eb995;
@@ -285,6 +284,31 @@ body.content-embeddable .annotation .quote {
             padding-bottom: 20px;
             font-style: italic;
         }
+
+body.content-embeddable .annotation .quote .truncated-text, body.content-embeddable .annotation .quote .toggle-truncation {
+                display: none;
+            }
+
+body.content-embeddable .annotation .quote.truncated .toggle-truncation {
+                    display: inline;
+}
+
+body.content-embeddable .annotation .quote.truncated .untruncated-text { display: none;
+}
+
+body.content-embeddable .annotation .quote.truncated .truncated-text { display: block;
+}
+
+body.content-embeddable .annotation .quote.truncated.show-more .untruncated-text { display: block;
+}
+
+body.content-embeddable .annotation .quote.truncated.show-more .truncated-text { display: none;
+}
+
+body.content-embeddable .annotation .quote .toggle-truncation {
+                font-weight: bold;
+                cursor: pointer;
+}
 
 body.content-embeddable .annotation .find-instructions {
             display: flex;

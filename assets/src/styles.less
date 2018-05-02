@@ -193,21 +193,20 @@ body {
     .iframe-container {
         position: relative;
         flex-grow: 1;
+        background-color: white;
+        // background-color: red;
+        min-height: 50000px;
     }
 
     iframe {
         position: absolute;
         width: 100%;
-        height: 320px;
+        height: 100%;
         border: 0;
-        top: 300px;
     }
 
     body.content-embeddable & {
         .info-bar {
-            position: absolute;
-            top: 0;
-            height: auto;
             display: flex;
             flex-direction: column;
             background-color: #3eb995;
@@ -284,6 +283,29 @@ body {
             order: 2;
             padding-bottom: 20px;
             font-style: italic;
+
+            .truncated-text, .toggle-truncation {
+                display: none;
+            }
+        
+            &.truncated {
+                .toggle-truncation {
+                    display: inline;
+                }
+
+                .untruncated-text { display: none; }
+                .truncated-text { display: block; }
+
+                &.show-more {
+                    .untruncated-text { display: block; }
+                    .truncated-text { display: none; }
+                }
+            }
+
+            .toggle-truncation {
+                font-weight: bold;
+                cursor: pointer;
+            }
         }
 
         .find-instructions {

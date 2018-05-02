@@ -11,7 +11,17 @@
                         <div class="title">$TITLE$</div>
                         <div class="url">$URL$</div>
                     </div>
-                    <div class="quote">"$QUOTE$"</div>
+                    <div class="quote">
+                        <div class="untruncated-text">
+                            <span class="text-content">"$QUOTE$"</span>
+                            <span class="enable-truncation toggle-truncation">(show less)</span>
+                        </div>
+                        <div class="truncated-text">
+                            <span class="text-content"></span>
+                            ...
+                            <span class="disable-truncation toggle-truncation">(show more)</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="find-instructions">
                     <div class="copy-button">Copy Quote <span class="go-to-page">&amp; Go to Page</span></div>
