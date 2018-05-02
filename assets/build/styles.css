@@ -443,6 +443,22 @@ body.content-embeddable .annotation .cta-button img {
         margin-top: 20px;
     }
 
+.demo .logo {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+.demo .logo img {
+            display: block;
+            width: 140px;
+            height: auto;
+        }
+
+.demo .logo-line {
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
 .demo .middle p.last {
             margin-bottom: 90px;
         }
@@ -762,6 +778,87 @@ body.content-embeddable .annotation .cta-button img {
             align-items: center;
             border: 2px solid #777;
             padding: 10px 11px;
+        }
+
+.demo .initial-selection-helper .hightlight-button span {
+                display: block;
+                padding-top: 2px;
+                margin-right: 10px;
+                font-size: 1.2em;
+            }
+
+.demo .initial-selection-helper .hightlight-button img {
+                display: block;
+                height: 25px;
+                width: auto;
+            }
+
+.demo .initial-selection-helper:after, .demo .initial-selection-helper:before {
+        right: 100%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+.demo .initial-selection-helper:after {
+        border-right-color: #fff;
+        border-width: 30px;
+        margin-top: -30px;
+    }
+
+.demo .initial-selection-helper:before {
+        border-right-color: #3eb995;
+        border-width: 34px;
+        margin-top: -34px;
+    }
+
+.demo .initial-selection-helper {
+        position: relative;
+        border: 3px solid #3eb995;
+        width: 74%;
+        margin: 20% 5% 20% 10%;
+        padding: 20px 20px;
+        border-radius: 5px;
+    }
+
+.demo .initial-selection-helper .divider {
+            display: flex;
+            margin: 10px auto;
+            justify-content: center;
+        }
+
+.demo .initial-selection-helper .divider .text:before {
+    content: "OR";
+}
+
+.demo .initial-selection-helper .divider .text {
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+.demo .initial-selection-helper .divider .edge {
+                position: relative;
+                margin: 0 5px;
+                -webkit-transform: translateY(-45%);
+                        transform: translateY(-45%);
+                width: 30px;
+                border-bottom: 2px solid #777;
+            }
+
+.demo .initial-selection-helper .hightlight-button {
+            color: #777;
+            text-decoration: none;
+            display: flex;
+            margin: 0 auto;
+            border-radius: 5px;
+            cursor: pointer;
+            align-items: center;
+            border: 2px solid #777;
+            padding: 10px 15px;
         }
 
 .demo .initial-selection-helper .hightlight-button span {
