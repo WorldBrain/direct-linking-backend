@@ -458,7 +458,7 @@ body.content-embeddable .annotation .cta-button img {
 
 .demo .tooltip-container.active {
     display: block;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
