@@ -3,8 +3,9 @@ import * as setup from './setup'
 import * as annotation from './annotation'
 import * as demo from './demo'
 
+const router = new BrowserRouter({})
+
 export function init() {
-    const router = new BrowserRouter({})
     router.addRoute({
         path: '/demo',
         handler: async () => {
@@ -38,4 +39,8 @@ export function init() {
 
     // Start loading demo in background no matter where we are
     demo.load()
+}
+
+export function goToDemo() {
+    router.go('/demo')
 }

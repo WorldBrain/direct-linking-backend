@@ -432,6 +432,11 @@ body.content-embeddable .annotation .cta-button img {
                 width: auto;
             }
 
+.annotation .btn-live-demo {
+        font-weight: bold;
+        cursor: pointer;
+}
+
 .demo {
     display: flex;
 }

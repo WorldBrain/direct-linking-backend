@@ -1,5 +1,6 @@
 import { getResource } from '../state'
 import { copyToClipboard } from '../utils'
+import { goToDemo } from '../router'
 
 export function attachCopyAndGoListener() {
     document.querySelector('.copy-button').addEventListener('click', () => {
@@ -19,5 +20,12 @@ export function setupToggleTrunctation() {
     })
     document.querySelector('.disable-truncation').addEventListener('click', () => {
         document.querySelector('.quote').classList.add('show-more')
+    })
+}
+
+
+export function setupLiveDemoButton() {
+    document.querySelector('.btn-live-demo').addEventListener('click', () => {
+        goToDemo()
     })
 }

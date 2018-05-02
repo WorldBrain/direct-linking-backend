@@ -20,5 +20,6 @@ export async function init() {
     rendering.truncateQuote()
     interactions.attachCopyAndGoListener()
     interactions.setupToggleTrunctation()
+    interactions.setupLiveDemoButton()
     rendering.injectIframeIfNeeded()
 }
