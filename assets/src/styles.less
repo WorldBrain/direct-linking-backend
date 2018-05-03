@@ -22,6 +22,10 @@ body {
     }
 
     body.content-not-embeddable & {
+        .iframe-container {
+            display: none;
+        }
+
         .info-bar {
             display: block;
             background-color: #3eb995;
@@ -151,7 +155,8 @@ body {
             text-decoration: none;
             display: flex;
             width: 250px;
-            margin: 30px auto 0 auto;
+            margin: 0 auto;
+            margin-top: 30px;
             padding: 10px 30px 10px 30px;
             border-radius: 5px;
             cursor: pointer;

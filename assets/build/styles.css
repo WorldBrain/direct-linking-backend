@@ -23,6 +23,10 @@ body {
     }
 }
 
+body.content-not-embeddable .annotation .iframe-container {
+            display: none;
+        }
+
 body.content-not-embeddable .annotation .info-bar {
             display: block;
             background-color: #3eb995;
@@ -153,7 +157,8 @@ body.content-not-embeddable .annotation .cta-button {
             text-decoration: none;
             display: flex;
             width: 250px;
-            margin: 30px auto 0 auto;
+            margin: 0 auto;
+            margin-top: 30px;
             padding: 10px 30px 10px 30px;
             border-radius: 5px;
             cursor: pointer;

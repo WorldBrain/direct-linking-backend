@@ -1,6 +1,8 @@
 import * as os from 'os'
-import { modifyState, getResource } from '../state'
+import { modifyState, getResource, getState } from '../state'
 import { deduceDocumentUrl } from './utils'
+
+const DISABLE_EMBEDDED_ON_SIZES = ['mobile', 'tablet', 'small_desktop']
 
 export function updateBodyClasses() {
     if (!document.body) {
@@ -14,8 +16,12 @@ export function updateBodyClasses() {
 
     const metadata = getResource('metadata')
     if (metadata) {
-        const embeddable = metadata.embeddable ? 'content-embeddable' : 'content-not-embeddable'
-        document.body.classList.add(embeddable)
+        const forceDisableEmbedding = DISABLE_EMBEDDED_ON_SIZES.indexOf(getState('deviceSizeName')) >= 0
+        const embeddable = metadata.embeddable && !forceDisableEmbedding
+        console.log('!?!?!', embeddable)
+        const getClassName = embeddable => embeddable ? 'content-embeddable' : 'content-not-embeddable'
+        document.body.classList.add(getClassName(embeddable))
+        document.body.classList.remove(getClassName(!embeddable))
     }
 
     if (os.platform() === 'darwin') {

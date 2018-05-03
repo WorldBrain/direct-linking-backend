@@ -10,7 +10,8 @@ export const STATE = {
         progress: 'pristine',
         url: null,
         error: null
-    }
+    },
+    deviceSizeName: null // 'mobile' | 'tablet' | 'small_desktop' | 'large_desktop'
 }
 window.STATE = STATE
 

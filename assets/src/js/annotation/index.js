@@ -6,6 +6,7 @@ import * as interactions from './interactions'
 
 export const load = loader(async () => {
     state.addStateListener('resources', () => rendering.updateBodyClasses())
+    state.addStateListener('deviceSizeName', () => rendering.updateBodyClasses())
 
     await Promise.all([
         actions.fetchAnnotationTemplate(),
