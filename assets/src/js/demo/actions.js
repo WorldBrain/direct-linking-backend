@@ -22,6 +22,11 @@ export async function requestCreateLinkToClipboard({anchor}) {
     modifyState('link.progress', 'done')
 }
 
+export function resetLinkState() {
+    modifyState('link.progress', 'pristine')
+    modifyState('link.url', null)
+}
+
 export function fetchDemoTemplate() {
     return fetchResource({url: '/assets/inner-demo.html', type: 'text', key: 'demoTemplate'})
 }

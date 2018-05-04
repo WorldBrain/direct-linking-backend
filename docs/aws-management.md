@@ -58,7 +58,7 @@ $ eb create --instance_profile direct-linking-staging-profile
 Enter Environment Name
 (default is direct-linking-backend-dev): **staging**
 Enter DNS CNAME prefix
-(default is staging): **staging**
+(default is staging): **direct-linking-staging**
 
 Select a load balancer type
 1) classic

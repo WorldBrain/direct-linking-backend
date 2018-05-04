@@ -18,7 +18,6 @@ export function updateBodyClasses() {
     if (metadata) {
         const forceDisableEmbedding = DISABLE_EMBEDDED_ON_SIZES.indexOf(getState('deviceSizeName')) >= 0
         const embeddable = metadata.embeddable && !forceDisableEmbedding
-        console.log('!?!?!', embeddable)
         const getClassName = embeddable => embeddable ? 'content-embeddable' : 'content-not-embeddable'
         document.body.classList.add(getClassName(embeddable))
         document.body.classList.remove(getClassName(!embeddable))

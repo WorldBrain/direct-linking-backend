@@ -1,9 +1,5 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import * as shell from 'shelljs'
-import * as Browserify from 'browserify'
-import * as browserifyIncremental from 'browserify-incremental'
-import * as babelify from 'babelify'
 import { mkdirPathSync } from './utils/fs'
 
 export async function setupDevServer(expressApp) {
@@ -22,7 +18,7 @@ export async function setupDevServer(expressApp) {
        publicAssetsPath
     ])
 
-    await recompileJavascript({assetsPath})
+    await recompileJavascript({assetsPath, dependencies})
 
     // On startup, update all assets
     const knownAssets = [
@@ -39,9 +35,9 @@ export async function setupDevServer(expressApp) {
         handleAssetEvent({dependencies, assetsPath, publicAssetsPath, event, fromPath})
     })
 
-    shell.cp('-r', `${staticPath}/*`, publicPath)
+    dependencies.shell.cp('-r', `${staticPath}/*`, publicPath)
     dependencies.watch(staticPath, {recursive: true}, (event, fromPath) => {
-        shell.cp('-r', `${staticPath}/*`, publicPath)
+        dependencies.shell.cp('-r', `${staticPath}/*`, publicPath)
     })
 }
 
@@ -51,7 +47,7 @@ function handleAssetEvent({assetsPath, publicAssetsPath, fromPath, dependencies,
     
     const isBuilt = relPath.indexOf('build') >= 0
     if (isBuilt) {
-        mirrorFromBuildToPublic(event, fromPath, toPublicPath)
+        mirrorFromBuildToPublic({event, fromPath, toPath: toPublicPath, dependencies})
         return
     }
 
@@ -59,19 +55,19 @@ function handleAssetEvent({assetsPath, publicAssetsPath, fromPath, dependencies,
     if (/\.less$/.test(toBuildPath)) {
         recompileCSS(fromPath, toBuildPath.replace('.less', '.css'), dependencies)
     } else if (/\/js/.test(toBuildPath)) {
-        recompileJavascript({assetsPath})
+        recompileJavascript({assetsPath, dependencies})
     } else {
         console.warn("Don't know how to deal with asset source:", relPath)
     }
 }
 
-function mirrorFromBuildToPublic(event, fromPath, toPath) {
+function mirrorFromBuildToPublic({event, fromPath, toPath, dependencies}) {
     if (event === 'update') {
         mkdirPathSync(path.dirname(toPath))
         const isDir = fs.statSync(fromPath).isDirectory()
-        shell.cp('-r', fromPath, toPath)
+        dependencies.shell.cp('-r', fromPath, toPath)
     } else if (event === 'remove') {
-        shell.rm('-r', toPath)
+        dependencies.shell.rm('-r', toPath)
     } else {
         // There are no other events I've observed playing around
     }
@@ -88,9 +84,9 @@ function recompileCSS(fromPath, toPath, dependencies) {
     })
 }
 
-async function recompileJavascript({assetsPath}) {
-    const browserify = Browserify({...browserifyIncremental.args})
-    browserifyIncremental(browserify, {cacheFile: './browserify-cache.json'})
+async function recompileJavascript({assetsPath, dependencies}) {
+    const browserify = dependencies.Browserify({...dependencies.browserifyIncremental.args})
+    dependencies.browserifyIncremental(browserify, {cacheFile: './browserify-cache.json'})
     browserify.transform("babelify", {
         plugins: [
             "transform-regenerator",
@@ -120,6 +116,10 @@ export function _importDevDependencies() {
         livereload: require('livereload'),
         postcss: require('postcss'),
         precss: require('precss'),
-        autoprefixer: require('autoprefixer')
+        autoprefixer: require('autoprefixer'),
+        shell: require('shelljs'),
+        Browserify: require('browserify'),
+        browserifyIncremental: require('browserify-incremental'),
+        babelify: require('babelify'),
     }
 }

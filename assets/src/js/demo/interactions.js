@@ -1,7 +1,7 @@
 import * as dom from '@annotator/dom'
 import { modifyState, getState } from '../state'
 import { selectionToDescriptor } from '../utils/annotations'
-import { requestCreateLinkToClipboard } from './actions'
+import { requestCreateLinkToClipboard, resetLinkState } from './actions'
 
 export function setupSelectionHandler() {
     document.querySelector('.area.middle').addEventListener('mouseup', event => {
@@ -16,6 +16,7 @@ export function setupSelectionHandler() {
         const directClick = event.target === $tooltipContainer
         if (directClick) {
             modifyState('tooltip.active', false)
+            resetLinkState()
         }
     })
 }
