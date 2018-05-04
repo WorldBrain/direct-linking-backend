@@ -531,7 +531,7 @@ body.content-embeddable .annotation .cta-button img {
         display: none;
     }
 
-.demo-without-annotation .demo .initial-selection {
+.demo-without-annotation .demo .initial-selection span {
         background-color: #BFB;
     }
 
