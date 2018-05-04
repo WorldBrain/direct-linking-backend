@@ -435,6 +435,10 @@ body.content-embeddable .annotation .cta-button img {
         margin-top: 20px;
     }
 
+.demo .middle p.last {
+            margin-bottom: 90px;
+        }
+
 .demo .logo {
         margin-top: 20px;
         margin-left: 20px;
@@ -450,10 +454,6 @@ body.content-embeddable .annotation .cta-button img {
         margin-left: 20px;
         margin-top: 20px;
     }
-
-.demo .middle p.last {
-            margin-bottom: 90px;
-        }
 
 .demo .tooltip-container {
       display: none
@@ -497,15 +497,192 @@ body.content-embeddable .annotation .cta-button img {
       cursor: pointer;
     }
 
-.demo .tooltip.state-initial .create-link-button { display: inline; }
+.demo .tooltip.state-initial .create-link-button {
+        display: flex;
+        flex-direction: row;
+        margin: 0 2px;
+        color: #3eb995;
+    }
+
+.demo .tooltip.state-initial .create-link-button .heading_link {
+            display: flex;
+            align-items: center;
+        }
+
+.demo .tooltip.state-initial .create-link-button .heading_link img {
+                width: auto;
+                height: 20px;
+            }
+
+.demo .tooltip.state-initial .create-link-button .heading_link span {
+                margin-left: 5px;
+            }
+
+.demo .tooltip.state-initial .create-link-button .heading_ownlinks {
+            margin-right: 10px;
+        }
+
+.demo .tooltip.state-initial .create-link-button .tooltip_divider {
+            height: 60px;
+            display: block;
+            margin: 0 8px;
+            width: 1px;
+            background: #3eb995;
+            position: absolute;
+            left: 50%;
+            top: 0;
+        }
+
+.demo .tooltip.state-initial .create-link-button .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 19px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-initial .create-link-button .icon img {
+                width: auto;
+                height: 20px;
+            }
 
 .demo .tooltip.state-creating-link .progress-indicator { display: inline; }
 
-.demo .tooltip.state-created-link .created-message { display: inline; }
+.demo .tooltip.state-created-link .created-message { 
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        margin-left: 10px;
+    }
+
+.demo .tooltip.state-created-link .created-message img {
+            width: 30px;
+            height: auto;
+        }
+
+.demo .tooltip.state-created-link .created-message a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+.demo .tooltip.state-created-link .created-message a span {
+                margin-left: 5px;
+            }
+
+.demo .tooltip.state-created-link .created-message .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 19px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-created-link .created-message .icon img {
+                width: auto;
+                height: 20px;
+            }
 
 .demo .tooltip.state-link-error .error-message { display: inline; }
 
 .demo .tooltip.state-link-copied .copied-message { display: inline; }
+
+.demo .tooltip.state-created-link {
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        width: 220px;
+        line-height: 1.2em;
+    }
+
+.demo .tooltip.state-initial {
+        display: flex;
+        align-items: center;
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        width: 300px;
+        line-height: 1.2em;
+    }
+
+.demo .tooltip.state-initial:before {
+        right: 95%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-initial:after {
+        bottom: 80%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-created-link:before {
+        right: 93%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: #3eb995;
+        z-index: -1;
+    }
+
+.demo .tooltip.state-created-link:after {
+        bottom: 80%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: #3eb995;
+        z-index: -1;
+    }
 
 .demo p {
         display: block;
@@ -537,9 +714,9 @@ body.content-embeddable .annotation .cta-button img {
 .demo .initial-selection-helper {
         position: relative;
         border: 3px solid #3eb995;
-        width: 74%;
+        width: 75%;
         margin: 20% 5% 20% 10%;
-        padding: 20px 20px;
+        padding: 15px 10px;
         border-radius: 5px;
     }
 
@@ -576,7 +753,7 @@ body.content-embeddable .annotation .cta-button img {
             cursor: pointer;
             align-items: center;
             border: 2px solid #777;
-            padding: 10px 15px;
+            padding: 10px 11px;
         }
 
 .demo .initial-selection-helper .hightlight-button span {
