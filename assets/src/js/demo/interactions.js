@@ -45,7 +45,6 @@ async function extractAnchor() {
         quote: selection.toString(),
         descriptor: await selectionToDescriptor({
             selection,
-            corpus: selection.focusNode
         })
     }
 }

@@ -11,10 +11,11 @@ export function isSelectionWithinCorpus({selection, corpus}) {
     return isWithinNode(range, corpus)
 }
 
-export async function selectionToDescriptor({selection, corpus}) {
+export async function selectionToDescriptor({selection}) {
     if (selection === null || selection.isCollapsed) {
         return null
     }
+    const corpus = selection.focusNode
     const range = selection.getRangeAt(0)
     const selectableRange = document.createRange()
     selectableRange.selectNodeContents(corpus)
