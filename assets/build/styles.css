@@ -457,6 +457,10 @@ body.content-embeddable .annotation .cta-button img {
         flex-grow: 2;
     }
 
+.demo .middle p.last {
+            margin-bottom: 90px;
+        }
+
 .demo .tooltip-container {
       display: none
     }
@@ -467,7 +471,6 @@ body.content-embeddable .annotation .cta-button img {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
 }
 
 .demo .tooltip {

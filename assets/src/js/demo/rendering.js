@@ -9,6 +9,9 @@ export function updateBodyClasses() {
 
 export function renderTemplate() {
     document.body.innerHTML = getResource('demoTemplate')
+    const $tooltipContainenr = document.querySelector('.tooltip-container')
+    const textHeight = document.querySelector('.area.middle').clientHeight
+    $tooltipContainenr.style.height = `${textHeight}px`
 }
 
 export function renderTooltip({active, position}) {

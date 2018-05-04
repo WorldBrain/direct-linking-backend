@@ -6,7 +6,7 @@ import { requestCreateLinkToClipboard, resetLinkState } from './actions'
 export function setupSelectionHandler() {
     document.querySelector('.area.middle').addEventListener('mouseup', event => {
         if (!getState('tooltip.active')) {
-            updateTooltipPosition({x: event.clientX, y: event.clientY})
+            updateTooltipPosition({x: event.pageX, y: event.pageY})
             activateToolTipIfNeeded()
         }
     })
