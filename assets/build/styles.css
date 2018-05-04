@@ -650,7 +650,6 @@ body.content-embeddable .annotation .cta-button img {
         -webkit-transform: rotate(225deg);
                 transform: rotate(225deg);
         background-color: #3eb995;
-        z-index: -1;
     }
 
 .demo .tooltip.state-created-link:after {
@@ -669,7 +668,6 @@ body.content-embeddable .annotation .cta-button img {
         -webkit-transform: rotate(-45deg);
                 transform: rotate(-45deg);
         background-color: #3eb995;
-        z-index: -1;
     }
 
 .demo p {
