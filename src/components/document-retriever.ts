@@ -1,5 +1,6 @@
 // const _ = require('lodash')
 import * as request from 'request-promise-native'
+import * as fakeUa from 'fake-useragent'
 import { PageMetadata } from '../types/metadata'
 import { asyncMapValues } from '../utils/async'
 
@@ -65,7 +66,10 @@ export class HttpDocumentRetriever extends DocumentRetriever {
     const response = await request({
       uri: url,
       resolveWithFullResponse: true,
-      timeout: 3 * 1000
+      timeout: 3 * 1000,
+      headers: {
+        'User-Agent': fakeUa()
+      }
     })
     const mime = response.headers['content-type'].split(';')[0]
     const embeddable = _deduceEmbeddableFromHeaders(response.headers)
