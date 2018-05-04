@@ -436,6 +436,10 @@ body.content-embeddable .annotation .cta-button img {
         margin-top: 20px;
     }
 
+.demo .middle p.last {
+            margin-bottom: 90px;
+        }
+
 .demo .logo {
         margin-top: 20px;
         margin-left: 20px;
@@ -451,10 +455,6 @@ body.content-embeddable .annotation .cta-button img {
         margin-left: 20px;
         margin-top: 20px;
     }
-
-.demo .middle p.last {
-            margin-bottom: 90px;
-        }
 
 .demo .tooltip-container {
       display: none
