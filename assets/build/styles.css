@@ -297,6 +297,10 @@ body.content-embeddable .annotation .copy-button span {
                 background-color: white;
             }
 
+body.content-embeddable .annotation .go-to-page {
+            display: none;
+        }
+
 body.content-embeddable .annotation .search-text {
             font-size: 0.8em;
         }

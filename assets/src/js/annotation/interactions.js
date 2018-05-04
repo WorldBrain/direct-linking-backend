@@ -4,14 +4,17 @@ import { goToDemo } from '../router'
 
 export function attachCopyAndGoListener() {
     document.querySelector('.copy-button').addEventListener('click', () => {
-        copyQuoteAndGoToPage()
+        copyQuoteAndMaybeGoToPage()
     })
 }
 
-function copyQuoteAndGoToPage() {
+function copyQuoteAndMaybeGoToPage() {
     const annotation = getResource('annotation')
+    console.log(annotation.anchors[0].quote)
     copyToClipboard(annotation.anchors[0].quote)
-    window.location.href = annotation.url
+    if (!getResource('metadata').embeddable) {
+        window.location.href = annotation.url
+    }
 }
 
 export function setupToggleTrunctation() {
