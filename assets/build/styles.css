@@ -736,17 +736,11 @@ body.content-embeddable .annotation .cta-button img {
 .demo .highlight {
         background: #3eb995;
         color: black;
-        padding: 10px 10px;
-        margin-left: -10px;
-        margin-right: -10px;
     }
 
 .demo *::-moz-selection {
         background: #3eb995;
         color: black;
-        padding: 10px 10px;
-        margin-left: -10px;
-        margin-right: -10px;
     }
 
 .demo *::selection {
