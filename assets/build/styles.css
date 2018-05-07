@@ -736,11 +736,17 @@ body.content-embeddable .annotation .cta-button img {
 .demo .highlight {
         background: #3eb995;
         color: black;
+        padding: 10px 10px;
+        margin-left: -10px;
+        margin-right: -10px;
     }
 
 .demo *::-moz-selection {
         background: #3eb995;
         color: black;
+        padding: 10px 10px;
+        margin-left: -10px;
+        margin-right: -10px;
     }
 
 .demo *::selection {
@@ -827,13 +833,16 @@ body.content-embeddable .annotation .cta-button img {
         border-right-color: #3eb995;
         border-width: 34px;
         margin-top: -34px;
+        padding: 10px 10px;
+        margin-left: -10px;
+        margin-right: -10px;
     }
 
 .demo .initial-selection-helper {
         position: relative;
         border: 3px solid #3eb995;
         width: 75%;
-        margin: 20% 5% 20% 10%;
+        margin: 20% 5% 20% 13.5%;
         padding: 15px 10px;
         border-radius: 5px;
     }
