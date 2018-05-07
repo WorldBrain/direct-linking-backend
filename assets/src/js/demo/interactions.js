@@ -1,7 +1,7 @@
 import * as dom from '@annotator/dom'
 import scrollToElement from 'scroll-to-element'
 import { modifyState, getState } from '../state'
-import { delayed } from '../utils'
+import { delayed, copyToClipboard } from '../utils'
 import { selectionToDescriptor } from '../utils/annotations'
 import { requestCreateLinkToClipboard, resetLinkState } from './actions'
 
@@ -29,8 +29,16 @@ export function setupCreationLink() {
     })
 }
 
+export function setupCopyLink() {
+    document.querySelector('.tooltip .url').addEventListener('click', event => {
+        event.preventDefault()
+        copyToClipboard(getState('link.url'))
+        modifyState('link.progress', 'copied')
+    })
+}
+
 function updateTooltipPosition({pointerX, pointerY}) {
-    modifyState('tooltip.position', {x: pointerX + 2, y: pointerY + 2})
+    modifyState('tooltip.position', {x: pointerX, y: pointerY})
 }
 
 export const activateToolTipIfNeeded = delayed(function () {

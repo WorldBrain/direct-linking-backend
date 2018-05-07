@@ -467,6 +467,15 @@ body.content-embeddable .annotation .cta-button img {
     display: none;
 }
 
+.demo .tooltip .url {
+          box-sizing: border-box;
+          display: block;
+          text-overflow: ellipsis;
+          width: 100%;
+          padding: 0 10px;
+          overflow: hidden;
+}
+
 .demo .create-link-button {
       cursor: pointer;
     }
@@ -478,6 +487,8 @@ body.content-embeddable .annotation .cta-button img {
 .demo .tooltip.state-created-link .created-message { display: inline; }
 
 .demo .tooltip.state-link-error .error-message { display: inline; }
+
+.demo .tooltip.state-link-copied .copied-message { display: inline; }
 
 .demo p {
         display: block;

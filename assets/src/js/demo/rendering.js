@@ -28,6 +28,7 @@ export function renderLinkCreationProgress({oldProgress, newProgress}) {
         'running': 'state-creating-link',
         'done': 'state-created-link',
         'error': 'state-link-error',
+        'copied': 'state-link-copied',
     }
 
     if (oldProgress) {
@@ -37,7 +38,9 @@ export function renderLinkCreationProgress({oldProgress, newProgress}) {
 }
 
 export function renderLinkUrl(url) {
-    document.querySelector('.tooltip .url').setAttribute('href', url)
+    const $url = document.querySelector('.tooltip .url')
+    $url.setAttribute('href', url)
+    $url.innerHTML = url
 }
 
 export function positionInitialSelectionHelper() {

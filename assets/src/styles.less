@@ -468,6 +468,15 @@ body {
       & > * {
         display: none;
       }
+
+      .url {
+          box-sizing: border-box;
+          display: block;
+          text-overflow: ellipsis;
+          width: 100%;
+          padding: 0 10px;
+          overflow: hidden;
+      }
     }
   
     .create-link-button {
@@ -478,6 +487,7 @@ body {
     .tooltip.state-creating-link .progress-indicator { display: inline; }
     .tooltip.state-created-link .created-message { display: inline; }
     .tooltip.state-link-error .error-message { display: inline; }
+    .tooltip.state-link-copied .copied-message { display: inline; }
 
     p {
         display: block;
