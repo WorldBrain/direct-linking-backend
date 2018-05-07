@@ -384,7 +384,7 @@ body.content-embeddable .annotation .cta-button span {
             }
 
 body.content-embeddable .annotation .cta-button img {
-                content: url('/assets/Memex Logo Horizontal_white_noicon.png');
+                content: url('/assets/Memex_Logo_Horizontal_white_noicon.png');
                 display: block;
                 height: 30px;
                 width: auto;
@@ -433,11 +433,28 @@ body.content-embeddable .annotation .cta-button img {
         // This needs to be the .offsetParent of all containing text for the helpers to be positioned correctly
         position: relative;
         flex-grow: 2;
+        margin-top: 20px;
     }
 
 .demo .middle p.last {
             margin-bottom: 90px;
         }
+
+.demo .logo {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+.demo .logo img {
+            display: block;
+            width: 140px;
+            height: auto;
+        }
+
+.demo .logo-line {
+        margin-left: 20px;
+        margin-top: 20px;
+    }
 
 .demo .tooltip-container {
       display: none
@@ -470,13 +487,188 @@ body.content-embeddable .annotation .cta-button img {
       cursor: pointer;
     }
 
-.demo .tooltip.state-initial .create-link-button { display: inline; }
+.demo .tooltip.state-initial .create-link-button {
+        display: flex;
+        flex-direction: row;
+        margin: 0 2px;
+        color: #3eb995;
+    }
+
+.demo .tooltip.state-initial .create-link-button .heading_link {
+            display: flex;
+            align-items: center;
+        }
+
+.demo .tooltip.state-initial .create-link-button .heading_link img {
+                width: auto;
+                height: 20px;
+            }
+
+.demo .tooltip.state-initial .create-link-button .heading_link span {
+                margin-left: 5px;
+            }
+
+.demo .tooltip.state-initial .create-link-button .heading_ownlinks {
+            margin-right: 10px;
+        }
+
+.demo .tooltip.state-initial .create-link-button .tooltip_divider {
+            height: 60px;
+            display: block;
+            margin: 0 8px;
+            width: 1px;
+            background: #3eb995;
+            position: absolute;
+            left: 50%;
+            top: 0;
+        }
+
+.demo .tooltip.state-initial .create-link-button .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 19px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-initial .create-link-button .icon img {
+                width: auto;
+                height: 20px;
+            }
 
 .demo .tooltip.state-creating-link .progress-indicator { display: inline; }
 
-.demo .tooltip.state-created-link .created-message { display: inline; }
+.demo .tooltip.state-created-link .created-message { 
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        margin-left: 10px;
+    }
+
+.demo .tooltip.state-created-link .created-message img {
+            width: 30px;
+            height: auto;
+        }
+
+.demo .tooltip.state-created-link .created-message a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+.demo .tooltip.state-created-link .created-message a span {
+                margin-left: 5px;
+            }
+
+.demo .tooltip.state-created-link .created-message .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 19px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-created-link .created-message .icon img {
+                width: auto;
+                height: 20px;
+            }
 
 .demo .tooltip.state-link-error .error-message { display: inline; }
+
+.demo .tooltip.state-created-link {
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        width: 220px;
+        line-height: 1.2em;
+    }
+
+.demo .tooltip.state-initial {
+        display: flex;
+        align-items: center;
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        width: 300px;
+        line-height: 1.2em;
+    }
+
+.demo .tooltip.state-initial:before {
+        right: 95%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-initial:after {
+        bottom: 80%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-created-link:before {
+        right: 93%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: #3eb995;
+    }
+
+.demo .tooltip.state-created-link:after {
+        bottom: 80%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: #3eb995;
+    }
 
 .demo p {
         display: block;
@@ -494,23 +686,111 @@ body.content-embeddable .annotation .cta-button img {
     }
 
 .demo .highlight {
-        background-color: #9F9;
+        background: #3eb995;
+        color: black;
     }
 
 .demo *::-moz-selection {
-        background-color: #9F9;
+        background: #3eb995;
+        color: black;
     }
 
 .demo *::selection {
-        background-color: #9F9;
+        background: #3eb995;
+        color: black;
+    }
+
+.demo .initial-selection-helper {
+        position: relative;
+        border: 3px solid #3eb995;
+        width: 75%;
+        margin: 20% 5% 20% 13.5%;
+        padding: 15px 10px;
+        border-radius: 5px;
+    }
+
+.demo .initial-selection-helper .divider {
+            display: flex;
+            margin: 10px auto;
+            justify-content: center;
+        }
+
+.demo .initial-selection-helper .divider .text:before {
+    content: "OR";
+}
+
+.demo .initial-selection-helper .divider .text {
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+.demo .initial-selection-helper .divider .edge {
+                position: relative;
+                margin: 0 5px;
+                -webkit-transform: translateY(-45%);
+                        transform: translateY(-45%);
+                width: 30px;
+                border-bottom: 2px solid #777;
+            }
+
+.demo .initial-selection-helper .hightlight-button {
+            color: #777;
+            text-decoration: none;
+            display: flex;
+            margin: 0 auto;
+            border-radius: 5px;
+            cursor: pointer;
+            align-items: center;
+            border: 2px solid #777;
+            padding: 10px 11px;
+        }
+
+.demo .initial-selection-helper .hightlight-button span {
+                display: block;
+                padding-top: 2px;
+                margin-right: 10px;
+                font-size: 1.2em;
+            }
+
+.demo .initial-selection-helper .hightlight-button img {
+                display: block;
+                height: 25px;
+                width: auto;
+            }
+
+.demo .initial-selection-helper:after, .demo .initial-selection-helper:before {
+        right: 100%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+.demo .initial-selection-helper:after {
+        border-right-color: #fff;
+        border-width: 30px;
+        margin-top: -30px;
+    }
+
+.demo .initial-selection-helper:before {
+        border-right-color: #3eb995;
+        border-width: 34px;
+        margin-top: -34px;
     }
 
 .demo-with-annotation .demo .only-demo-without-annotation {
         display: none;
     }
 
-.demo-without-annotation .demo .initial-selection span {
-        background-color: #BFB;
+.demo-without-annotation .demo .initial-selection {
+        background: #3eb995;
+        color: black;
+        padding: 10px 10px;
+        margin-left: -10px;
+        margin-right: -10px;
     }
 
 .demo-without-annotation .demo .only-demo-with-annotation {
@@ -519,3 +799,65 @@ body.content-embeddable .annotation .cta-button img {
 
 .os-mac .only-not-mac { display: none; }
 .os-not-mac .only-mac { display: none; }
+
+.only-demo-with-annotation.highlight-helper.helper {
+    position: relative;
+    border: 3px solid #3eb995;
+    width: 75%;
+    margin: 20% 5% 20% 10%;
+    padding: 15px 10px;
+    border-radius: 5px;
+}
+
+.only-demo-with-annotation.highlight-helper.helper .highlight-text {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+.only-demo-with-annotation.highlight-helper.helper .hightlight-button {
+        color: #777;
+        text-decoration: none;
+        display: flex;
+        margin: 0 auto;
+        border-radius: 5px;
+        cursor: pointer;
+        align-items: center;
+        border: 2px solid #777;
+        padding: 10px 11px;
+        margin-top: 10px;
+    }
+
+.only-demo-with-annotation.highlight-helper.helper .hightlight-button span {
+            display: block;
+            padding-top: 2px;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+.only-demo-with-annotation.highlight-helper.helper .hightlight-button img {
+            display: block;
+            height: 25px;
+            width: auto;
+        }
+
+.only-demo-with-annotation.highlight-helper.helper:after, .only-demo-with-annotation.highlight-helper.helper:before {
+    right: 100%;
+    top: 28%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.only-demo-with-annotation.highlight-helper.helper:after {
+    border-right-color: #fff;
+    border-width: 30px;
+    margin-top: -30px;
+}
+.only-demo-with-annotation.highlight-helper.helper:before {
+    border-right-color: #3eb995;
+    border-width: 34px;
+    margin-top: -34px;
+}
