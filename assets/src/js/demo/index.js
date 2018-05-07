@@ -35,6 +35,7 @@ export async function init() {
         window.addEventListener('resize', () => {
             rendering.positionHighlightHelper()
         })
+        interactions.scrollToHighlight()
     } else {
         interactions.setupSelectionHandler()
         interactions.setupCreationLink()

@@ -1,12 +1,14 @@
 import * as dom from '@annotator/dom'
+import scrollToElement from 'scroll-to-element'
 import { modifyState, getState } from '../state'
+import { delayed } from '../utils'
 import { selectionToDescriptor } from '../utils/annotations'
 import { requestCreateLinkToClipboard, resetLinkState } from './actions'
 
 export function setupSelectionHandler() {
     document.querySelector('.area.middle').addEventListener('mouseup', event => {
         if (!getState('tooltip.active')) {
-            updateTooltipPosition({x: event.pageX, y: event.pageY})
+            updateTooltipPosition({pointerX: event.pageX, pointerY: event.pageY})
             activateToolTipIfNeeded()
         }
     })
@@ -27,17 +29,17 @@ export function setupCreationLink() {
     })
 }
 
-function updateTooltipPosition({x, y}) {
-    modifyState('tooltip.position', {x, y})
+function updateTooltipPosition({pointerX, pointerY}) {
+    modifyState('tooltip.position', {x: pointerX + 2, y: pointerY + 2})
 }
 
-function activateToolTipIfNeeded() {
+export const activateToolTipIfNeeded = delayed(function () {
     const selection = document.getSelection()
     const userSelectedText = !!selection && !selection.isCollapsed
     if (userSelectedText) {
         modifyState('tooltip.active', true)
     }
-}
+}, 300)
 
 async function extractAnchor() {
     const selection = document.getSelection()
@@ -46,5 +48,16 @@ async function extractAnchor() {
         descriptor: await selectionToDescriptor({
             selection,
         })
+    }
+}
+
+export function scrollToHighlight() {
+    const $highlight = document.querySelector('.highlight')
+    if ($highlight) {
+        setTimeout(() => {
+            scrollToElement($highlight)
+        }, 300)
+    } else {
+        console.error('Oops, no highlight found to scroll to')
     }
 }
