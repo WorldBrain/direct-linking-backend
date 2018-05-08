@@ -35,9 +35,11 @@ export async function init() {
         window.addEventListener('resize', () => {
             rendering.positionHighlightHelper()
         })
+        interactions.scrollToHighlight()
     } else {
         interactions.setupSelectionHandler()
         interactions.setupCreationLink()
+        interactions.setupCopyLink()
 
         rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
         rendering.positionInitialSelectionHelper()

@@ -94,7 +94,9 @@ body.content-not-embeddable .annotation .quote {
         }
 
 body.content-not-embeddable .annotation .search-text {
-            display: none;
+            text-align: center;
+            padding-top: 10px;
+            font-size: 0.8em;
         }
 
 body.content-not-embeddable .annotation .copy-button {
@@ -145,7 +147,7 @@ body.content-not-embeddable .annotation .cta-container {
         }
 
 body.content-not-embeddable .annotation .cta-line {
-            margin-bottom: 10px
+            margin-bottom: 5px
         }
 
 body.content-not-embeddable .annotation .cta-line.skip span {
@@ -261,6 +263,7 @@ body.content-embeddable .annotation .title-and-url {
 body.content-embeddable .annotation .quote {
             order: 2;
             padding-bottom: 20px;
+            padding-right: 20px;
             font-style: italic;
         }
 
@@ -297,10 +300,6 @@ body.content-embeddable .annotation .copy-button span {
                 background-color: white;
             }
 
-body.content-embeddable .annotation .go-to-page {
-            display: none;
-        }
-
 body.content-embeddable .annotation .search-text {
             font-size: 0.8em;
         }
@@ -331,7 +330,7 @@ body.content-embeddable .annotation .divider:before {
     background: white;
     z-index: 1;
     top: -40px;
-    left: 12.5px;
+    left: 15px;
 }
 
 body.content-embeddable .annotation .divider:after {
@@ -355,7 +354,7 @@ body.content-embeddable .annotation .cta-container {
             align-items: center;
             justify-content: center;
             text-align: right;
-            margin: 10px 20px 10px 20px;
+            margin: 10px 30px 10px 20px;
             flex-grow: 2;
         }
 
@@ -432,13 +431,24 @@ body.content-embeddable .annotation .cta-button img {
 .demo .middle {
         // This needs to be the .offsetParent of all containing text for the helpers to be positioned correctly
         position: relative;
-        flex-grow: 2;
         margin-top: 20px;
+        max-width: 600px;
     }
 
 .demo .middle p.last {
             margin-bottom: 90px;
         }
+
+.demo h1 {
+        color: #777777;
+        font-weight: normal;
+    }
+
+.demo .subtitle {
+        color: #777777;
+        font-size: 1.4em;
+        padding-top: 5px;
+    }
 
 .demo .logo {
         margin-top: 20px;
@@ -476,11 +486,22 @@ body.content-embeddable .annotation .cta-button img {
       width: 200px;
       height: 50px;
       line-height: 50px;
-      text-align: center
+      text-align: center;
+      -webkit-transform: translateX(-50%) translateY(+10px);
+              transform: translateX(-50%) translateY(+10px)
     }
 
 .demo .tooltip > * {
     display: none;
+}
+
+.demo .tooltip .url {
+          box-sizing: border-box;
+          display: block;
+          text-overflow: ellipsis;
+          width: 100%;
+          padding: 0 10px;
+          overflow: hidden;
 }
 
 .demo .create-link-button {
@@ -576,6 +597,7 @@ body.content-embeddable .annotation .cta-button img {
             }
 
 .demo .tooltip.state-link-error .error-message { display: inline; }
+
 
 .demo .tooltip.state-created-link {
         border: 2px solid #3eb995;
@@ -786,7 +808,7 @@ body.content-embeddable .annotation .cta-button img {
     }
 
 .demo-without-annotation .demo .initial-selection {
-        background: #3eb995;
+        background: #71cbb1;
         color: black;
         padding: 10px 10px;
         margin-left: -10px;
@@ -799,6 +821,9 @@ body.content-embeddable .annotation .cta-button img {
 
 .os-mac .only-not-mac { display: none; }
 .os-not-mac .only-mac { display: none; }
+
+.content-embeddable .only-non-embeddable { display: none }
+.content-not-embeddable .only-embeddable { display: none }
 
 .only-demo-with-annotation.highlight-helper.helper {
     position: relative;

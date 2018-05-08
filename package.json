@@ -102,6 +102,7 @@
     "postcss": "^6.0.21",
     "precss": "^3.1.2",
     "reselect": "^3.0.1",
+    "scroll-to-element": "^2.0.0",
     "supertest": "^3.0.0",
     "tape": "^4.7.0",
     "ts-node": "^5.0.1",
