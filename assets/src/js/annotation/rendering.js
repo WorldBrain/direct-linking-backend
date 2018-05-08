@@ -8,11 +8,6 @@ export function updateBodyClasses() {
         return
     }
 
-    const loading = !!getResource('innerHTML') && !!getResource('metadata') && !!getResource('annotation')
-    if (!loading) {
-        document.body.classList.remove('loading')
-    }
-
     const metadata = getResource('metadata')
     if (metadata) {
         const forceDisableEmbedding = DISABLE_EMBEDDED_ON_SIZES.indexOf(getState('deviceSizeName')) >= 0

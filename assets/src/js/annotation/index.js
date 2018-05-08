@@ -5,9 +5,6 @@ import * as rendering from './rendering'
 import * as interactions from './interactions'
 
 export const load = loader(async () => {
-    state.addStateListener('resources', () => rendering.updateBodyClasses())
-    state.addStateListener('deviceSizeName', () => rendering.updateBodyClasses())
-
     await Promise.all([
         actions.fetchAnnotationTemplate(),
         actions.fetchMetadata(),
@@ -16,6 +13,10 @@ export const load = loader(async () => {
 })
 
 export async function init() {    
+    rendering.updateBodyClasses()
+    state.addStateListener('resources', () => rendering.updateBodyClasses())
+    state.addStateListener('deviceSizeName', () => rendering.updateBodyClasses())
+
     rendering.replaceTitle()
     rendering.renderTemplate()
     rendering.truncateQuote()

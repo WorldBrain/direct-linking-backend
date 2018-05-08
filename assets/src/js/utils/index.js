@@ -4,12 +4,23 @@ export function loader(promiseCreator) {
     
     return (...args) => {
         if (!promise) {
-            promise = promiseCreator(...args)
+            promise = promiseCreator(...args).then(res => {
+                promise.loaded = true
+                return res
+            })
         }
 
         return promise
     }
 }
+
+export const bodyLoader = loader(() => {
+    return new Promise(resolve => {
+        document.addEventListener("DOMContentLoaded", () => {
+            resolve()
+        })
+    })
+})
 
 export function delayed(f, delay) {
     let timeout = null

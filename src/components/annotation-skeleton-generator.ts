@@ -16,6 +16,12 @@ export class AnnotationSkeletonGenerator {
             <script src="/assets/script.js"></script>
         </head>
         <body class='loading'>
+        <div class='loading-indicator'>
+            <div class='loading-indicator-1'></div>
+            <div class='loading-indicator-2'></div>
+            <div class='loading-indicator-3'></div>
+            <div class='loading-indicator-4'></div>
+        </div>
         </body>
         </html>
         `
