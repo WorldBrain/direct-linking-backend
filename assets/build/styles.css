@@ -431,13 +431,24 @@ body.content-embeddable .annotation .cta-button img {
 .demo .middle {
         // This needs to be the .offsetParent of all containing text for the helpers to be positioned correctly
         position: relative;
-        flex-grow: 2;
         margin-top: 20px;
+        max-width: 600px;
     }
 
 .demo .middle p.last {
             margin-bottom: 90px;
         }
+
+.demo h1 {
+        color: #777777;
+        font-weight: normal;
+    }
+
+.demo .subtitle {
+        color: #777777;
+        font-size: 1.4em;
+        padding-top: 5px;
+    }
 
 .demo .logo {
         margin-top: 20px;
@@ -798,7 +809,7 @@ body.content-embeddable .annotation .cta-button img {
     }
 
 .demo-without-annotation .demo .initial-selection {
-        background: #3eb995;
+        background: #71cbb1;
         color: black;
         padding: 10px 10px;
         margin-left: -10px;
