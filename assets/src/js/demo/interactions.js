@@ -54,7 +54,6 @@ async function extractAnchor() {
     const descriptor = await selectionToDescriptor({selection})
 
     return {
-        strategy: 'dom-anchor-text-quote',
         quote: selection.toString(),
         descriptor
     }

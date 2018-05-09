@@ -16,12 +16,12 @@ export async function selectionToDescriptor({selection}) {
 
     const range = selection.getRangeAt(0)
     const root = document.body
-    return textQuote.fromRange(root, range)
+    return {strategy: 'dom-anchor-text-quote', content: textQuote.fromRange(root, range)}
 }
 
 export async function descriptorToRange({descriptor}) {
     const root = document.body
-    return textQuote.toRange(root, descriptor)
+    return textQuote.toRange(root, descriptor.content)
 }
 
 function isWithinNode(range, node) {
