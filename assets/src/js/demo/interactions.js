@@ -1,4 +1,3 @@
-import * as dom from '@annotator/dom'
 import scrollToElement from 'scroll-to-element'
 import { modifyState, getState } from '../state'
 import { delayed, copyToClipboard } from '../utils'
@@ -25,7 +24,8 @@ export function setupSelectionHandler() {
 
 export function setupCreationLink() {
     document.querySelector('.create-link-button').addEventListener('mousedown', async (event) => {
-        requestCreateLinkToClipboard({anchor: await extractAnchor()})
+        const anchor = await extractAnchor()
+        requestCreateLinkToClipboard({anchor: anchor})
     })
 }
 
@@ -51,11 +51,12 @@ export const activateToolTipIfNeeded = delayed(function () {
 
 async function extractAnchor() {
     const selection = document.getSelection()
+    const descriptor = await selectionToDescriptor({selection})
+
     return {
+        strategy: 'dom-anchor-text-quote',
         quote: selection.toString(),
-        descriptor: await selectionToDescriptor({
-            selection,
-        })
+        descriptor
     }
 }
 

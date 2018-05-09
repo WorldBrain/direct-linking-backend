@@ -1,6 +1,4 @@
-import * as fragment from '@annotator/fragment-identifier'
-import { describeTextQuoteByRange as describeRange } from '@annotator/dom'
-import { search } from './search.js'
+import * as textQuote from 'dom-anchor-text-quote'
 
 export function isSelectionWithinCorpus({selection, corpus}) {
     if (selection === null || selection.isCollapsed) {
@@ -15,21 +13,15 @@ export async function selectionToDescriptor({selection}) {
     if (selection === null || selection.isCollapsed) {
         return null
     }
-    const corpus = selection.focusNode
+
     const range = selection.getRangeAt(0)
-    const selectableRange = document.createRange()
-    selectableRange.selectNodeContents(corpus)
-    const descriptor = await describeRange({ range, context: selectableRange })
-    return descriptor
+    const root = document.body
+    return textQuote.fromRange(root, range)
 }
 
-export async function descriptorToRange({corpus, descriptor}) {
-    const results = search(corpus, descriptor)
-    const ranges = []
-    for await (let range of results) {
-        ranges.push(range)
-    }
-    return ranges.length ? ranges[0] : null
+export async function descriptorToRange({descriptor}) {
+    const root = document.body
+    return textQuote.toRange(root, descriptor)
 }
 
 function isWithinNode(range, node) {

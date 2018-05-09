@@ -63,7 +63,7 @@ function positionHelper({$anchor, $helper}) {
 
 export async function highlightAnnotation({annotation}) {
     const descriptor = annotation.anchors[0].descriptor
-    const range = await descriptorToRange({corpus: document, descriptor: descriptor})
+    const range = await descriptorToRange({descriptor})
     markRange({range, cssClass: 'highlight'})
 }
 

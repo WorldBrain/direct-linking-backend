@@ -92,6 +92,8 @@
     "chai-string": "^1.4.0",
     "connect-livereload": "^0.6.0",
     "console-debug": "^0.4.2",
+    "dom-anchor-text-position": "^4.0.0",
+    "dom-anchor-text-quote": "^4.0.2",
     "dom-highlight-range": "^1.0.1",
     "livereload": "^0.7.0",
     "mocha": "^5.0.5",
