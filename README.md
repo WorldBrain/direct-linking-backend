@@ -45,12 +45,6 @@ $ npm install
 ```
 **This could take a while....**
 
-**Build the Apache Annotator submodule**
-```sh
-$ cd external/incubator-annotator && yarn --ignore-engines && yarn build && cd -
-```
-**This could take a while....**
-
 ### Running the server locally:
 
 This project uses TypeScript, so to develop you need to start the incremental compiler in one terminal:
