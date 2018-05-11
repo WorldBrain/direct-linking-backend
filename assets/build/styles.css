@@ -729,6 +729,99 @@ body.content-embeddable .annotation .cta-button img {
         background-color: #3eb995;
     }
 
+.demo .tooltip.state-created-link {
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        width: 220px;
+        line-height: 1.2em;
+    }
+
+.demo .tooltip.state-initial {
+        display: flex;
+        align-items: center;
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        width: 300px;
+        line-height: 1.2em;
+    }
+
+.demo .tooltip.state-initial:before {
+        right: 95%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-initial:after {
+        bottom: 80%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-created-link:before {
+        right: 93%;
+        top: 20%;
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: #3eb995;
+    }
+
+.demo .tooltip.state-created-link:after {
+        bottom: 80%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: #3eb995;
+    }
+
 .demo p {
         display: block;
         margin-top: 1.0em;
