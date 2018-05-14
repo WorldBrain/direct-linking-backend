@@ -84,7 +84,6 @@ body.content-not-embeddable .annotation .url {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-
         }
 
 body.content-not-embeddable .annotation .quote {
@@ -510,9 +509,11 @@ body.content-embeddable .annotation .cta-button img {
           box-sizing: border-box;
           display: block;
           text-overflow: ellipsis;
-          width: 100%;
-          padding: 0 10px;
+          width: 95%;
+          padding: 0 0;
           overflow: hidden;
+          whitespace: nowrap;
+          margin-top: 3px;
 }
 
 .demo .create-link-button {
@@ -576,7 +577,7 @@ body.content-embeddable .annotation .cta-button img {
         display: flex;
         align-items: center;
         width: 100%;
-        height: 100%;
+        height: 90%;
         margin-left: 10px;
     }
 
@@ -588,8 +589,6 @@ body.content-embeddable .annotation .cta-button img {
 .demo .tooltip.state-created-link .created-message a {
             color: white;
             text-decoration: none;
-            display: flex;
-            align-items: center;
         }
 
 .demo .tooltip.state-created-link .created-message a span {
@@ -600,7 +599,7 @@ body.content-embeddable .annotation .cta-button img {
             display: flex;
             width: 20px;
             position: absolute;
-            top: 19px;
+            top: 17px;
             left: -10px;
         }
 
@@ -609,9 +608,48 @@ body.content-embeddable .annotation .cta-button img {
                 height: 20px;
             }
 
+.demo .tooltip.state-created-link .created-message .click-to-copy {
+            color: white;
+            position: absolute;
+            bottom: 1%;
+            left: 39%;
+            font-size: 0.7em;
+        }
+
 .demo .tooltip.state-link-error .error-message { display: inline; }
 
-.demo .tooltip.state-link-copied .copied-message { display: inline; }
+.demo .tooltip.state-link-copied .copied-message { 
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 90%;
+        margin-left: 10px;
+        font-size: 1.1em;
+    }
+
+.demo .tooltip.state-link-copied .copied-message .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 17px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-link-copied .copied-message .icon img {
+                width: auto;
+                height: 20px;
+            }
+
+.demo .tooltip.state-link-copied .copied-message .check {
+            width: 30px;
+            height: auto;
+            margin-top: 6px;
+        }
+
+.demo .tooltip.state-link-copied .copied-message .copied-text {
+            margin-left: 5px;
+            margin-top: 6px;
+        }
 
 .demo .tooltip.state-created-link {
         border: 2px solid #3eb995;
@@ -620,6 +658,16 @@ body.content-embeddable .annotation .cta-button img {
         background-color: #3eb995;
         width: 220px;
         line-height: 1.2em;
+    }
+
+.demo .tooltip.state-link-copied {
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        width: 220px;
+        line-height: 1.2em;
+        color: white;
     }
 
 .demo .tooltip.state-initial {
@@ -669,9 +717,9 @@ body.content-embeddable .annotation .cta-button img {
         background-color: white;
     }
 
-.demo .tooltip.state-created-link:before {
+.demo .tooltip.state-created-link:before, .demo .tooltip.state-link-copied:before {
         right: 93%;
-        top: 20%;
+        top: 17%;
         border: solid transparent;
         content: " ";
         height: 30px;
@@ -688,7 +736,7 @@ body.content-embeddable .annotation .cta-button img {
         background-color: #3eb995;
     }
 
-.demo .tooltip.state-created-link:after {
+.demo .tooltip.state-created-link:after, .demo .tooltip.state-link-copied:after {
         bottom: 80%;
         left: 85%;
         border: solid transparent;
