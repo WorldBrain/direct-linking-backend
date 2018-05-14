@@ -1,7 +1,8 @@
-import * as textQuote from 'dom-anchor-text-quote'
+import * as domTextQuote from 'dom-anchor-text-quote'
+import * as domTextPosition from 'dom-anchor-text-position'
 import highlightRange from 'dom-highlight-range'
 
-export function isSelectionWithinCorpus({selection, corpus}) {
+export function isSelectionWithinCorpus({ selection, corpus }) {
     if (selection === null || selection.isCollapsed) {
         return false
     }
@@ -10,31 +11,64 @@ export function isSelectionWithinCorpus({selection, corpus}) {
     return isWithinNode(range, corpus)
 }
 
-export async function selectionToDescriptor({selection}) {
+export async function selectionToDescriptor({ selection }) {
     if (selection === null || selection.isCollapsed) {
         return null
     }
 
     const range = selection.getRangeAt(0)
     const root = document.body
-    return {strategy: 'dom-anchor-text-quote', content: textQuote.fromRange(root, range)}
+    const textQuote = domTextQuote.fromRange(root, range)
+    const textPosition = domTextPosition.fromRange(root, range)
+    return {
+        strategy: 'dom-anchor-text-position-or-quote', content: {
+            textQuote,
+            textPosition,
+            string: range.toString(),
+        },
+    }
 }
 
-export async function descriptorToRange({descriptor}) {
+export async function descriptorToRange({ descriptor }) {
     const root = document.body
-    return textQuote.toRange(root, descriptor.content)
+    if (descriptor.strategy === 'dom-anchor-text-quote') {
+        return domTextQuote.toRange(root, descriptor.content)
+    }
+
+    const rangeFromPosition = domTextPosition.toRange(root, descriptor.content)
+    if (rangeFromPosition.toString() === descriptor.content.string) {
+        return rangeFromPosition
+    }
+
+    const rangeFromQuote = domTextQuote.toRange(root, descriptor.content.textQuote)
+    if (hasAncestor(rangeFromQuote.commonAncestorContainer, node => node.tagName === 'script')) {
+        return null
+    }
+
+    return rangeFromQuote
 }
 
-export default function markRange({range, cssClass}) {
+export function markRange({ range, cssClass }) {
     highlightRange(range, cssClass)
-}  
+}
 
 function isWithinNode(range, node) {
-  const nodeRange = document.createRange()
-  nodeRange.selectNode(node)
+    const nodeRange = document.createRange()
+    nodeRange.selectNode(node)
 
-  return (
-    range.compareBoundaryPoints(Range.START_TO_START, nodeRange) >= 0 &&
-    range.compareBoundaryPoints(Range.END_TO_END, nodeRange) <= 0
-  )
+    return (
+        range.compareBoundaryPoints(Range.START_TO_START, nodeRange) >= 0 &&
+        range.compareBoundaryPoints(Range.END_TO_END, nodeRange) <= 0
+    )
+}
+
+function hasAncestor(node, test) {
+    while (node !== document.body) {
+        if (test(node)) {
+            return true
+        }
+        node = node.parentNode
+    }
+
+    return false
 }
