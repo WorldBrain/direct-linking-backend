@@ -31,7 +31,10 @@ export function replaceTitle() {
 }
 
 export function renderTemplate() {
-    document.querySelector('body').innerHTML = replaceTemplateVars(getResource('annotationTemplate'))
+    document.querySelector('body').innerHTML = getResource('annotationTemplate')
+    document.querySelector('.quote .text-content').textContent = getResource('annotation').anchors[0].quote
+    document.querySelector('.info .title').textContent = getResource('metadata').title
+    document.querySelector('.info .url').textContent = getResource('metadata').url
     modifyState('replacedHTML', true)
 }
 
@@ -44,13 +47,6 @@ export function injectIframeIfNeeded() {
     const iframe = document.createElement('iframe')
     iframe.src = url
     document.querySelector('.iframe-container').appendChild(iframe)
-}
-
-function replaceTemplateVars(html) {
-    html = html.replace('$TITLE$', getResource('metadata').title)
-    html = html.replace('$URL$', getResource('annotation').url)
-    html = html.replace('$QUOTE$', getResource('annotation').anchors[0].quote)
-    return html 
 }
 
 export function truncateQuote() {
@@ -66,5 +62,5 @@ export function truncateQuote() {
     const trunctatedText = text.substr(0, lastSpaceBeforeCutoff)
 
     $quote.classList.add('truncated')
-    document.querySelector('.truncated-text .text-content').innerHTML = trunctatedText
+    document.querySelector('.truncated-text .text-content').textContent = trunctatedText
 }

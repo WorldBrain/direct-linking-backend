@@ -399,6 +399,14 @@ body {
     }
 
     .quote {
+        .text-content::before {
+            content: '"';
+        }
+        
+        .text-content::after {
+            content: '"';
+        }
+
         .truncated-text, .toggle-truncation {
             display: none;
         }

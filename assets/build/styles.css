@@ -394,6 +394,14 @@ body.content-embeddable .annotation .cta-button img {
         cursor: pointer;
 }
 
+.annotation .quote .text-content::before {
+            content: '"';
+        }
+
+.annotation .quote .text-content::after {
+            content: '"';
+        }
+
 .annotation .quote .truncated-text, .annotation .quote .toggle-truncation {
             display: none;
         }
