@@ -1,17 +1,43 @@
 import { Annotation } from '../types/annotations';
 import { PageMetadata } from '../types/metadata';
 
+export interface AnnotationSkeletonGeneratorProps {
+    annotation : Annotation
+    metadata : PageMetadata
+}
+
 export class AnnotationSkeletonGenerator {
-    generateSkeleton({annotation, metadata} : {annotation : Annotation, metadata : PageMetadata}) : string {
+    private static generateMetaTags(
+        {annotation, metadata} : AnnotationSkeletonGeneratorProps
+    ) {
+        // OG protocol cannot create graph objects without these atts
+        if (
+            !metadata.title ||
+            !metadata.externalImageUrls ||
+            !metadata.externalImageUrls.social
+        ) {
+            return ''
+        }
+
+        return `
+            <meta name="twitter:card" content="summary" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" of="${annotation.url}" />
+            <meta property="og:title" of="${metadata.title}" />
+            <meta property="og:image" content="${metadata.externalImageUrls.social}" />
+            ${metadata.description
+                ? `<meta property="og:description" content="${metadata.description}" />`
+                : ''}
+        `
+    }
+
+    generateSkeleton(props : AnnotationSkeletonGeneratorProps) : string {
         return `
         <!DOCTYPE html>
         <html>
         <head>
             <title></title>
-            ${metadata.title ? `<meta name="og:title" content="${metadata.title}">` : ''}
-            ${metadata.description ? `<meta name="og:description" content="${metadata.description}">` : ''}
-            ${metadata.externalImageUrls && metadata.externalImageUrls.social ?
-              `<meta name="og:image" content="${metadata.externalImageUrls.social}">` : ''}
+            ${AnnotationSkeletonGenerator.generateMetaTags(props)}
             <link rel=stylesheet href="/assets/styles.css">
             <script src="/assets/script.js"></script>
         </head>
