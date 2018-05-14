@@ -495,7 +495,6 @@ body.content-embeddable .annotation .cta-button img {
       height: 40px;
       line-height: 50px;
       text-align: center;
-      /* transform: translateX(-50%) translateY(+10px); */
       -webkit-transform: translate(-90%, 50%);
               transform: translate(-90%, 50%);
       font-size: 13px
@@ -520,6 +519,74 @@ body.content-embeddable .annotation .cta-button img {
       cursor: pointer;
     }
 
+.demo .tooltip.state-initial, .demo .tooltip.state-created-link, .demo .tooltip.state-link-copied {
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        color: white;
+        line-height: 1.2em;
+        width: 220px;
+    }
+
+.demo .tooltip.state-initial {
+        display: flex;
+        align-items: center;
+        width: 255px;
+        background-color: white;
+    }
+
+/*  Worldbrain logo on the left of the tooltip */
+
+.demo .tooltip.state-initial:before, .demo .tooltip.state-created-link:before, .demo .tooltip.state-link-copied:before {
+        border: solid transparent;
+        content: " ";
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        right: 93%;
+        top: 16%;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+        background-color: #3eb995;
+    }
+
+.demo .tooltip.state-initial:before {
+        background-color: white;
+        right: 93.5%;
+    }
+
+/* The pointer of the tooltip */
+
+.demo .tooltip.state-initial:after, .demo .tooltip.state-created-link:after, .demo .tooltip.state-link-copied:after {
+        bottom: 77%;
+        left: 85%;
+        border: solid transparent;
+        content: " ";
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        pointer-events: none;
+        border-color: #3eb995;
+        border-width: 2px;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        background-color: white;
+    }
+
+.demo .tooltip.state-created-link:after, .demo .tooltip.state-link-copied:after {
+        bottom: 80%;
+        background-color: #3eb995;
+    }
+
 .demo .tooltip.state-initial .create-link-button {
         display: flex;
         flex-direction: row;
@@ -530,6 +597,7 @@ body.content-embeddable .annotation .cta-button img {
 .demo .tooltip.state-initial .create-link-button .heading_link {
             display: flex;
             align-items: center;
+            z-index: 10;
         }
 
 .demo .tooltip.state-initial .create-link-button .heading_link img {
@@ -572,6 +640,8 @@ body.content-embeddable .annotation .cta-button img {
             }
 
 .demo .tooltip.state-creating-link .progress-indicator { display: inline; }
+
+.demo .tooltip.state-link-error .error-message { display: inline; }
 
 .demo .tooltip.state-created-link .created-message { 
         display: flex;
@@ -616,8 +686,6 @@ body.content-embeddable .annotation .cta-button img {
             font-size: 0.7em;
         }
 
-.demo .tooltip.state-link-error .error-message { display: inline; }
-
 .demo .tooltip.state-link-copied .copied-message { 
         display: flex;
         align-items: center;
@@ -650,109 +718,6 @@ body.content-embeddable .annotation .cta-button img {
             margin-left: 5px;
             margin-top: 6px;
         }
-
-.demo .tooltip.state-created-link {
-        border: 2px solid #3eb995;
-        padding: 5px 5px;
-        border-radius: 5px;
-        background-color: #3eb995;
-        width: 220px;
-        line-height: 1.2em;
-    }
-
-.demo .tooltip.state-link-copied {
-        border: 2px solid #3eb995;
-        padding: 5px 5px;
-        border-radius: 5px;
-        background-color: #3eb995;
-        width: 220px;
-        line-height: 1.2em;
-        color: white;
-    }
-
-.demo .tooltip.state-initial {
-        display: flex;
-        align-items: center;
-        border: 2px solid #3eb995;
-        padding: 5px 5px;
-        border-radius: 5px;
-        width: 255px;
-        line-height: 1.2em;
-    }
-
-.demo .tooltip.state-initial:before {
-        right: 93.5%;
-        top: 16%;
-        border: solid transparent;
-        content: " ";
-        height: 30px;
-        width: 30px;
-        position: absolute;
-        pointer-events: none;
-        border-color: #3eb995;
-        border-width: 2px;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-        border-radius: 50%;
-        -webkit-transform: rotate(225deg);
-                transform: rotate(225deg);
-        background-color: white;
-    }
-
-.demo .tooltip.state-initial:after {
-        bottom: 77%;
-        left: 85%;
-        border: solid transparent;
-        content: " ";
-        height: 20px;
-        width: 20px;
-        position: absolute;
-        pointer-events: none;
-        border-color: #3eb995;
-        border-width: 2px;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-        -webkit-transform: rotate(-45deg);
-                transform: rotate(-45deg);
-        background-color: white;
-    }
-
-.demo .tooltip.state-created-link:before, .demo .tooltip.state-link-copied:before {
-        right: 93%;
-        top: 17%;
-        border: solid transparent;
-        content: " ";
-        height: 30px;
-        width: 30px;
-        position: absolute;
-        pointer-events: none;
-        border-color: #3eb995;
-        border-width: 2px;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-        border-radius: 50%;
-        -webkit-transform: rotate(225deg);
-                transform: rotate(225deg);
-        background-color: #3eb995;
-    }
-
-.demo .tooltip.state-created-link:after, .demo .tooltip.state-link-copied:after {
-        bottom: 80%;
-        left: 85%;
-        border: solid transparent;
-        content: " ";
-        height: 20px;
-        width: 20px;
-        position: absolute;
-        pointer-events: none;
-        border-color: #3eb995;
-        border-width: 2px;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-        -webkit-transform: rotate(-45deg);
-                transform: rotate(-45deg);
-        background-color: #3eb995;
-    }
 
 .demo p {
         display: block;
