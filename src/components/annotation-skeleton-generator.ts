@@ -7,37 +7,13 @@ export interface AnnotationSkeletonGeneratorProps {
 }
 
 export class AnnotationSkeletonGenerator {
-    private static generateMetaTags(
-        {annotation, metadata} : AnnotationSkeletonGeneratorProps
-    ) {
-        // OG protocol cannot create graph objects without these atts
-        if (
-            !metadata.title ||
-            !metadata.externalImageUrls ||
-            !metadata.externalImageUrls.social
-        ) {
-            return ''
-        }
-
-        return `
-            <meta name="twitter:card" content="summary" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" of="${annotation.url}" />
-            <meta property="og:title" of="${metadata.title}" />
-            <meta property="og:image" content="${metadata.externalImageUrls.social}" />
-            ${metadata.description
-                ? `<meta property="og:description" content="${metadata.description}" />`
-                : ''}
-        `
-    }
-
     generateSkeleton(props : AnnotationSkeletonGeneratorProps) : string {
         return `
         <!DOCTYPE html>
         <html>
         <head>
             <title></title>
-            ${AnnotationSkeletonGenerator.generateMetaTags(props)}
+            ${_generateMetaTags(props)}
             <link rel=stylesheet href="/assets/styles.css">
             <script src="/assets/script.js"></script>
         </head>
@@ -52,4 +28,28 @@ export class AnnotationSkeletonGenerator {
         </html>
         `
     }
+}
+
+export function _generateMetaTags(
+    {annotation, metadata} : AnnotationSkeletonGeneratorProps
+) {
+    // OG protocol cannot create graph objects without these atts
+    if (
+        !metadata.title ||
+        !metadata.externalImageUrls ||
+        !metadata.externalImageUrls.social
+    ) {
+        return ''
+    }
+
+    return `
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" of="${annotation.url}" />
+        <meta property="og:title" of="${metadata.title}" />
+        <meta property="og:image" content="${metadata.externalImageUrls.social}" />
+        ${metadata.description
+            ? `<meta property="og:description" content="${metadata.description}" />`
+            : ''}
+    `
 }
