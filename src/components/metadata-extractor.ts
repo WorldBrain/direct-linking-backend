@@ -47,21 +47,26 @@ export class HtmlMetadataExtractor implements MetadataExtractor {
 }
 
 export function _extractTitleFromDom(doc : Document) : string | null {
-    return _extractMetatagValueFromDom(doc, 'og:title') || _extractValueFromDom(doc, 'title', false, node => node.text)
+    return _extractMetatagValueFromDom(doc, 'og:title', 'property') || _extractValueFromDom(doc, 'title', false, node => node.text)
 }
 
 export function _extractDescriptionFromDom(doc : Document) : string | null {
-    return _extractMetatagValueFromDom(doc, 'og:description') || _extractMetatagValueFromDom(doc, 'description')
+    let description = _extractMetatagValueFromDom(doc, 'og:description', 'property')
+    description = description || _extractMetatagValueFromDom(doc, 'description', 'name')
+    if (description === '""') {
+        description = null
+    }
+    return description
 }
 
 export function _extractSocialPreviewImageUrlFromDom(doc : Document) : string | null {
-    return _extractMetatagValueFromDom(doc, 'og:image')
+    return _extractMetatagValueFromDom(doc, 'og:image', 'property')
 }
 
-export function _extractMetatagValueFromDom(doc : Document, type : string) : string | null {
+export function _extractMetatagValueFromDom(doc : Document, type : string, keyAttr : string, valueAttr : string = 'content') : string | null {
     return _extractValueFromDom(
-        doc, `meta`, node => node.attributes['name'] === type,
-        node => node.attributes['content']
+        doc, `meta`, node => node.attributes[keyAttr] === type,
+        node => node.attributes[valueAttr]
     )
 }
 

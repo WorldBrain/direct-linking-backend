@@ -33,6 +33,10 @@ export class AnnotationSkeletonGenerator {
 export function _generateMetaTags(
     {annotation, metadata} : AnnotationSkeletonGeneratorProps
 ) {
+    console.log(!metadata.title,
+        !metadata.externalImageUrls,
+        !metadata.externalImageUrls.social, metadata.externalImageUrls)
+
     // OG protocol cannot create graph objects without these atts
     if (
         !metadata.title ||
@@ -45,11 +49,15 @@ export function _generateMetaTags(
     return `
         <meta name="twitter:card" content="summary" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" of="${annotation.url}" />
-        <meta property="og:title" of="${metadata.title}" />
-        <meta property="og:image" content="${metadata.externalImageUrls.social}" />
+        <meta property="og:url" of="${_escapeForeignHtmlString(annotation.url)}" />
+        <meta property="og:title" content="${_escapeForeignHtmlString(metadata.title)}" />
+        <meta property="og:image" content="${_escapeForeignHtmlString(metadata.externalImageUrls.social)}" />
         ${metadata.description
-            ? `<meta property="og:description" content="${metadata.description}" />`
+            ? `<meta property="og:description" content="${_escapeForeignHtmlString(metadata.description)}" />`
             : ''}
     `
+}
+
+export function _escapeForeignHtmlString(input : string) : string {
+    return input.replace('<', '&lt;').replace('>', '&gt;')
 }
