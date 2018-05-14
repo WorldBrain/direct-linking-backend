@@ -44,9 +44,16 @@ function updateTooltipPosition({pointerX, pointerY}) {
 export const activateToolTipIfNeeded = delayed(function () {
     const selection = document.getSelection()
     const userSelectedText = !!selection && !selection.isCollapsed
-    if (userSelectedText) {
-        modifyState('tooltip.active', true)
+    if (!userSelectedText) {
+        return
     }
+
+    const selectionContainsText = selection.toString().trim() !== ''
+    if (!selectionContainsText) {
+        return
+    }
+
+    modifyState('tooltip.active', true)
 }, 300)
 
 async function extractAnchor() {
