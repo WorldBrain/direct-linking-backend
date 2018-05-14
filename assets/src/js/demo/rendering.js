@@ -1,6 +1,5 @@
 import { getResource, getState } from '../state'
-import { descriptorToRange } from '../utils/annotations'
-import markRange from '../utils/annotations/mark'
+import { descriptorToRange, markRange } from '../utils/annotations'
 
 export function updateBodyClasses() {
     const hasAnnotation = !!getResource('demoAnnotation') ? 'demo-with-annotation' : 'demo-without-annotation'

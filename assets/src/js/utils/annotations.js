@@ -1,4 +1,5 @@
 import * as textQuote from 'dom-anchor-text-quote'
+import highlightRange from 'dom-highlight-range'
 
 export function isSelectionWithinCorpus({selection, corpus}) {
     if (selection === null || selection.isCollapsed) {
@@ -23,6 +24,10 @@ export async function descriptorToRange({descriptor}) {
     const root = document.body
     return textQuote.toRange(root, descriptor.content)
 }
+
+export default function markRange({range, cssClass}) {
+    highlightRange(range, cssClass)
+}  
 
 function isWithinNode(range, node) {
   const nodeRange = document.createRange()
