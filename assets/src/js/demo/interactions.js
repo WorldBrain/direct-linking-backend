@@ -37,6 +37,13 @@ export function setupCopyLink() {
     })
 }
 
+export function setupCloseButton() {
+    document.querySelector('.close-button').addEventListener('click', event => {
+        event.preventDefault()
+        document.querySelector('.initial-selection-helper').style.display="none"
+    })
+}
+
 function updateTooltipPosition({pointerX, pointerY}) {
     modifyState('tooltip.position', {x: pointerX, y: pointerY})
 }
