@@ -40,6 +40,7 @@ export async function init() {
         interactions.setupSelectionHandler()
         interactions.setupCreationLink()
         interactions.setupCopyLink()
+        interactions.setupCloseButton()
 
         rendering.renderLinkCreationProgress({newProgress: state.getState('link.progress')})
         rendering.positionInitialSelectionHelper()
