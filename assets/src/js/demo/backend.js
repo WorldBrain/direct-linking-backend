@@ -15,10 +15,8 @@ export async function createAnnotationLink({anchor}) {
         body: JSON.stringify(data)
     })
     const json = await response.json()
-    
-    return {url: json.link}
 
-    // return await new Promise((resolve, reject) => {
-    //     setTimeout(() => resolve({url: 'http://memex.link/aefdawfe/memex.link/demo'}), 2000)
-    // })
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => resolve({url: json.link}), 1000)
+    })
 }
