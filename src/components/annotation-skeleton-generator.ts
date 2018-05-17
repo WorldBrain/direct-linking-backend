@@ -33,10 +33,6 @@ export class AnnotationSkeletonGenerator {
 export function _generateMetaTags(
     {annotation, metadata} : AnnotationSkeletonGeneratorProps
 ) {
-    console.log(!metadata.title,
-        !metadata.externalImageUrls,
-        !metadata.externalImageUrls.social, metadata.externalImageUrls)
-
     // OG protocol cannot create graph objects without these atts
     if (
         !metadata.title ||
