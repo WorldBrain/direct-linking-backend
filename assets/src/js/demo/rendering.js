@@ -36,12 +36,6 @@ export function renderLinkCreationProgress({oldProgress, newProgress}) {
     $tooltip.classList.add(cssClasses[newProgress])
 }
 
-export function renderLinkUrl(url) {
-    const $url = document.querySelector('.tooltip .url')
-    $url.setAttribute('href', url)
-    $url.innerHTML = url
-}
-
 export function positionInitialSelectionHelper() {
     positionHelper({
         $anchor: document.querySelector('.initial-selection'),

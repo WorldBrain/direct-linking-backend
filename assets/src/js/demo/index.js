@@ -21,9 +21,6 @@ export async function init() {
     state.addStateListener('link.progress', (event => {
         rendering.renderLinkCreationProgress({oldProgress: event.oldValue, newProgress: event.newValue})
     }))
-    state.addStateListener('link.url', (event => {
-        rendering.renderLinkUrl(event.newValue)
-    }))
 
     rendering.updateBodyClasses()
     rendering.renderTemplate()
