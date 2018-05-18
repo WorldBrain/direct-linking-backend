@@ -2,7 +2,7 @@ import scrollToElement from 'scroll-to-element'
 import { modifyState, getState } from '../state'
 import { delayed, copyToClipboard } from '../utils'
 import { selectionToDescriptor } from '../utils/annotations'
-import { requestCreateLinkToClipboard, resetLinkState } from './actions'
+import { requestCreateLink, resetLinkState } from './actions'
 
 export function setupSelectionHandler() {
     document.querySelector('.area.middle').addEventListener('mouseup', event => {
@@ -25,15 +25,20 @@ export function setupSelectionHandler() {
 export function setupCreationLink() {
     document.querySelector('.create-link-button').addEventListener('mousedown', async (event) => {
         const anchor = await extractAnchor()
-        requestCreateLinkToClipboard({anchor: anchor})
+        requestCreateLink({anchor: anchor})
     })
 }
 
 export function setupCopyLink() {
-    document.querySelector('.tooltip .url').addEventListener('click', event => {
+    document.querySelector('.tooltip .url').addEventListener('mousedown', event => {
         event.preventDefault()
+
+        const selection = document.getSelection()
+        const selectionRange = selection.getRangeAt(0)
         copyToClipboard(getState('link.url'))
         modifyState('link.progress', 'copied')
+        selection.removeAllRanges()
+        selection.addRange(selectionRange)
     })
 }
 
