@@ -487,17 +487,20 @@ body.content-embeddable .annotation .cta-button img {
 }
 
 .demo .tooltip {
-      display: block;
-      position: absolute;
-      border: 1px solid black;
-      background: white;
-      width: 200px;
-      height: 40px;
-      line-height: 50px;
-      text-align: center;
-      -webkit-transform: translate(-90%, 50%);
-              transform: translate(-90%, 50%);
-      font-size: 13px
+        display: flex;
+        position: absolute;
+        height: 40px;
+        text-align: center;
+        -webkit-transform: translate(-90%, 50%);
+                transform: translate(-90%, 50%);
+        font-size: 13px;
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        color: white;
+        line-height: 1.2em;
+        width: 220px
     }
 
 .demo .tooltip > * {
@@ -510,24 +513,9 @@ body.content-embeddable .annotation .cta-button img {
           text-overflow: ellipsis;
           width: 95%;
           padding: 0 0;
-          overflow: hidden;
-          whitespace: nowrap;
           margin-top: 3px;
+          cursor: pointer;
 }
-
-.demo .create-link-button {
-      cursor: pointer;
-    }
-
-.demo .tooltip.state-initial, .demo .tooltip.state-created-link, .demo .tooltip.state-link-copied {
-        border: 2px solid #3eb995;
-        padding: 5px 5px;
-        border-radius: 5px;
-        background-color: #3eb995;
-        color: white;
-        line-height: 1.2em;
-        width: 220px;
-    }
 
 .demo .tooltip.state-initial {
         display: flex;
@@ -538,7 +526,7 @@ body.content-embeddable .annotation .cta-button img {
 
 /*  Worldbrain logo on the left of the tooltip */
 
-.demo .tooltip.state-initial:before, .demo .tooltip.state-created-link:before, .demo .tooltip.state-link-copied:before {
+.demo .tooltip:before {
         border: solid transparent;
         content: " ";
         height: 30px;
@@ -564,8 +552,8 @@ body.content-embeddable .annotation .cta-button img {
 
 /* The pointer of the tooltip */
 
-.demo .tooltip.state-initial:after, .demo .tooltip.state-created-link:after, .demo .tooltip.state-link-copied:after {
-        bottom: 77%;
+.demo .tooltip:after {
+        bottom: 80%;
         left: 85%;
         border: solid transparent;
         content: " ";
@@ -579,12 +567,12 @@ body.content-embeddable .annotation .cta-button img {
         border-left-color: transparent;
         -webkit-transform: rotate(-45deg);
                 transform: rotate(-45deg);
-        background-color: white;
+        background-color: #3eb995;
     }
 
-.demo .tooltip.state-created-link:after, .demo .tooltip.state-link-copied:after {
-        bottom: 80%;
-        background-color: #3eb995;
+.demo .tooltip.state-initial:after {
+        bottom: 77%;
+        background-color: #fff;
     }
 
 .demo .tooltip.state-initial .create-link-button {
@@ -592,6 +580,7 @@ body.content-embeddable .annotation .cta-button img {
         flex-direction: row;
         margin: 0 2px;
         color: #3eb995;
+        cursor: pointer;
     }
 
 .demo .tooltip.state-initial .create-link-button .heading_link {
@@ -639,9 +628,43 @@ body.content-embeddable .annotation .cta-button img {
                 height: 20px;
             }
 
-.demo .tooltip.state-creating-link .progress-indicator { display: inline; }
+.demo .tooltip.state-creating-link .progress-indicator {
+        display: flex;
+        align-items: center;
+        margin: -10px auto;
+    }
 
-.demo .tooltip.state-link-error .error-message { display: inline; }
+.demo .tooltip.state-creating-link .progress-indicator .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 15px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-creating-link .progress-indicator .icon img {
+                width: auto;
+                height: 20px;
+            }
+
+.demo .tooltip.state-link-error .error-message { 
+        display: flex; 
+        align-items: center;
+        margin: -10px auto;
+    }
+
+.demo .tooltip.state-link-error .error-message .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 15px;
+            left: -10px;
+        }
+
+.demo .tooltip.state-link-error .error-message .icon img {
+                width: auto;
+                height: 20px;
+            }
 
 .demo .tooltip.state-created-link .created-message { 
         display: flex;
@@ -1066,4 +1089,102 @@ body.loading .loading-indicator div:nth-child(n+3) {
     border-right-color: #3eb995;
     border-width: 34px;
     margin-top: -34px;
+}
+
+/* Loading animation */
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  -webkit-animation: lds-ellipsis1 0.6s infinite;
+          animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+          animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+          animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  -webkit-animation: lds-ellipsis3 0.6s infinite;
+          animation: lds-ellipsis3 0.6s infinite;
+}
+@-webkit-keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+@-webkit-keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(19px, 0);
+            transform: translate(19px, 0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(19px, 0);
+            transform: translate(19px, 0);
+  }
 }

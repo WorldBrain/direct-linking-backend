@@ -491,16 +491,19 @@ body {
     }
   
     .tooltip {
-      display: block;
-      position: absolute;
-      border: 1px solid black;
-      background: white;
-      width: 200px;
-      height: 40px;
-      line-height: 50px;
-      text-align: center;
-      transform: translate(-90%, 50%);
-      font-size: 13px;
+        display: flex;
+        position: absolute;
+        height: 40px;
+        text-align: center;
+        transform: translate(-90%, 50%);
+        font-size: 13px;
+        border: 2px solid #3eb995;
+        padding: 5px 5px;
+        border-radius: 5px;
+        background-color: #3eb995;
+        color: white;
+        line-height: 1.2em;
+        width: 220px;
   
       & > * {
         display: none;
@@ -512,24 +515,9 @@ body {
           text-overflow: ellipsis;
           width: 95%;
           padding: 0 0;
-          overflow: hidden;
-          whitespace: nowrap;
           margin-top: 3px;
+          cursor: pointer;
       }
-    }
-  
-    .create-link-button {
-      cursor: pointer;
-    }
-
-    .tooltip.state-initial, .tooltip.state-created-link, .tooltip.state-link-copied {
-        border: 2px solid #3eb995;
-        padding: 5px 5px;
-        border-radius: 5px;
-        background-color: #3eb995;
-        color: white;
-        line-height: 1.2em;
-        width: 220px;
     }
 
     .tooltip.state-initial {
@@ -540,7 +528,7 @@ body {
     }
 
     /*  Worldbrain logo on the left of the tooltip */
-    .tooltip.state-initial:before, .tooltip.state-created-link:before, .tooltip.state-link-copied:before {
+    .tooltip:before {
         border: solid transparent;
         content: " ";
         height: 30px;
@@ -564,8 +552,8 @@ body {
     }
 
     /* The pointer of the tooltip */
-    .tooltip.state-initial:after, .tooltip.state-created-link:after, .tooltip.state-link-copied:after {
-        bottom: 77%;
+    .tooltip:after {
+        bottom: 80%;
         left: 85%;
         border: solid transparent;
         content: " ";
@@ -578,12 +566,12 @@ body {
         border-bottom-color: transparent;
         border-left-color: transparent;
         transform: rotate(-45deg);
-        background-color: white;
+        background-color: #3eb995;
     }
 
-    .tooltip.state-created-link:after, .tooltip.state-link-copied:after {
-        bottom: 80%;
-        background-color: #3eb995;
+    .tooltip.state-initial:after {
+        bottom: 77%;
+        background-color: #fff;
     }
   
     .tooltip.state-initial .create-link-button {
@@ -591,6 +579,7 @@ body {
         flex-direction: row;
         margin: 0 2px;
         color: #3eb995;
+        cursor: pointer;
 
         .heading_link {
             display: flex;
@@ -638,8 +627,43 @@ body {
         }
     }
 
-    .tooltip.state-creating-link .progress-indicator { display: inline; }
-    .tooltip.state-link-error .error-message { display: inline; }
+    .tooltip.state-creating-link .progress-indicator {
+        display: flex;
+        align-items: center;
+        margin: -10px auto;
+
+        .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 15px;
+            left: -10px;
+
+            img {
+                width: auto;
+                height: 20px;
+            }
+        }
+    }
+
+    .tooltip.state-link-error .error-message { 
+        display: flex; 
+        align-items: center;
+        margin: -10px auto;
+
+        .icon {
+            display: flex;
+            width: 20px;
+            position: absolute;
+            top: 15px;
+            left: -10px;
+
+            img {
+                width: auto;
+                height: 20px;
+            }
+        }
+    }
 
     .tooltip.state-created-link .created-message { 
         display: flex;
@@ -1040,4 +1064,61 @@ body.loading .loading-indicator {
     border-right-color: #3eb995;
     border-width: 34px;
     margin-top: -34px;
+}
+
+/* Loading animation */
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
 }
