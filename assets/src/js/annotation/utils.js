@@ -19,3 +19,7 @@ export function deduceAnnotationUrl() {
     const url = '/' + id + '/annotation.json'
     return url
 }
+
+export function isEmbeddingDisabledOnDeviceSize(deviceSizeName) {
+    return ['mobile', 'tablet', 'small_desktop'].indexOf(deviceSizeName) >= 0
+}

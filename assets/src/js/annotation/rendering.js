@@ -1,7 +1,5 @@
 import { modifyState, getResource, getState } from '../state'
-import { deduceDocumentUrl } from './utils'
-
-const DISABLE_EMBEDDED_ON_SIZES = ['mobile', 'tablet', 'small_desktop']
+import { deduceDocumentUrl, isEmbeddingDisabledOnDeviceSize } from './utils'
 
 export function updateBodyClasses() {
     if (!document.body) {
@@ -10,7 +8,7 @@ export function updateBodyClasses() {
 
     const metadata = getResource('metadata')
     if (metadata) {
-        const forceDisableEmbedding = DISABLE_EMBEDDED_ON_SIZES.indexOf(getState('deviceSizeName')) >= 0
+        const forceDisableEmbedding = isEmbeddingDisabledOnDeviceSize(getState('deviceSizeName'))
         const embeddable = metadata.embeddable && !forceDisableEmbedding
         const getClassName = embeddable => embeddable ? 'content-embeddable' : 'content-not-embeddable'
         document.body.classList.add(getClassName(embeddable))
@@ -34,7 +32,7 @@ export function renderTemplate() {
     document.querySelector('body').innerHTML = getResource('annotationTemplate')
     document.querySelector('.quote .text-content').textContent = getResource('annotation').anchors[0].quote
     document.querySelector('.info .title').textContent = getResource('metadata').title
-    document.querySelector('.info .url').textContent = getResource('metadata').url
+    document.querySelector('.info .url').textContent = getResource('annotation').url
     modifyState('replacedHTML', true)
 }
 

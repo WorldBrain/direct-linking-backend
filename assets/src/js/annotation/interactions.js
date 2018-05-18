@@ -1,6 +1,7 @@
-import { getResource } from '../state'
+import { getState, getResource } from '../state'
 import { copyToClipboard } from '../utils'
 import { goToDemo } from '../router'
+import { isEmbeddingDisabledOnDeviceSize } from './utils'
 
 export function attachCopyAndGoListener() {
     document.querySelector('.copy-button').addEventListener('click', () => {
@@ -9,10 +10,11 @@ export function attachCopyAndGoListener() {
 }
 
 function copyQuoteAndMaybeGoToPage() {
+    const forceDisableEmbedding = isEmbeddingDisabledOnDeviceSize(getState('deviceSizeName'))
     const annotation = getResource('annotation')
     copyToClipboard(annotation.anchors[0].quote)
     document.querySelector('.copy-button').classList.add('copied')
-    if (!getResource('metadata').embeddable) {
+    if (!getResource('metadata').embeddable || forceDisableEmbedding) {
         window.location.href = annotation.url
     }
 }
