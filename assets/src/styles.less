@@ -154,7 +154,7 @@ body {
         .cta-demo-and-download {
             display: flex;
             padding-top: 40px;
-            width: 400px;
+            max-width: 400px;
             height: 67px;
             margin: 0 auto;
             justify-content: space-between;
@@ -167,18 +167,9 @@ body {
             text-decoration: none;
             width: 190px;
             padding-top: 10px;
-            // border: 2px solid white;
             border-radius: 3px;
             cursor: pointer;
             background-color: white;
-
-            /* span {
-                display: block;
-                padding-top: 2px;
-                margin-right: 10px;
-                font-size: 1.2em;
-                background-color: white;
-            } */
 
             img {
                 display: block;
@@ -190,6 +181,23 @@ body {
 
         .minimize {
             display: none;
+        }
+
+        @media (max-width: 490px) {
+            .cta-demo-and-download {
+                flex-direction: column;
+                padding-bottom: 120px;
+            }
+
+            .cta-button, .btn-live-demo {
+                margin: 0 auto;
+            }
+
+            .cta-button {
+                width: 197px;
+                margin-top: 10px;
+                padding-bottom: 10px;
+            }
         }
     }
 

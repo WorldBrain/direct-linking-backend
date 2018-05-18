@@ -156,7 +156,7 @@ body.content-not-embeddable .annotation .cta-line.skip span {
 body.content-not-embeddable .annotation .cta-demo-and-download {
             display: flex;
             padding-top: 40px;
-            width: 400px;
+            max-width: 400px;
             height: 67px;
             margin: 0 auto;
             justify-content: space-between;
@@ -169,19 +169,10 @@ body.content-not-embeddable .annotation .cta-button {
             text-decoration: none;
             width: 190px;
             padding-top: 10px;
-            // border: 2px solid white;
             border-radius: 3px;
             cursor: pointer;
             background-color: white;
         }
-
-/* span {
-                display: block;
-                padding-top: 2px;
-                margin-right: 10px;
-                font-size: 1.2em;
-                background-color: white;
-            } */
 
 body.content-not-embeddable .annotation .cta-button img {
                 display: block;
@@ -193,6 +184,24 @@ body.content-not-embeddable .annotation .cta-button img {
 body.content-not-embeddable .annotation .minimize {
             display: none;
         }
+
+@media (max-width: 490px) {
+
+    body.content-not-embeddable .annotation .cta-demo-and-download {
+                flex-direction: column;
+                padding-bottom: 120px;
+    }
+
+    body.content-not-embeddable .annotation .cta-button, body.content-not-embeddable .annotation .btn-live-demo {
+                margin: 0 auto;
+    }
+
+    body.content-not-embeddable .annotation .cta-button {
+                width: 197px;
+                margin-top: 10px;
+                padding-bottom: 10px;
+    }
+}
 
 .annotation .logo img {
         display: block;
