@@ -82,7 +82,7 @@ export function scrollToHighlight() {
     const $highlight = document.querySelector('.highlight')
     if ($highlight) {
         setTimeout(() => {
-            scrollToElement($highlight)
+            scrollToElement($highlight, {offset: -125})
         }, 300)
     } else {
         console.error('Oops, no highlight found to scroll to')

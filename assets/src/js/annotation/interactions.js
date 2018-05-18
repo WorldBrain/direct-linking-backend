@@ -10,8 +10,8 @@ export function attachCopyAndGoListener() {
 
 function copyQuoteAndMaybeGoToPage() {
     const annotation = getResource('annotation')
-    console.log(annotation.anchors[0].quote)
     copyToClipboard(annotation.anchors[0].quote)
+    document.querySelector('.copy-button').classList.add('copied')
     if (!getResource('metadata').embeddable) {
         window.location.href = annotation.url
     }
