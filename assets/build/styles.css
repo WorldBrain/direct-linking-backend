@@ -1,3 +1,15 @@
+@-ms-viewport {
+    width: device-width;
+}
+
+@-o-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+
 * {
     font-family: Lato;
     margin: 0;

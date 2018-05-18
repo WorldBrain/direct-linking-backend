@@ -43,6 +43,8 @@ export function _generateMetaTags(
     }
 
     return `
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="twitter:card" content="summary" />
         <meta property="og:type" content="website" />
         <meta property="og:url" of="${_escapeForeignHtmlString(annotation.url)}" />
