@@ -1,4 +1,5 @@
-const BACKEND_ORIGIN = window.location.hostname === 'localhost' ? window.location.origin : `//dyn.${window.location.hostname}`
+const DEV = window.location.hostname === 'localhost'
+const BACKEND_ORIGIN = DEV ? window.location.origin : `//dyn.${window.location.hostname}`
 
 export async function createAnnotationLink({anchor}) {
     const data = {annotation: {
@@ -17,6 +18,11 @@ export async function createAnnotationLink({anchor}) {
     const json = await response.json()
 
     return await new Promise((resolve, reject) => {
-        setTimeout(() => resolve({url: json.link}), 1000)
+        const complete = () => resolve({url: json.link})
+        if (DEV) {
+            setTimeout(complete, 1000)
+        } else {
+            complete()
+        }
     })
 }
