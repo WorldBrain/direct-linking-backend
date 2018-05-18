@@ -93,5 +93,8 @@ export class HttpDocumentRetriever extends DocumentRetriever {
 }
 
 export function _deduceEmbeddableFromHeaders(headers : {[key : string] : string}) : boolean {
-  return (headers['x-frame-options'] || '').toLowerCase() !== 'sameorigin'
+  return (
+    (headers['x-frame-options'] || '').length === 0 &&
+    (headers['content-security-policy'] || '').indexOf('frame-ancestors') === -1
+  )
 }
