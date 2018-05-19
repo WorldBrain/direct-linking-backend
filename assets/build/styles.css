@@ -822,7 +822,7 @@ body.content-embeddable .annotation .cta-button img {
 .demo .initial-selection-helper {
         position: relative;
         border: 3px solid #3eb995;
-        width: 65%;
+        width: 340px;
         margin: 30% 5% 20% 10%;
         padding: 15px 10px;
         border-radius: 10px;
@@ -911,7 +911,58 @@ body.content-embeddable .annotation .cta-button img {
         margin-top: -25px;
     }
 
-@media (max-width: 500px) {
+@media (max-width: 1390px) {
+
+    .demo {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .demo .left {
+            flex: 1 100%;
+    }
+
+    .demo .middle {
+            flex-basis: 50%;
+            padding-left: 20px;
+    }
+
+    .demo .logo-holder {
+            width: 300px;
+            margin: 10px auto;
+            text-align: center;
+    }
+
+    .demo .logo {
+            margin: 0 auto;
+            width: 140px;
+    }
+
+    .demo .logo-line {
+            margin-left: 0;
+            margin-top: 10px;
+    }
+
+    .demo .initial-selection-helper {
+            width: 340px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .demo .middle {
+            font-size: 15px;
+    }
+
+    .demo .initial-selection-helper {
+            font-size: 10px;
+            width: 245px;
+            margin-left: 15%;
+            margin-top: 500px;
+    }
+}
+
+@media (max-width: 690px) {
 
     .demo {
         flex-direction: column;
@@ -936,7 +987,7 @@ body.content-embeddable .annotation .cta-button img {
 
     .demo .middle {
             margin-top: 5px;
-            font-size: 14px;
+            font-size: 15px;
     }
 
             .demo .middle .subtitle {
@@ -954,6 +1005,7 @@ body.content-embeddable .annotation .cta-button img {
             width: 86%;
             padding:9% 7% 6% 7%;
             margin: 0;
+            font-size: 18px;
     }
 
             .demo .initial-selection-helper .highlight-text {
@@ -972,6 +1024,7 @@ body.content-embeddable .annotation .cta-button img {
                 background-color: #fff;
                 border: none;
                 margin-top: 10px;
+                padding: 15px;
             }
 
             .demo .initial-selection-helper .close-button {

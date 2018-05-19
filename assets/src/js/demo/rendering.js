@@ -51,7 +51,14 @@ export function positionHighlightHelper() {
 }
 
 function positionHelper({$anchor, $helper}) {
-    $helper.style.marginTop = `${$anchor.offsetTop}px`
+    const BREAKPOINT_WIDTH = 1390
+    if( document.body.offsetWidth < BREAKPOINT_WIDTH ){
+        const $left = document.querySelector('.left')
+        $helper.style.marginTop = `${$anchor.offsetTop - $left.offsetHeight}px`
+    }
+    else {
+        $helper.style.marginTop = `${$anchor.offsetTop}px`
+    }
 }
 
 export async function highlightAnnotation({annotation}) {
