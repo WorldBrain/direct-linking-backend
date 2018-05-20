@@ -1131,10 +1131,10 @@ body.loading .loading-indicator div:nth-child(n+3) {
 .only-demo-with-annotation.highlight-helper.helper {
     position: relative;
     border: 3px solid #3eb995;
-    width: 60%;
+    width: 345px;
     margin: 20% 5% 20% 10%;
     padding: 15px 10px;
-    border-radius: 5px;
+    border-radius: 5px;   
 }
 
 .only-demo-with-annotation.highlight-helper.helper .highlight-text {
@@ -1168,6 +1168,80 @@ body.loading .loading-indicator div:nth-child(n+3) {
             height: 25px;
             width: auto;
         }
+
+@media (max-width: 1390px) {
+
+    .only-demo-with-annotation.highlight-helper.helper {
+        width: 340px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .only-demo-with-annotation.highlight-helper.helper {
+        font-size: 10px;
+        width: 245px;
+        margin-left: 30px;
+        margin-top: 500px;
+    }
+}
+
+@media (max-width: 690px) {
+
+    .only-demo-with-annotation.highlight-helper.helper {
+        position: fixed;
+        bottom: 0;
+        z-index: 9999;
+        background-color: #3eb995;
+        color: white;
+        border-radius: 0;
+        border: none;
+        width: 86%;
+        padding: 20px 7%;
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .only-demo-with-annotation.highlight-helper.helper .highlight-text {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-align: center;
+            padding-bottom: 3%;
+            font-weight: 100;
+            margin-bottom: 0;
+    }
+
+    .only-demo-with-annotation.highlight-helper.helper .highlight-test-text {
+            margin-top: 0px;
+            text-align: center;
+    }
+
+    .only-demo-with-annotation.highlight-helper.helper .divider {
+            display: none;
+    }
+
+    .only-demo-with-annotation.highlight-helper.helper .hightlight-button {
+            background-color: #fff;
+            border: none;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 1em;
+    }
+
+    .only-demo-with-annotation.highlight-helper.helper .close-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+    }
+
+    .only-demo-with-annotation.highlight-helper.helper :before, .only-demo-with-annotation.highlight-helper.helper :after {
+            display: none;
+    }
+}
 
 .only-demo-with-annotation.highlight-helper.helper:after, .only-demo-with-annotation.highlight-helper.helper:before {
     right: 100%;

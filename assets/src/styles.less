@@ -1092,7 +1092,7 @@ body.loading .loading-indicator {
 .only-demo-with-annotation.highlight-helper.helper {
     position: relative;
     border: 3px solid #3eb995;
-    width: 60%;
+    width: 345px;
     margin: 20% 5% 20% 10%;
     padding: 15px 10px;
     border-radius: 5px;
@@ -1128,6 +1128,71 @@ body.loading .loading-indicator {
             width: auto;
         }
     }
+
+    @media (max-width: 1390px){
+        width: 340px;
+    }
+
+    @media (max-width: 900px) {
+        font-size: 10px;
+        width: 245px;
+        margin-left: 30px;
+        margin-top: 500px;
+    }
+
+    @media (max-width: 690px) {
+        position: fixed;
+        bottom: 0;
+        z-index: 9999;
+        background-color: #3eb995;
+        color: white;
+        border-radius: 0;
+        border: none;
+        width: 86%;
+        padding: 20px 7%;
+        margin: 0;
+        font-size: 16px;
+
+        .highlight-text {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-align: center;
+            padding-bottom: 3%;
+            font-weight: 100;
+            margin-bottom: 0;
+        }
+
+        .highlight-test-text {
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        .divider {
+            display: none;
+        }
+
+        .hightlight-button {
+            background-color: #fff;
+            border: none;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 1em;
+        }
+
+        .close-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+        }
+
+        :before, :after {
+            display: none
+        }
+    }   
 }
 
 .only-demo-with-annotation.highlight-helper.helper:after, .only-demo-with-annotation.highlight-helper.helper:before {
