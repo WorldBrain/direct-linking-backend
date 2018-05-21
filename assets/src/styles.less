@@ -728,7 +728,7 @@ body {
             display: flex;
             width: 20px;
             position: absolute;
-            top: 17px;
+            top: 15px;
             left: -10px;
 
             img {
@@ -757,7 +757,7 @@ body {
             display: flex;
             width: 20px;
             position: absolute;
-            top: 17px;
+            top: 15px;
             left: -10px;
 
             img {
@@ -806,7 +806,7 @@ body {
     .initial-selection-helper {
         position: relative;
         border: 3px solid #3eb995;
-        width: 65%;
+        width: 340px;
         margin: 30% 5% 20% 10%;
         padding: 15px 10px;
         border-radius: 10px;
@@ -893,7 +893,53 @@ body {
         margin-top: -25px;
     }
 
-    @media(max-width: 500px){
+    @media(max-width: 1390px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .left {
+            flex: 1 100%;
+        }
+
+        .middle {
+            flex-basis: 50%;
+            padding-left: 20px;
+        }
+
+        .logo-holder {
+            width: 300px;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        .logo {
+            margin: 0 auto;
+            width: 140px;
+        }
+
+        .logo-line {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+
+        .initial-selection-helper {
+            width: 340px;
+        }
+    }
+
+    @media(max-width: 900px) {
+        .middle {
+            font-size: 15px;
+        }
+        .initial-selection-helper {
+            font-size: 10px;
+            width: 245px;
+            margin-left: 15%;
+            margin-top: 500px;
+        }
+    }
+
+    @media(max-width: 690px){
         flex-direction: column;
 
         .left, .middle {
@@ -915,7 +961,7 @@ body {
 
         .middle {
             margin-top: 5px;
-            font-size: 14px;
+            font-size: 15px;
 
             .subtitle {
                 font-size: 1.25em;
@@ -933,6 +979,7 @@ body {
             width: 86%;
             padding:9% 7% 6% 7%;
             margin: 0;
+            font-size: 18px;
 
             .highlight-text {
                 margin-bottom: 10px;
@@ -950,6 +997,7 @@ body {
                 background-color: #fff;
                 border: none;
                 margin-top: 10px;
+                padding: 15px;
             }
 
             .close-button {
@@ -1044,7 +1092,7 @@ body.loading .loading-indicator {
 .only-demo-with-annotation.highlight-helper.helper {
     position: relative;
     border: 3px solid #3eb995;
-    width: 60%;
+    width: 345px;
     margin: 20% 5% 20% 10%;
     padding: 15px 10px;
     border-radius: 5px;
@@ -1080,6 +1128,71 @@ body.loading .loading-indicator {
             width: auto;
         }
     }
+
+    @media (max-width: 1390px){
+        width: 340px;
+    }
+
+    @media (max-width: 900px) {
+        font-size: 10px;
+        width: 245px;
+        margin-left: 30px;
+        margin-top: 500px;
+    }
+
+    @media (max-width: 690px) {
+        position: fixed;
+        bottom: 0;
+        z-index: 9999;
+        background-color: #3eb995;
+        color: white;
+        border-radius: 0;
+        border: none;
+        width: 86%;
+        padding: 20px 7%;
+        margin: 0;
+        font-size: 16px;
+
+        .highlight-text {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-align: center;
+            padding-bottom: 3%;
+            font-weight: 100;
+            margin-bottom: 0;
+        }
+
+        .highlight-test-text {
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        .divider {
+            display: none;
+        }
+
+        .hightlight-button {
+            background-color: #fff;
+            border: none;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 1em;
+        }
+
+        .close-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+        }
+
+        :before, :after {
+            display: none
+        }
+    }   
 }
 
 .only-demo-with-annotation.highlight-helper.helper:after, .only-demo-with-annotation.highlight-helper.helper:before {

@@ -46,12 +46,21 @@ export function positionInitialSelectionHelper() {
 export function positionHighlightHelper() {
     positionHelper({
         $anchor: document.querySelector('.highlight'),
-        $helper: document.querySelector('.highlight-helper')
+        $helper: document.querySelector('.highlight-helper'),
+        extra: 10,
     })
 }
 
-function positionHelper({$anchor, $helper}) {
-    $helper.style.marginTop = `${$anchor.offsetTop}px`
+function positionHelper({$anchor, $helper, extra}) {
+    extra = extra || 0
+    const BREAKPOINT_WIDTH = 1390
+    if( document.body.offsetWidth < BREAKPOINT_WIDTH ){
+        const $left = document.querySelector('.left')
+        $helper.style.marginTop = `${$anchor.offsetTop - $left.offsetHeight - extra}px`
+    }
+    else {
+        $helper.style.marginTop = `${$anchor.offsetTop - extra}px`
+    }
 }
 
 export async function highlightAnnotation({annotation}) {
