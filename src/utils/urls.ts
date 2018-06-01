@@ -12,7 +12,7 @@ const BASE_NORMALIZATION_OPTIONS = {
 export function normalizeUrlForStorage(url : string) : string {
   url = normalizeUrl(url, {
     ...BASE_NORMALIZATION_OPTIONS,
-    stripFragment: false
+    stripFragment: true
   })
   url = _cleanNormalizedUrl(url)
   return url
@@ -21,7 +21,7 @@ export function normalizeUrlForStorage(url : string) : string {
 export function normalizeUrlForLinkGeneration(url : string) {
   url = normalizeUrl(url, {
     ...BASE_NORMALIZATION_OPTIONS,
-    stripFragment: true
+    stripFragment: false
   })
   url = _cleanNormalizedUrl(url)
   return url
