@@ -1,3 +1,5 @@
+import * as clipboard from 'clipboard-polyfill'
+
 // For things that must only happen once
 export function loader(promiseCreator) {
     let promise
@@ -39,10 +41,5 @@ export function delayed(f, delay) {
 }
 
 export function copyToClipboard(text){
-    var dummy = document.createElement("input")
-    document.body.appendChild(dummy)
-    dummy.setAttribute('value', text)
-    dummy.select()
-    document.execCommand('copy')
-    document.body.removeChild(dummy)
+    clipboard.writeText(text)
 }

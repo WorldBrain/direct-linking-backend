@@ -91,6 +91,7 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "chai-string": "^1.4.0",
+    "clipboard-polyfill": "^2.4.7",
     "connect-livereload": "^0.6.0",
     "console-debug": "^0.4.2",
     "dom-anchor-text-position": "^4.0.0",

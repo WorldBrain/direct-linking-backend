@@ -35,6 +35,14 @@ body {
     }
 }
 
+.annotation .cta-line.demo-line {
+        display: none;
+}
+
+body.desktop-version .annotation .cta-line.demo-line {
+            display: block;
+        }
+
 body.content-not-embeddable .annotation .iframe-container {
             display: none;
         }

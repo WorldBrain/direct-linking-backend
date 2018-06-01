@@ -4,7 +4,8 @@ import { goToDemo } from '../router'
 import { isEmbeddingDisabledOnDeviceSize } from './utils'
 
 export function attachCopyAndGoListener() {
-    document.querySelector('.copy-button').addEventListener('click', () => {
+    document.querySelector('.copy-button').addEventListener('click', event => {
+        event.preventDefault()
         copyQuoteAndMaybeGoToPage()
     })
 }

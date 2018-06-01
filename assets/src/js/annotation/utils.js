@@ -23,3 +23,7 @@ export function deduceAnnotationUrl() {
 export function isEmbeddingDisabledOnDeviceSize(deviceSizeName) {
     return ['mobile', 'tablet', 'small_desktop'].indexOf(deviceSizeName) >= 0
 }
+
+export function isDesktop(deviceSizeName) {
+    return deviceSizeName.indexOf('desktop') >= 0
+}

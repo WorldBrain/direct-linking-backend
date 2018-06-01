@@ -25,6 +25,14 @@ body {
         }
     }
 
+    .cta-line.demo-line {
+        display: none;
+        
+        body.desktop-version & {
+            display: block;
+        }
+    }
+
     body.content-not-embeddable & {
         .iframe-container {
             display: none;

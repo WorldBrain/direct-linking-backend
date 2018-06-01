@@ -1,9 +1,15 @@
 import { modifyState, getResource, getState } from '../state'
-import { deduceDocumentUrl, isEmbeddingDisabledOnDeviceSize } from './utils'
+import { deduceDocumentUrl, isEmbeddingDisabledOnDeviceSize, isDesktop } from './utils'
 
 export function updateBodyClasses() {
     if (!document.body) {
         return
+    }
+
+    if (isDesktop(getState('deviceSizeName'))) {
+        document.body.classList.add('desktop-version')
+    } else {
+        document.body.classList.remove('desktop-version')
     }
 
     const metadata = getResource('metadata')
