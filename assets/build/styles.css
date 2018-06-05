@@ -23,7 +23,15 @@ body {
     height: 100%;
 }
 
+/*.info-bar {
+        display: flex;
+        flex-direction: column;
+    }*/
+
 .annotation .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         background-color: #fff;
         color: #000;
     }
@@ -39,16 +47,9 @@ body {
         padding: 10px 150px;
     }
 
-@media (max-width: 500px) {
-
-    .annotation .middle {
-        width: 90%;
-    }
-}
-
 .annotation .cta-line.demo-line {
         display: none;
-}
+    }
 
 body.desktop-version .annotation .cta-line.demo-line {
             display: block;
@@ -62,135 +63,93 @@ body.desktop-version .annotation .cta-line.demo-line {
         justify-content: space-between;
         align-items: flex-start;
         flex: 1 50%;
-}
+    }
 
 .annotation .intro {
         order: 1;
         padding: 15px 0;
         font-size: 1em;
-        font-weight: 510;
-}
+        font-weight: 800;
+    }
 
-body.content-embeddable .annotation .info-bar {
-            display: flex;
-            flex-direction: column;
-        }
+.annotation .quote {
+        order: 2;
+        padding-bottom: 15px;
+        padding-right: 20px;
+        font-style: italic;
+        font-weight: 200;
+        font-size: 1.3em;
+    }
 
-body.content-embeddable .annotation .info-bar .content {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
+.annotation .title-and-url {
+        order: 3
+    }
 
-/*
-        .logo {
-            width: 10%;
-            padding: 20px;
-        }
-    
-        .middle {
-            display: flex;
-            flex-direction: row;
-            margin: 0;
-            width: 90%;
-            justify-content: space-between;
-        }
-    
-        .info {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-            text-align: left;
-            justify-content: space-between;
-            flex-grow: 3;
-        }
-
-        .intro {
-            order: 1;
-            padding: 20px 0;
-            font-size: 1.5em;
-            font-weight: 510;
-        }
-    */
-
-body.content-embeddable .annotation .quote {
-            order: 2;
-            padding-bottom: 15px;
-            padding-right: 20px;
-            font-style: italic;
-            font-size: 1.3em;
-        }
-
-body.content-embeddable .annotation .title-and-url {
-            order: 3;
-            display: none
-        }
-
-body.content-embeddable .annotation .title-and-url .title {
+.annotation .title-and-url .title {
     display: none;
 }
 
-body.content-embeddable .annotation .title-and-url .url {
-    color: #ddd;
+.annotation .title-and-url .url {
+    color: #bcbcbc;
     font-size: 0.8em;
 }
 
-body.content-embeddable .annotation .find-instructions {
-            order: 4;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-top: 25px;
-            flex-grow: 1;
-        }
+.annotation .find-instructions {
+        order: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 25px;
+        flex-grow: 1;
+    }
 
-body.content-embeddable .annotation .search-text {
-            display: block;
-            margin-top: 10px;
-            font-size: 1em;
-            text-align: center;
-        }
+.annotation .search-text {
+        display: block;
+        margin-top: 10px;
+        font-size: 1em;
+        text-align: center;
+    }
 
-body.content-embeddable .annotation .copy-button {
-            max-width: 230px;
-            width: 160px;
-            height: 30px;
-            margin: 0 auto;
-            padding: 8px 8px;
-            text-align: center;
-            line-height: 30px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
+.annotation .copy-button {
+        max-width: 230px;
+        width: 160px;
+        height: 30px;
+        margin: 0 auto;
+        padding: 8px 8px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: white;
+        color: #000;
+        font-weight: 500;
+        border: 1px solid #c2c2c2;
+    }
+
+.annotation .copy-button span {
             background-color: white;
-            color: #000;
-            font-weight: 500;
-            border: 1px solid #c2c2c2;
         }
 
-body.content-embeddable .annotation .copy-button span {
-                background-color: white;
-            }
-
-body.content-embeddable .annotation .copy-button.copied {
+.annotation .copy-button.copied {
     line-height: 15px;
     font-size: 0.89em;
 }
 
-body.content-embeddable .annotation .search-text {
-            font-size: 0.8em;
-            color: #c2c2c2;
-        }
+.annotation .search-text {
+        font-size: 0.8em;
+        color: #c2c2c2;
+    }
 
-body.content-embeddable .annotation .divider {
-            display: flex;
-            margin: 0 0 0 20px;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 10%
-        }
+.annotation .divider {
+        display: flex;
+        margin: 0 0 0 20px;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 10%
+    }
 
-body.content-embeddable .annotation .divider:before {
+.annotation .divider:before {
     content: "";
     position: relative;
     width: 2px;
@@ -199,99 +158,210 @@ body.content-embeddable .annotation .divider:before {
     z-index: 1;
 }
 
-body.content-embeddable .annotation .cta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            margin: 20px 0px 10px 20px;
-            flex: 1 40%;
-        }
+.annotation .cta-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin: 20px 0px 10px 20px;
+        flex: 1 40%;
+    }
 
-body.content-embeddable .annotation .cta-line {
-            width: 60%;
-            line-height: 22px;
-            color: #303433
-        }
+.annotation .cta-line {
+        width: 60%;
+        line-height: 22px;
+        color: #303433
+    }
 
-body.content-embeddable .annotation .cta-line .cta-highlight {
+.annotation .cta-line .cta-highlight {
     background-color: rgba(62, 185, 149, 0.31373);
 }
 
-body.content-embeddable .annotation .cta-line.skip  {
+.annotation .cta-line.skip  {
     display: none;
 }
 
-body.content-embeddable .annotation .cta-download {
-            margin-top: 30px
-        }
+.annotation .cta-download {
+        margin-top: 30px
+    }
 
-body.content-embeddable .annotation .cta-download .cta-download-line {
+.annotation .cta-download .cta-download-line {
     font-weight: 800;
 }
 
-body.content-embeddable .annotation .cta-download .cta-download-line img {
-                    display: inline-block;
-                    height: 25px;
-                    width: auto;
-                    margin: 0 5px;
-                    vertical-align: -7px;
+.annotation .cta-download .cta-download-line img {
+                display: inline-block;
+                height: 25px;
+                width: auto;
+                margin: 0 5px;
+                vertical-align: -7px;
 }
 
-body.content-embeddable .annotation .cta-button {
-            text-decoration: none;
-            display: flex;
-            width: 180px;
-            margin: 0px 0 3px 0;
-            padding: 13px 0 13px 0;
-            border-radius: 5px;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            background-color: #3eb995;
+.annotation .cta-button {
+        text-decoration: none;
+        display: flex;
+        width: 180px;
+        margin: 0px 0 3px 0;
+        padding: 13px 0 13px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: #3eb995;
+    }
+
+.annotation .cta-button span {
+            display: block;
+            font-size: 1.2em;
         }
 
-body.content-embeddable .annotation .cta-button span {
-                display: block;
-                font-size: 1.2em;
+.annotation .cta-button-text {
+        color: rgb(182, 182, 182);
+        margin: 0;
+        padding: 0;
+        font-weight: 100;
+        font-size: 0.8em;
+        width: 180px;
+        text-align: center;
+    }
+
+@media (max-width: 1025px) {
+
+    .annotation .content {
+            justify-content: center;
+            height: 100%;
+    }
+
+    .annotation .middle {
+            flex-direction: column;
+            width: 50%;
+            justify-content: center;
+    }
+
+    .annotation .info {
+            border-bottom: 1px solid #e7e7e7;
+            padding-bottom: 30px;
+    }
+
+            .annotation .info .quote {
+                font-size: 1.1em;
             }
 
-body.content-embeddable .annotation .cta-button-text {
-            color: rgb(182, 182, 182);
-            margin: 0;
-            padding: 0;
-            font-weight: 100;
-            font-size: 0.8em;
-            width: 180px;
-            text-align: center;
-        }
+            .annotation .info .find-instructions {
+                width: 100%;
+                margin-top: 30px;
+            }
 
-body.content-not-embeddable .annotation .iframe-container {
+            .annotation .info .copy-button {
+                width: 95%;
+                max-width: 95%;
+            }
+
+    .annotation .cta-container {
+            border-bottom: 1px solid #e7e7e7;
+            padding-bottom: 30px;
+            margin-left: 0;
+    }
+
+            .annotation .cta-container .cta-line, .annotation .cta-container .cta-button, .annotation .cta-container .cta-button-text, .annotation .cta-container .cta-download {
+                width: 100%;
+            }
+
+            .annotation .cta-container .cta-line {
+                margin-top: 20px;
+            }
+
+            .annotation .cta-container .cta-download-line {
+                margin: 0px auto;
+                text-align: center;
+            }
+
+    .annotation .divider {
+            display: none;
+    }
+
+    .annotation .about-memex {
+            display: none;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .annotation .middle {
+            width: 100%;
+            padding: 10px;
+    }
+
+    .annotation .info, .annotation .cta-container {
+            width: 80%;
+            margin: 0 auto;
+    }
+
+    .annotation .only-desktop {
+            display: none;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .annotation .middle {
+            width: 100%;
+            padding: 10px;
+    }
+
+    .annotation .info {
+            width: 100%;
+    }
+
+            .annotation .info .intro {
+                font-size: 0.9em;
+            }
+
+            .annotation .info .quote {
+                font-size: 1em;
+            }
+
+    .annotation .cta-container {
+            width: 100%;
+    }
+
+            .annotation .cta-container .cta-download-line {
+                font-size: 0.9em;
+            }
+}
+
+body.content-embeddable .annotation .title-and-url {
             display: none;
         }
 
-body.content-not-embeddable .annotation .info-bar {
+body.content-embeddable .annotation .about-memex {
+            display: none;
+        }
+
+body.content-not-embeddable .annotation {
+
+        /*
+        .info-bar {
             display: block;
             height: 100vh;
         }
 
-body.content-not-embeddable .annotation .info-bar .content {
+        .info-bar .content {
             display: block;
         }
 
-body.content-not-embeddable .annotation .logo {
+        .logo {
             width: 200px;
             padding: 20px;
         }
 
-body.content-not-embeddable .annotation .info {
+        .info {
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
         }
 
-/*
         .intro {
             order: 1;
             padding: 20px 0;
@@ -299,13 +369,13 @@ body.content-not-embeddable .annotation .info {
             text-align: center;
             font-weight: 510;
         }
-*/
 
-body.content-not-embeddable .annotation .title-and-url {
+
+        .title-and-url {
             order: 3;
         }
 
-body.content-not-embeddable .annotation .title {
+        .title {
             display: inline-block;
             background-color: white;
             font-size: 0.95em;
@@ -316,7 +386,7 @@ body.content-not-embeddable .annotation .title {
             text-overflow: ellipsis;
         }
 
-body.content-not-embeddable .annotation .url {
+        .url {
             display: inline-block;
             background-color: white;
             font-size: 0.85em;
@@ -328,19 +398,19 @@ body.content-not-embeddable .annotation .url {
             text-overflow: ellipsis;
         }
 
-body.content-not-embeddable .annotation .quote {
+        .quote {
             order: 2;
             padding-bottom: 20px;
             font-style: italic;
         }
 
-body.content-not-embeddable .annotation .search-text {
+        .search-text {
             text-align: center;
             padding-top: 10px;
             font-size: 0.8em;
         }
 
-body.content-not-embeddable .annotation .copy-button {
+        .copy-button {
             width: 230px;
             margin: 0 auto;
             padding: 15px 15px;
@@ -351,51 +421,50 @@ body.content-not-embeddable .annotation .copy-button {
             background-color: white;
             color: #3eb995;
             font-weight: 500;
-        }
 
-body.content-not-embeddable .annotation .copy-button span {
+            span {
                 background-color: white;
             }
+        }
 
-body.content-not-embeddable .annotation .divider {
+        .divider {
             display: flex;
             padding: 50px 0;
             width: 110px;
             margin: 0 auto;
             justify-content: center;
-        }
 
-body.content-not-embeddable .annotation .divider .text:before {
-    content: "OR";
-}
+            .text {
+                &:before {
+                content: "OR"
+                }
 
-body.content-not-embeddable .annotation .divider .text {
-    font-size: 1.1em;
-    font-style: italic;
-}
+                font-size: 1.1em;
+                font-style: italic;
+            }
 
-body.content-not-embeddable .annotation .divider .edge {
+            .edge {
                 position: relative;
                 margin: 0 5px;
-                -webkit-transform: translateY(-45%);
-                        transform: translateY(-45%);
+                transform: translateY(-45%);
                 width: 30px;
                 border-bottom: 2px solid white;
             }
+        }
 
-body.content-not-embeddable .annotation .cta-container {
+        .cta-container {
             text-align: center;
         }
 
-body.content-not-embeddable .annotation .cta-line {
-            margin-bottom: 5px
+        .cta-line {
+            margin-bottom: 5px;
+
+            &.skip span {
+                display: block;
+            }
         }
 
-body.content-not-embeddable .annotation .cta-line.skip span {
-    display: block;
-}
-
-body.content-not-embeddable .annotation .cta-demo-and-download {
+        .cta-demo-and-download {
             display: flex;
             padding-top: 40px;
             max-width: 400px;
@@ -404,7 +473,7 @@ body.content-not-embeddable .annotation .cta-demo-and-download {
             justify-content: space-between;
         }
 
-body.content-not-embeddable .annotation .cta-button {
+        .cta-button {
             box-sizing: border-box;
             display: block;
             color: #3eb995;
@@ -414,44 +483,45 @@ body.content-not-embeddable .annotation .cta-button {
             border-radius: 3px;
             cursor: pointer;
             background-color: white;
-        }
 
-body.content-not-embeddable .annotation .cta-button img {
+            img {
                 display: block;
                 margin: 0 auto;
                 height: 25px;
                 width: auto;
             }
+        }
 
-body.content-not-embeddable .annotation .minimize {
+        .minimize {
             display: none;
         }
 
-@media (max-width: 490px) {
-
-    body.content-not-embeddable .annotation .cta-demo-and-download {
+        @media (max-width: 490px) {
+            .cta-demo-and-download {
                 flex-direction: column;
                 padding-bottom: 120px;
-    }
+            }
 
-    body.content-not-embeddable .annotation .cta-button, body.content-not-embeddable .annotation .btn-live-demo {
+            .cta-button, .btn-live-demo {
                 margin: 0 auto;
-    }
+            }
 
-    body.content-not-embeddable .annotation .cta-button {
+            .cta-button {
                 width: 197px;
                 margin-top: 10px;
                 padding-bottom: 10px;
-    }
+            }
+        }
+        */
 }
 
-/*
-        .logo img {
-        display: block;
-        width: auto;
-        height: 30px;
-    }
-    */
+body.content-not-embeddable .annotation .iframe-container {
+            display: none;
+        }
+
+body.content-not-embeddable .annotation .title-and-url {
+            display: block;
+        }
 
 .annotation .minimize {
         text-align: center;
