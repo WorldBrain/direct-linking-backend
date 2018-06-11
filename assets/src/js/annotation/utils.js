@@ -9,10 +9,6 @@ export function deduceMetadataUrl() {
     return '/' + encodeURIComponent(encodeURIComponent(deduceDocumentUrlWithoutProtocol())) + '/metadata.json'
 }
 
-export function deduceDocumentUrl() {
-    return 'http://' + deduceDocumentUrlWithoutProtocol()
-}
-
 export function deduceAnnotationUrl() {
     const curPath = window.location.pathname
     const id = curPath.split('/')[1]

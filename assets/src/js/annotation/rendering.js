@@ -1,5 +1,5 @@
 import { modifyState, getResource, getState } from '../state'
-import { deduceDocumentUrl, isEmbeddingDisabledOnDeviceSize, isDesktop } from './utils'
+import { isEmbeddingDisabledOnDeviceSize, isDesktop } from './utils'
 
 export function updateBodyClasses() {
     if (!document.body) {
@@ -47,7 +47,7 @@ export function injectIframeIfNeeded() {
         return
     }
 
-    const url = deduceDocumentUrl()
+    const url = getResource('annotation').url
     const iframe = document.createElement('iframe')
     iframe.src = url
     document.querySelector('.iframe-container').appendChild(iframe)

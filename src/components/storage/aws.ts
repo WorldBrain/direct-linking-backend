@@ -30,7 +30,7 @@ export class AwsStorage implements Storage {
     annotation.id = await this._generateAnnotationId()
     annotation.storageUrl = normalizeUrlForStorage(annotation.url)
 
-    const key = annotation.id + '/annotation.json';
+    const key = annotation.id + '/annotation.json'
     await this._putObject({key, body: annotation, type: 'json'})
 
     return {id: annotation.id}
@@ -75,7 +75,11 @@ export class AwsStorage implements Storage {
   }
 
   async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
-    const key = `${annotation.id}/${annotation.storageUrl}/index.html`
+    const isDir = annotation.url.substr(-1) === '/'
+    let key = `${annotation.id}/${annotation.storageUrl}`
+    if (isDir) {
+      key += '/index.html'
+    }
     await this._putObject({key, body: skeleton, type: 'html'})
   }
 
