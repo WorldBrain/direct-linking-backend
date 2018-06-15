@@ -11,7 +11,8 @@ export const STATE = {
         url: null,
         error: null
     },
-    deviceSizeName: null // 'mobile' | 'tablet' | 'small_desktop' | 'large_desktop'
+    deviceSizeName: null, // 'mobile' | 'tablet' | 'small_desktop' | 'large_desktop'
+    activeLi: 0,
 }
 window.STATE = STATE
 

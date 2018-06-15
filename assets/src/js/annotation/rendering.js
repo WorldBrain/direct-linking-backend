@@ -68,3 +68,20 @@ export function truncateQuote() {
     $quote.classList.add('truncated')
     document.querySelector('.truncated-text .text-content').textContent = trunctatedText
 }
+
+export function setListActiveClass() {
+    const listId = getState('activeLi')
+    const listElement = document.querySelectorAll('.features-list > li')[listId]
+    listElement.classList.add('active')
+}
+
+function removeListActiveClass(listId) {
+    // @param listId = (previously active list element)
+    const listElement = document.querySelectorAll('.features-list > li')[listId]
+    listElement.classList.remove('active')
+}
+
+export function updateFeaturesList(oldListId){
+    removeListActiveClass(oldListId)
+    setListActiveClass()
+}

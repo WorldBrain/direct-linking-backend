@@ -226,7 +226,66 @@ body.desktop-version .annotation .cta-line.demo-line {
         text-align: center;
     }
 
+.annotation .about-memex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+.annotation .about-memex .about-memex-header {
+            color: #3eb995;
+            font-size: 2em;
+            font-weight: 100;
+            text-align: center;
+        }
+
+.annotation .about-memex .features-list-container {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+.annotation .about-memex .features-list-container .features-list {
+                list-style: none;
+                border-bottom: 1px #b1b1b1 solid
+            }
+
+.annotation .about-memex .features-list-container .features-list > li {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+    border-color: white;
+    transition: border-color 0.3s ease-in;
+}
+
+.annotation .about-memex .features-list-container .features-list > li.active {
+    border-bottom: 3px #3eb995 solid;
+}
+
+body.content-embeddable .annotation .title-and-url {
+            display: none;
+        }
+
+body.content-embeddable .annotation .about-memex {
+            display: none;
+        }
+
+body.content-not-embeddable .annotation .iframe-container {
+            display: none;
+        }
+
+body.content-not-embeddable .annotation .title-and-url {
+            display: block;
+        }
+
 @media (max-width: 1025px) {
+
+    .annotation .about-memex {
+            display: flex;
+    }
 
     .annotation .content {
             justify-content: center;
@@ -280,10 +339,6 @@ body.desktop-version .annotation .cta-line.demo-line {
     .annotation .divider {
             display: none;
     }
-
-    .annotation .about-memex {
-            display: none;
-    }
 }
 
 @media (max-width: 600px) {
@@ -330,198 +385,6 @@ body.desktop-version .annotation .cta-line.demo-line {
                 font-size: 0.9em;
             }
 }
-
-body.content-embeddable .annotation .title-and-url {
-            display: none;
-        }
-
-body.content-embeddable .annotation .about-memex {
-            display: none;
-        }
-
-body.content-not-embeddable .annotation {
-
-        /*
-        .info-bar {
-            display: block;
-            height: 100vh;
-        }
-
-        .info-bar .content {
-            display: block;
-        }
-
-        .logo {
-            width: 200px;
-            padding: 20px;
-        }
-
-        .info {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-
-        .intro {
-            order: 1;
-            padding: 20px 0;
-            font-size: 1.5em;
-            text-align: center;
-            font-weight: 510;
-        }
-
-
-        .title-and-url {
-            order: 3;
-        }
-
-        .title {
-            display: inline-block;
-            background-color: white;
-            font-size: 0.95em;
-            color: #173766;
-            max-width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .url {
-            display: inline-block;
-            background-color: white;
-            font-size: 0.85em;
-            font-weight: bold;
-            color: #777;
-            max-width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .quote {
-            order: 2;
-            padding-bottom: 20px;
-            font-style: italic;
-        }
-
-        .search-text {
-            text-align: center;
-            padding-top: 10px;
-            font-size: 0.8em;
-        }
-
-        .copy-button {
-            width: 230px;
-            margin: 0 auto;
-            padding: 15px 15px;
-            text-align: center;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: white;
-            color: #3eb995;
-            font-weight: 500;
-
-            span {
-                background-color: white;
-            }
-        }
-
-        .divider {
-            display: flex;
-            padding: 50px 0;
-            width: 110px;
-            margin: 0 auto;
-            justify-content: center;
-
-            .text {
-                &:before {
-                content: "OR"
-                }
-
-                font-size: 1.1em;
-                font-style: italic;
-            }
-
-            .edge {
-                position: relative;
-                margin: 0 5px;
-                transform: translateY(-45%);
-                width: 30px;
-                border-bottom: 2px solid white;
-            }
-        }
-
-        .cta-container {
-            text-align: center;
-        }
-
-        .cta-line {
-            margin-bottom: 5px;
-
-            &.skip span {
-                display: block;
-            }
-        }
-
-        .cta-demo-and-download {
-            display: flex;
-            padding-top: 40px;
-            max-width: 400px;
-            height: 67px;
-            margin: 0 auto;
-            justify-content: space-between;
-        }
-
-        .cta-button {
-            box-sizing: border-box;
-            display: block;
-            color: #3eb995;
-            text-decoration: none;
-            width: 190px;
-            padding-top: 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            background-color: white;
-
-            img {
-                display: block;
-                margin: 0 auto;
-                height: 25px;
-                width: auto;
-            }
-        }
-
-        .minimize {
-            display: none;
-        }
-
-        @media (max-width: 490px) {
-            .cta-demo-and-download {
-                flex-direction: column;
-                padding-bottom: 120px;
-            }
-
-            .cta-button, .btn-live-demo {
-                margin: 0 auto;
-            }
-
-            .cta-button {
-                width: 197px;
-                margin-top: 10px;
-                padding-bottom: 10px;
-            }
-        }
-        */
-}
-
-body.content-not-embeddable .annotation .iframe-container {
-            display: none;
-        }
-
-body.content-not-embeddable .annotation .title-and-url {
-            display: block;
-        }
 
 .annotation .minimize {
         text-align: center;

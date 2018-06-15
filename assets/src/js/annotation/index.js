@@ -16,6 +16,7 @@ export async function init() {
     rendering.updateBodyClasses()
     state.addStateListener('resources', () => rendering.updateBodyClasses())
     state.addStateListener('deviceSizeName', () => rendering.updateBodyClasses())
+    state.addStateListener('activeLi', ({ oldValue }) => rendering.updateFeaturesList(oldValue))
 
     rendering.replaceTitle()
     rendering.renderTemplate()
@@ -23,5 +24,7 @@ export async function init() {
     interactions.attachCopyAndGoListener()
     interactions.setupToggleTrunctation()
     interactions.setupLiveDemoButton()
+    interactions.setupFeaturesList()
     rendering.injectIframeIfNeeded()
+    rendering.setListActiveClass()
 }

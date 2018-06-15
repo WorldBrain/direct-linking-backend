@@ -1,4 +1,4 @@
-import { getState, getResource } from '../state'
+import { getState, getResource, modifyState } from '../state'
 import { copyToClipboard } from '../utils'
 import { goToDemo } from '../router'
 import { isEmbeddingDisabledOnDeviceSize } from './utils'
@@ -33,5 +33,16 @@ export function setupToggleTrunctation() {
 export function setupLiveDemoButton() {
     document.querySelector('.btn-live-demo').addEventListener('click', () => {
         goToDemo()
+    })
+}
+
+export function setupFeaturesList() {
+    document.querySelector('.features-list').addEventListener('click', (e) => {
+        const listId = parseInt(e.target.dataset.listId, 10)
+
+        if(isNaN(listId))
+            return
+
+        modifyState('activeLi', listId)
     })
 }
