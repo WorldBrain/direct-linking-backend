@@ -138,7 +138,7 @@ body {
     .divider {
         display: flex;
         margin: 0 0 0 20px;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         flex-basis: 10%;
 
@@ -269,11 +269,18 @@ body {
                 flex-basis: 50%;
 
                 & img {
-                    width: auto;
-                    height: auto;
-                    max-width: 800px;
-                    max-height: 500px;
+                    width: 800px;
+                    height: 500px;
+                    transition: filter 0.5s linear;
                 }
+
+                & img[data-src] {
+                    filter: blur(13px);
+                    width: 800px;
+                    height: 500px;
+                }
+
+
             }
 
             & .feature-text-container {

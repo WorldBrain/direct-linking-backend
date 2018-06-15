@@ -144,7 +144,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .divider {
         display: flex;
         margin: 0 0 0 20px;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         flex-basis: 10%
     }
@@ -277,10 +277,18 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .about-memex .feature .feature-image img {
-    width: auto;
-    height: auto;
-    max-width: 800px;
-    max-height: 500px;
+    width: 800px;
+    height: 500px;
+    transition: -webkit-filter 0.5s linear;
+    transition: filter 0.5s linear;
+    transition: filter 0.5s linear, -webkit-filter 0.5s linear;
+}
+
+.annotation .about-memex .feature .feature-image img[data-src] {
+    -webkit-filter: blur(13px);
+            filter: blur(13px);
+    width: 800px;
+    height: 500px;
 }
 
 .annotation .about-memex .feature .feature-text-container {

@@ -2,6 +2,7 @@ import { getState, getResource, modifyState } from '../state'
 import { copyToClipboard } from '../utils'
 import { goToDemo } from '../router'
 import { isEmbeddingDisabledOnDeviceSize } from './utils'
+import { lazyLoadFeatureImages } from './rendering'
 
 export function attachCopyAndGoListener() {
     document.querySelector('.copy-button').addEventListener('click', event => {
@@ -38,11 +39,19 @@ export function setupLiveDemoButton() {
 
 export function setupFeaturesList() {
     document.querySelector('.features-list').addEventListener('click', (e) => {
+        e.preventDefault()
         const listId = parseInt(e.target.dataset.listId, 10)
 
         if(isNaN(listId))
             return
 
         modifyState('activeLi', listId)
+    })
+}
+
+export function setupLazyLoad() {
+    document.querySelector('.about-memex-header').addEventListener('click', (e) => {
+        e.preventDefault()
+        lazyLoadFeatureImages()
     })
 }
