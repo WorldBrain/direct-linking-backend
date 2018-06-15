@@ -23,10 +23,9 @@ body {
     height: 100%;
 }
 
-/*.info-bar {
-        display: flex;
-        flex-direction: column;
-    }*/
+.annotation .info-bar {
+        margin-top: 20vh;
+    }
 
 .annotation .content {
         display: flex;
@@ -37,7 +36,6 @@ body {
     }
 
 .annotation .middle {
-        margin: 0 auto;
         width: 500px;
         display: flex;
         flex-direction: row;
@@ -235,14 +233,15 @@ body.desktop-version .annotation .cta-line.demo-line {
 
 .annotation .about-memex .about-memex-header {
             color: #3eb995;
-            font-size: 2em;
+            font-size: 3em;
             font-weight: 100;
             text-align: center;
+            margin-top: 20vh;
         }
 
 .annotation .about-memex .features-list-container {
             display: flex;
-            margin-top: 20px;
+            margin-top: 10vh;
             justify-content: center;
         }
 
@@ -264,6 +263,13 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .about-memex .features-list-container .features-list > li.active {
     border-bottom: 3px #3eb995 solid;
 }
+
+.annotation .about-memex .feature-container {
+            height: 78vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 .annotation .about-memex .feature {
             display: none;
@@ -297,8 +303,18 @@ body.desktop-version .annotation .cta-line.demo-line {
     flex-direction: column;
     justify-content: center;
     color: #545454;
-    font-weight: 400;
+    font-size: 1.25em;
+    font-weight: 100;
 }
+
+.annotation .about-memex .feature .feature-text-container .feature-text {
+    width: 60%;
+    margin-left: 10px;
+}
+
+body.content-embeddable .annotation .info-bar {
+            margin-top: 0;
+        }
 
 body.content-embeddable .annotation .title-and-url {
             display: none;

@@ -50,8 +50,9 @@ export function setupFeaturesList() {
 }
 
 export function setupLazyLoad() {
-    document.querySelector('.about-memex-header').addEventListener('click', (e) => {
-        e.preventDefault()
-        lazyLoadFeatureImages()
+    document.addEventListener('scroll', (e) => {
+        setTimeout(() => {
+            lazyLoadFeatureImages()            
+        }, 150);
     })
 }

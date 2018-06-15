@@ -17,10 +17,9 @@ body {
 
 .annotation {
 
-    /*.info-bar {
-        display: flex;
-        flex-direction: column;
-    }*/
+    .info-bar {
+        margin-top: 20vh;
+    }
     
     .content {
         display: flex;
@@ -31,7 +30,6 @@ body {
     }   
 
     .middle {
-        margin: 0 auto;
         width: 500px;
         display: flex;
         flex-direction: row;
@@ -228,14 +226,15 @@ body {
 
         .about-memex-header {
             color: #3eb995;
-            font-size: 2em;
+            font-size: 3em;
             font-weight: 100;
             text-align: center;
+            margin-top: 20vh;
         }
 
         .features-list-container {
             display: flex;
-            margin-top: 20px;
+            margin-top: 10vh;
             justify-content: center;
 
             .features-list {
@@ -257,6 +256,13 @@ body {
                     border-bottom: 3px #3eb995 solid;
                 }
             }
+        }
+
+        .feature-container {
+            height: 78vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .feature {
@@ -289,12 +295,22 @@ body {
                 flex-direction: column;
                 justify-content: center;
                 color: #545454;
-                font-weight: 400;
+                font-size: 1.25em;
+                font-weight: 100;
+
+                & .feature-text {
+                    width: 60%;
+                    margin-left: 10px;
+                }
             }
         }
     }
 
     body.content-embeddable & {
+
+        .info-bar {
+            margin-top: 0;
+        }
 
         .title-and-url {
             display: none;
