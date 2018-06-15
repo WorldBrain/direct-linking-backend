@@ -265,6 +265,33 @@ body.desktop-version .annotation .cta-line.demo-line {
     border-bottom: 3px #3eb995 solid;
 }
 
+.annotation .about-memex .feature {
+            display: none;
+            justify-content: center;
+            flex-direction: row;
+            margin: 20px 100px
+        }
+
+.annotation .about-memex .feature .feature-image {
+    flex-basis: 50%;
+}
+
+.annotation .about-memex .feature .feature-image img {
+    width: auto;
+    height: auto;
+    max-width: 800px;
+    max-height: 500px;
+}
+
+.annotation .about-memex .feature .feature-text-container {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #545454;
+    font-weight: 400;
+}
+
 body.content-embeddable .annotation .title-and-url {
             display: none;
         }

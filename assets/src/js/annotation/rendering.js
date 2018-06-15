@@ -73,12 +73,18 @@ export function setListActiveClass() {
     const listId = getState('activeLi')
     const listElement = document.querySelectorAll('.features-list > li')[listId]
     listElement.classList.add('active')
+
+    const featureElement = document.querySelector("#feature"+listId)
+    featureElement.style.display = 'flex'
 }
 
 function removeListActiveClass(listId) {
     // @param listId = (previously active list element)
     const listElement = document.querySelectorAll('.features-list > li')[listId]
     listElement.classList.remove('active')
+
+    const featureElement = document.querySelector("#feature" + listId)
+    featureElement.style.display = 'none'
 }
 
 export function updateFeaturesList(oldListId){
