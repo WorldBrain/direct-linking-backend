@@ -259,7 +259,7 @@ body {
         }
 
         .feature-container {
-            height: 78vh;
+            min-height: 78vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -268,6 +268,7 @@ body {
         .feature {
             display: none;
             justify-content: center;
+            width: 100%;
             flex-direction: row;
             margin: 20px 100px;
 
@@ -297,6 +298,7 @@ body {
                 color: #545454;
                 font-size: 1.25em;
                 font-weight: 100;
+                animation: fadeIn 0.5s ease-in;
 
                 & .feature-text {
                     width: 60%;
@@ -1308,5 +1310,14 @@ body.loading .loading-indicator {
   }
   100% {
     transform: translate(19px, 0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

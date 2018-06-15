@@ -71,8 +71,8 @@ export function truncateQuote() {
 
 export function setListActiveClass() {
     const listId = getState('activeLi')
-    const listElement = document.querySelectorAll('.features-list > li')[listId]
-    listElement.classList.add('active')
+    const $list = document.querySelectorAll('.features-list > li')[listId]
+    $list.classList.add('active')
 
     const featureElement = document.querySelector("#feature"+listId)
     featureElement.style.display = 'flex'
@@ -80,8 +80,8 @@ export function setListActiveClass() {
 
 function removeListActiveClass(listId) {
     // @param listId = (previously active list element)
-    const listElement = document.querySelectorAll('.features-list > li')[listId]
-    listElement.classList.remove('active')
+    const $list = document.querySelectorAll('.features-list > li')[listId]
+    $list.classList.remove('active')
 
     const featureElement = document.querySelector("#feature" + listId)
     featureElement.style.display = 'none'

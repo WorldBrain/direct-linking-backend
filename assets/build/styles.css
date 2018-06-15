@@ -265,7 +265,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .about-memex .feature-container {
-            height: 78vh;
+            min-height: 78vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -274,6 +274,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .about-memex .feature {
             display: none;
             justify-content: center;
+            width: 100%;
             flex-direction: row;
             margin: 20px 100px
         }
@@ -305,6 +306,8 @@ body.desktop-version .annotation .cta-line.demo-line {
     color: #545454;
     font-size: 1.25em;
     font-weight: 100;
+    -webkit-animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.5s ease-in;
 }
 
 .annotation .about-memex .feature .feature-text-container .feature-text {
@@ -1394,5 +1397,23 @@ body.loading .loading-indicator div:nth-child(n+3) {
   100% {
     -webkit-transform: translate(19px, 0);
             transform: translate(19px, 0);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

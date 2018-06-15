@@ -41,11 +41,17 @@ export function setupFeaturesList() {
     document.querySelector('.features-list').addEventListener('click', (e) => {
         e.preventDefault()
         const listId = parseInt(e.target.dataset.listId, 10)
-
-        if(isNaN(listId))
-            return
+        if(isNaN(listId)) return
 
         modifyState('activeLi', listId)
+
+        // If the page hasn't been scrolled, scroll to feature images
+        const $header = document.querySelector('.about-memex-header')
+        if (window.pageYOffset <= 100)
+            window.scrollTo({
+                top: $header.offsetTop,
+                behavior: 'smooth'
+            })
     })
 }
 
