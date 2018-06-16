@@ -26,6 +26,7 @@ export async function init() {
     interactions.setupLiveDemoButton()
     interactions.setupFeaturesList()
     interactions.setupLazyLoad()
+    interactions.setupAccordions()
     rendering.injectIframeIfNeeded()
     rendering.setListActiveClass()
 }

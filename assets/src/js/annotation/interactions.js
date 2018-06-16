@@ -62,3 +62,17 @@ export function setupLazyLoad() {
         }, 150);
     })
 }
+
+export function setupAccordions() {
+    [].forEach.call(document.querySelectorAll('.feature-accordion'), ($accordion) => {
+        $accordion.addEventListener('click', function(){
+
+            const $feature = this.nextElementSibling
+
+            if ($feature.style.maxHeight)
+                $feature.style.maxHeight = null
+            else
+                $feature.style.maxHeight = '400px'
+        })
+    })
+}
