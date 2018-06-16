@@ -92,11 +92,15 @@ export function updateFeaturesList(oldListId){
     setListActiveClass()
 }
 
-export function lazyLoadFeatureImages(){
-    [].forEach.call(document.querySelectorAll('img[data-src]'), function (img) {
-        img.setAttribute('src', img.getAttribute('data-src'));
-        img.onload = function () {
-            img.removeAttribute('data-src');
-        };
-    });
+export function lazyLoadFeatureImage(){
+    const activeFeature = getState('activeLi')
+    const $img = document.querySelector(`#feature${activeFeature} img[data-src]`)
+
+    if(!$img)
+        return
+
+    $img.setAttribute('src', $img.getAttribute('data-src'));
+    $img.onload = function () {
+        $img.removeAttribute('data-src');
+    };
 }

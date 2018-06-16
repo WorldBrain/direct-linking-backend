@@ -1,8 +1,8 @@
 import { getState, getResource, modifyState } from '../state'
 import { copyToClipboard } from '../utils'
 import { goToDemo } from '../router'
-import { isEmbeddingDisabledOnDeviceSize } from './utils'
-import { lazyLoadFeatureImages } from './rendering'
+import { isDesktop, isEmbeddingDisabledOnDeviceSize } from './utils'
+import { lazyLoadFeatureImage } from './rendering'
 
 export function attachCopyAndGoListener() {
     document.querySelector('.copy-button').addEventListener('click', event => {
@@ -44,6 +44,7 @@ export function setupFeaturesList() {
         if(isNaN(listId)) return
 
         modifyState('activeLi', listId)
+        lazyLoadFeatureImage()
 
         // If the page hasn't been scrolled, scroll to feature images
         const $header = document.querySelector('.about-memex-header')
@@ -56,9 +57,12 @@ export function setupFeaturesList() {
 }
 
 export function setupLazyLoad() {
+    if (!isDesktop(getState('deviceSizeName')))
+        return
+
     document.addEventListener('scroll', (e) => {
         setTimeout(() => {
-            lazyLoadFeatureImages()            
+            lazyLoadFeatureImage()            
         }, 150);
     })
 }
@@ -73,6 +77,10 @@ export function setupAccordions() {
                 $feature.style.maxHeight = null
             else
                 $feature.style.maxHeight = '400px'
+
+            const listId = parseInt(this.dataset.listId, 10)
+            modifyState('activeLi', listId)
+            lazyLoadFeatureImage()
         })
     })
 }
