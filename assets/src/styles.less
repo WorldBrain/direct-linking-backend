@@ -286,8 +286,6 @@ body {
                     width: 800px;
                     height: 500px;
                 }
-
-
             }
 
             & .feature-text-container {
@@ -335,8 +333,8 @@ body {
 
     @media (max-width: 1025px) {
 
-        .about-memex {
-            display: flex;
+        .info-bar {
+            margin-top: 0;
         }
 
         .content {
@@ -346,7 +344,7 @@ body {
 
         .middle {
             flex-direction: column;
-            width: 50%;
+            width: 65%;
             justify-content: center;
         }
 
@@ -378,6 +376,11 @@ body {
                 width: 100%;
             }
 
+            .cta-button {
+                padding-top: 22px;
+                padding-bottom: 22px;
+            }
+
             .cta-line {
                 margin-top: 20px;
             }
@@ -391,6 +394,57 @@ body {
         .divider {
             display: none;
         }
+
+        .about-memex {
+            display: flex;
+
+            .about-memex-header {
+                margin-top: 1vh;
+                font-size: 2.5em;
+            }
+
+            .features-list-container {
+                margin-top: 2vh;
+
+                .features-list > li {
+                    padding: 10px 8px;
+                    font-size: 0.9em;
+                }
+            }
+
+            .feature-container {
+                align-items: flex-start;
+                min-height: 0;
+            }
+
+            .feature {
+                flex-direction: column;
+
+                .feature-image {
+                    display: flex;
+                    justify-content: center;
+                
+                    & img {
+                        width: auto;
+                        height: auto;
+                        max-width: 600px;
+                        max-height: 400px;
+                    }
+                }
+
+                .feature-text-container {
+                    margin-top: 20px;
+                    font-size: 1.3em;
+                    align-items: center;
+                    text-align: center;
+
+                    & .feature-text {
+                        width: 70%;
+                    }
+                }
+            }
+        }
+
     }
 
     @media (max-width: 600px) {
@@ -406,6 +460,32 @@ body {
 
         .only-desktop {
             display: none;
+        }
+
+        .about-memex {
+
+            .about-memex-header {
+                font-size: 1.65em;
+            }
+
+            .features-list-container .features-list > li {
+                padding: 10px 1px;
+                font-size: 0.7em;
+            }
+
+            .feature {
+                
+                .feature-image img {
+                    max-width: 500px;
+                    max-height: 300px;
+                }
+
+                .feature-text-container .feature-text {
+                    width: 85%;
+                    font-size: 1em;
+                }
+
+            }
         }
     }
 
@@ -434,6 +514,30 @@ body {
                 font-size: 0.9em;
             }
         }
+
+        .about-memex {
+            
+            .about-memex-header {
+                font-size: 1.5em;
+            }
+
+            .features-list-container .features-list > li {
+                padding: 10px 1px;
+                font-size: 0.65em;
+            }
+
+            .feature {
+                .feature-image img {
+                    max-width: 300px;
+                    max-height: 200px;
+                }
+
+                .feature-text-container .feature-text {
+                    width: 100%;
+                    font-size: 0.8em;
+                }
+            }
+        }
     }
 
     .minimize {
@@ -446,7 +550,6 @@ body {
         position: relative;
         flex-grow: 1;
         background-color: white;
-        // background-color: red;
         min-height: 50000px;
     }
 
