@@ -43,7 +43,9 @@ export function renderTemplate() {
 }
 
 export function injectIframeIfNeeded() {
-    if (!getResource('metadata').embeddable) {
+    if (
+        !getResource('metadata').embeddable || !isDesktop(getState('deviceSizeName'))
+    ) {
         return
     }
 
