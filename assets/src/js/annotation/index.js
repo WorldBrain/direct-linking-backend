@@ -16,7 +16,7 @@ export async function init() {
     rendering.updateBodyClasses()
     state.addStateListener('resources', () => rendering.updateBodyClasses())
     state.addStateListener('deviceSizeName', () => rendering.updateBodyClasses())
-    state.addStateListener('activeLi', ({ oldValue }) => rendering.updateFeaturesList(oldValue))
+    state.addStateListener('activeFeature', ({ oldValue }) => rendering.updateFeaturesList(oldValue))
 
     rendering.replaceTitle()
     rendering.renderTemplate()

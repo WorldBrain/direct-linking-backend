@@ -40,10 +40,10 @@ export function setupLiveDemoButton() {
 export function setupFeaturesList() {
     document.querySelector('.features-list').addEventListener('click', (e) => {
         e.preventDefault()
-        const listId = parseInt(e.target.dataset.listId, 10)
-        if(isNaN(listId)) return
+        const featureId = parseInt(e.target.dataset.featureId, 10)
+        if(isNaN(featureId)) return
 
-        modifyState('activeLi', listId)
+        modifyState('activeFeature', featureId)
         lazyLoadFeatureImage()
 
         // If the page hasn't been scrolled, scroll to feature images
@@ -81,8 +81,9 @@ export function setupAccordions() {
             else
                 $feature.style.maxHeight = '400px'
 
-            const listId = parseInt(this.dataset.listId, 10)
-            modifyState('activeLi', listId)
+            const featureId = parseInt(this.dataset.featureId, 10)
+            modifyState('activeFeature', featureId)
+
             setTimeout(() => {
                 lazyLoadFeatureImage()
             }, 200);

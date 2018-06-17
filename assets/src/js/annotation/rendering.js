@@ -72,7 +72,7 @@ export function truncateQuote() {
 }
 
 export function setListActiveClass() {
-    const listId = getState('activeLi')
+    const listId = getState('activeFeature')
     const $list = document.querySelectorAll('.features-list > li')[listId]
     $list.classList.add('active')
 
@@ -90,12 +90,15 @@ function removeListActiveClass(listId) {
 }
 
 export function updateFeaturesList(oldListId){
+    if (!isDesktop(getState('deviceSizeName')))
+        return
+
     removeListActiveClass(oldListId)
     setListActiveClass()
 }
 
 export function lazyLoadFeatureImage(){
-    const activeFeature = getState('activeLi')
+    const activeFeature = getState('activeFeature')
     const $img = document.querySelector(`#feature${activeFeature} img[data-src]`)
 
     if(!$img)
