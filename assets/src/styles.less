@@ -54,7 +54,7 @@ body {
         text-align: left;
         justify-content: space-between;
         align-items: flex-start;
-        flex: 1 60%;
+        flex: 1 65%;
     }
 
     .intro {
@@ -71,6 +71,7 @@ body {
         font-style: italic;
         font-weight: 200;
         font-size: 1.3em;
+        max-width: 700px;
     }
 
     .title-and-url {
@@ -138,7 +139,7 @@ body {
         margin: 0 0 0 20px;
         justify-content: flex-start;
         align-items: center;
-        flex-basis: 7%;
+        flex-basis: 5%;
 
 
         &:before {
@@ -157,7 +158,7 @@ body {
         align-items: flex-start;
         justify-content: flex-start;
         margin: 20px 0px 10px 20px;
-        flex: 1 40%;
+        flex: 1 20%;
     }
 
     .cta-line {
@@ -255,6 +256,19 @@ body {
                     cursor: pointer;
                     border-color: white;
                     transition: border-color 0.3s ease-in;
+                    position: relative;
+
+                    & .coming-soon {
+                        background-color: #3eb995;
+                        padding: 3px 4px;
+                        font-size: 0.5em;
+                        border-radius: 10px;
+                        color: white;
+                        vertical-align: middle;
+                        position: absolute;
+                        left: calc(50% - (54.22px/2)); /* 54.22 = width of the 'coming soon' pill */
+                        bottom: -10px;
+                    }
                 }
 
                 & > li.active {
