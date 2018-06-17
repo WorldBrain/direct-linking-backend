@@ -60,7 +60,7 @@ body.desktop-version .annotation .cta-line.demo-line {
         text-align: left;
         justify-content: space-between;
         align-items: flex-start;
-        flex: 1 50%;
+        flex: 1 60%;
     }
 
 .annotation .intro {
@@ -144,7 +144,7 @@ body.desktop-version .annotation .cta-line.demo-line {
         margin: 0 0 0 20px;
         justify-content: flex-start;
         align-items: center;
-        flex-basis: 10%
+        flex-basis: 7%
     }
 
 .annotation .divider:before {
@@ -232,6 +232,7 @@ body.desktop-version .annotation .cta-line.demo-line {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         margin-top: 20px;
     }
 
@@ -316,6 +317,9 @@ body.desktop-version .annotation .cta-line.demo-line {
 
 .annotation .about-memex .feature .feature-image {
     flex-basis: 50%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
 }
 
 .annotation .about-memex .feature .feature-image img {
@@ -334,10 +338,11 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .about-memex .feature .feature-text-container {
-    flex-basis: 50%;
+    flex-basis: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     color: #545454;
     font-size: 1.25em;
     font-weight: 100;
@@ -346,7 +351,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .about-memex .feature .feature-text-container .feature-text {
-    width: 60%;
+    max-width: 400px;
     margin-left: 10px;
 }
 
@@ -571,7 +576,7 @@ body.content-not-embeddable .annotation .title-and-url {
             }
 
     .annotation .about-memex {
-            margin-bottom: 50vh;
+            margin-bottom: 30px;
     }
 
             .annotation .about-memex .about-memex-header {
