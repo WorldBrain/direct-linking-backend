@@ -281,13 +281,20 @@ body {
             background-color: #fcfcfc;
             position: relative;
 
-            .feature-accordion-icon {
-                font-size: 0.9em;
-                color: #3eb995;
+            .accordion-icon-container {
                 position: absolute;
                 right: 5px;
                 top: 12px;
             }
+
+            .accordion-icon {
+                transition: transform 0.2s ease-in;
+
+                &.up {
+                    transform: rotate(-180deg);
+                }
+            }
+
         }
 
         .feature {
@@ -560,7 +567,8 @@ body {
         }
 
         .about-memex {
-            
+            margin-bottom: 50vh;
+
             .about-memex-header {
                 font-size: 1.7em;
             }

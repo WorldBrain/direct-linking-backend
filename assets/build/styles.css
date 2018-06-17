@@ -286,15 +286,25 @@ body.desktop-version .annotation .cta-line.demo-line {
             cursor: pointer;
             background-color: #fcfcfc;
             position: relative;
+
         }
 
-.annotation .about-memex .feature-accordion .feature-accordion-icon {
-                font-size: 0.9em;
-                color: #3eb995;
+.annotation .about-memex .feature-accordion .accordion-icon-container {
                 position: absolute;
                 right: 5px;
                 top: 12px;
             }
+
+.annotation .about-memex .feature-accordion .accordion-icon {
+                transition: -webkit-transform 0.2s ease-in;
+                transition: transform 0.2s ease-in;
+                transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in
+            }
+
+.annotation .about-memex .feature-accordion .accordion-icon.up {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+}
 
 .annotation .about-memex .feature {
             display: none;
@@ -559,7 +569,11 @@ body.content-not-embeddable .annotation .title-and-url {
             .annotation .cta-container .cta-download-line {
                 font-size: 0.9em;
             }
-            
+
+    .annotation .about-memex {
+            margin-bottom: 50vh;
+    }
+
             .annotation .about-memex .about-memex-header {
                 font-size: 1.7em;
             }

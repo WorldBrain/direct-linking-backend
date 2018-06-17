@@ -70,8 +70,11 @@ export function setupLazyLoad() {
 export function setupAccordions() {
     [].forEach.call(document.querySelectorAll('.feature-accordion'), ($accordion) => {
         $accordion.addEventListener('click', function(){
-
+            const $iconContainer = this.lastElementChild
+            const $icon = $iconContainer.firstElementChild
             const $feature = this.nextElementSibling
+
+            $icon.classList.toggle('up')
 
             if ($feature.style.maxHeight)
                 $feature.style.maxHeight = null
@@ -80,7 +83,9 @@ export function setupAccordions() {
 
             const listId = parseInt(this.dataset.listId, 10)
             modifyState('activeLi', listId)
-            lazyLoadFeatureImage()
+            setTimeout(() => {
+                lazyLoadFeatureImage()
+            }, 200);
         })
     })
 }
