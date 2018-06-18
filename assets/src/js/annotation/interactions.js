@@ -1,7 +1,7 @@
 import { getState, getResource, modifyState } from '../state'
 import { copyToClipboard } from '../utils'
 import { goToDemo } from '../router'
-import { isDesktop, isEmbeddingDisabledOnDeviceSize } from './utils'
+import { isEmbeddingDisabledOnDeviceSize } from './utils'
 import { lazyLoadFeatureImage } from './rendering'
 
 export function attachCopyAndGoListener() {
@@ -58,7 +58,7 @@ export function setupFeaturesList() {
 }
 
 export function setupLazyLoad() {
-    if (!isDesktop(getState('deviceSizeName')))
+    if (getState('deviceSizeName') === 'mobile')
         return
 
     document.addEventListener('scroll', (e) => {

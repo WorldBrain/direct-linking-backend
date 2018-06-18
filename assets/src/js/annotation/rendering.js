@@ -90,7 +90,7 @@ function removeListActiveClass(listId) {
 }
 
 export function updateFeaturesList(oldListId){
-    if (!isDesktop(getState('deviceSizeName')))
+    if (getState('deviceSizeName') === 'mobile')
         return
 
     removeListActiveClass(oldListId)
