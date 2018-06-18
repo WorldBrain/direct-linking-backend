@@ -96,17 +96,21 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .find-instructions {
         order: 4;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: 25px;
-        flex-grow: 1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 10px;
+        margin-top: auto;
     }
 
 .annotation .search-text {
         display: block;
-        margin-top: 10px;
         font-size: 1em;
         text-align: center;
+        margin-left: 20px;
+        align-self: center;
+        -webkit-animation: fadeIn 0.2s ease-in;
+                animation: fadeIn 0.2s ease-in;
     }
 
 .annotation .copy-button {
@@ -124,15 +128,15 @@ body.desktop-version .annotation .cta-line.demo-line {
         color: #000;
         font-weight: 500;
         border: 1px solid #c2c2c2;
+        transition: background-color 0.2s ease-in
     }
-
-.annotation .copy-button span {
-            background-color: white;
-        }
 
 .annotation .copy-button.copied {
     line-height: 15px;
     font-size: 0.89em;
+    background-color: #3eb995;
+    color: white;
+    border: 1px solid transparent;
 }
 
 .annotation .search-text {
@@ -205,7 +209,9 @@ body.desktop-version .annotation .cta-line.demo-line {
         display: flex;
         width: 180px;
         margin: 15px 0 3px 0;
-        padding: 13px 0 13px 0;
+        height: 30px;
+        line-height: 30px;
+        padding: 8px 0px;
         border-radius: 5px;
         cursor: pointer;
         align-items: center;
@@ -216,7 +222,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 
 .annotation .cta-button span {
             display: block;
-            font-size: 1.2em;
+            font-size: 1em;
         }
 
 .annotation .cta-button-text {
@@ -242,8 +248,13 @@ body.desktop-version .annotation .cta-line.demo-line {
             font-size: 3em;
             font-weight: 100;
             text-align: center;
-            margin-top: 20vh;
+            margin-top: 20vh
         }
+
+.annotation .about-memex .about-memex-header .sub {
+    color: grey;
+    font-size: 0.68em;
+}
 
 .annotation .about-memex .features-list-container {
             display: flex;
@@ -371,6 +382,10 @@ body.desktop-version .annotation .cta-line.demo-line {
     margin-left: 10px;
 }
 
+body.content-embeddable .annotation .middle {
+            box-shadow: inset 0px -2px 4px -3px #887979;
+        }
+
 body.content-embeddable .annotation .info-bar {
             margin-top: 0;
         }
@@ -393,6 +408,11 @@ body.content-not-embeddable .annotation .title-and-url {
 
 @media (max-width: 1025px) {
 
+    .annotation .info {
+            flex: 1 40%;
+            align-items: flex-start;
+    }
+
     .annotation .info-bar {
             margin-top: 0;
     }
@@ -410,7 +430,7 @@ body.content-not-embeddable .annotation .title-and-url {
 
     .annotation .info {
             border-bottom: 1px solid #e7e7e7;
-            padding-bottom: 30px;
+            padding-bottom: 20px;
     }
 
             .annotation .info .quote {
@@ -420,26 +440,26 @@ body.content-not-embeddable .annotation .title-and-url {
             .annotation .info .find-instructions {
                 width: 100%;
                 margin-top: 30px;
+                flex-direction: column;
+                justify-content: center;
             }
 
             .annotation .info .copy-button {
                 width: 95%;
                 max-width: 95%;
+                line-height: 30px;
+                font-size: 1em;
             }
 
     .annotation .cta-container {
+            flex: 1 40%;
             border-bottom: 1px solid #e7e7e7;
-            padding-bottom: 30px;
+            padding-bottom: 15px;
             margin-left: 0;
     }
 
             .annotation .cta-container .cta-line, .annotation .cta-container .cta-button, .annotation .cta-container .cta-button-text, .annotation .cta-container .cta-download {
                 width: 100%;
-            }
-
-            .annotation .cta-container .cta-button {
-                padding-top: 15px;
-                padding-bottom: 15px;
             }
 
             .annotation .cta-container .cta-line {

@@ -17,7 +17,8 @@ function copyQuoteAndMaybeGoToPage() {
     copyToClipboard(annotation.anchors[0].quote)
     document.querySelector('.copy-button').classList.add('copied')
     if (!getResource('metadata').embeddable || forceDisableEmbedding) {
-        window.location.href = annotation.url
+        document.querySelector('.search-text').classList.remove('only-embeddable')
+        setTimeout(() => window.location.href = annotation.url, 3000)
     }
 }
 
