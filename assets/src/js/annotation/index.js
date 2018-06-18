@@ -16,6 +16,7 @@ export async function init() {
     rendering.updateBodyClasses()
     state.addStateListener('resources', () => rendering.updateBodyClasses())
     state.addStateListener('deviceSizeName', () => rendering.updateBodyClasses())
+    state.addStateListener('activeFeature', ({ oldValue }) => rendering.updateFeaturesList(oldValue))
 
     rendering.replaceTitle()
     rendering.renderTemplate()
@@ -23,5 +24,9 @@ export async function init() {
     interactions.attachCopyAndGoListener()
     interactions.setupToggleTrunctation()
     interactions.setupLiveDemoButton()
+    interactions.setupFeaturesList()
+    interactions.setupLazyLoad()
+    interactions.setupAccordions()
     rendering.injectIframeIfNeeded()
+    rendering.setListActiveClass()
 }

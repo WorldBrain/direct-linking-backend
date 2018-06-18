@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="552px" height="362px" viewBox="0 0 552 362" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 7</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-20.0%" y="-36.8%" width="140.0%" height="173.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="27.703683" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Quote-Linking" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.510331748" opacity="0.811495536">
+        <rect id="Rectangle-7" stroke="#979797" fill="#D8D8D8" filter="url(#filter-1)" x="68.5" y="68.5" width="415" height="225"></rect>
+    </g>
+</svg>

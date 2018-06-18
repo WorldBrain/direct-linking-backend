@@ -1,16 +1,9 @@
 <div class="annotation">
     <div class="info-bar">
         <div class="content">
-            <div class="logo">
-                <img src="/assets/Memex_Logo_Horizontal_white.png" alt="Memex Logo">
-            </div>
             <div class="middle">
                 <div class="info">
-                    <div class="intro">Someone wants to show you this quote</div>
-                    <div class="title-and-url">
-                        <div class="title">$TITLE$</div>
-                        <div class="url">$URL$</div>
-                    </div>
+                    <div class="intro">Someone wants to show you this quote:</div>
                     <div class="quote">
                         <div class="untruncated-text">
                             <span class="text-content">$QUOTE$</span>
@@ -22,40 +15,155 @@
                             <span class="disable-truncation toggle-truncation">(show more)</span>
                         </div>
                     </div>
-                </div>
-                <div class="find-instructions">
-                    <div class="copy-button">
-                        <span class="only-embeddable">
-                            <span class="copy-text">Copy Quote</span>
+                    <div class="title-and-url">
+                        <div class="title">$TITLE$</div>
+                        <div class="url">Source: $URL$</div>
+                    </div>
+                    <div class="find-instructions">
+                        <div class="copy-button">
+                            <span class="only-embeddable">
+                                <span class="copy-text">Copy Quote</span>
+                            </span>
+                            <span class="only-non-embeddable copy-text">Go to Page</span>
                             <span class="copied-text">Quote copied to clipboard</span>
-                        </span>
-                        <span class="only-non-embeddable">Go to Page</span>
-                    </div>
-                    <div class="search-text">
-                        <span class="only-embeddable">Then search with</span>
-                        <span class="only-non-embeddable">Quote will also be copied to clipboard<br />to search with</span>
-                        <span class="only-mac">CMD+F</span><span class="only-not-mac">CTRL+F</span>
-                    </div>
-                </div>
-                <div class="divider">
-                    <div class="edge before">&nbsp;</div>
-                    <div class="text"></div>
-                    <div class="edge after">&nbsp;</div>
-                </div>
-                <div class="cta-container">
-                    <div class="cta-line">Create your own Links to Quotes. Anywhere on the web.</div>
-                    <div class="cta-demo-and-download">
-                        <div class="cta-line demo-line skip">
-                            <span class="btn-live-demo">See Live Demo</span>
                         </div>
-                        <a class="cta-button" href="https://worldbrain.io/memexlink"><span>Download</span><img src="/assets/memex.png" alt=""></a>
+                        <div class="search-text only-embeddable only-desktop">
+                            <span>Search on page with </span>
+                            <span class="only-mac">CMD + F</span>
+                            <span class="only-not-mac">CTRL + F</span>
+                        </div>
                     </div>
+                </div>
+
+                <div class="divider">
+                    &nbsp;
+                </div>
+
+                <div class="cta-container">
+                    <div class="cta-line">
+                        <span class="cta-highlight">Manage</span> and <span class="cta-highlight">share</span> your references anywhere on the internet. <span class="cta-highlight">Exchange</span> your thoughts with your friends and collegues.
+                    </div>
+                    <div class="cta-download">
+                        <div class="cta-download-line">
+                            Get the <img class="logo" src="/assets/logo.png" alt=""> browser extension
+                        </div>
+                        <div class="btn-live-demo"></div>
+                    </div>
+                    <a class="cta-button" href="https://worldbrain.io/memexlink">
+                        <span>Free Download</span>
+                    </a>
+                    <div class="cta-button-text">at the Webstore</div>
                 </div>
             </div>
         </div>
-        <!-- <div class="minimize">
-            Minimize
-        </div> -->
+
+    </div>
+    <div class="about-memex">
+        <div class="about-memex-header">
+            <div>Other Memex Features</div>
+            <div class="sub">for effortless web-research</div>
+        </div>
+        <div class="features-list-container">
+            <ul class="features-list">
+                <li data-feature-id="0">
+                    Annotate your links
+                    <span class="coming-soon">Coming Soon</span>
+                </li>
+                <li data-feature-id="1">Maintain privacy</li>
+                <li data-feature-id="2">Find any article</li>
+                <li data-feature-id="3">
+                    Filter your database
+                    <span class="coming-soon">Coming Soon</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="feature-container">
+
+            <div class="feature-accordion" data-feature-id="0">
+                Annotate your links
+                <span class="accordion-icon-container">
+                    <img class="accordion-icon" src="/assets/chevron-down.svg" />
+                </span>
+            </div>
+
+            <div id="feature0" class="feature">
+                <div class="feature-image">
+                    <img data-src="/assets/feature-images/feature-image-1.jpg" src="/assets/feature-images/blur.svg" alt="">
+                </div>
+                <div class="feature-text-container">
+                    <p class="feature-text">
+                        Find every word of every website you visited or bookmarked in one place.
+                    </p>
+                    <p class="feature-text">
+                        More lines of content.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-accordion" data-feature-id="1">
+                Maintain your privacy
+                <span class="accordion-icon-container">
+                    <img class="accordion-icon" src="/assets/chevron-down.svg" />
+                </span>
+            </div>
+
+            <div id="feature1" class="feature">
+                <div class="feature-image">
+                    <img data-src="/assets/feature-images/feature-image-1.jpg" src="/assets/feature-images/blur.svg" alt="">
+                </div>
+                <div class="feature-text-container">
+                    <p class="feature-text">
+                        We maintain your privacy by not storing any of your data on our servers.
+                    </p>
+                    <p class="feature-text">
+                        More lines of content.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-accordion" data-feature-id="2">
+                Find any article
+                <span class="accordion-icon-container">
+                    <img class="accordion-icon" src="/assets/chevron-down.svg" />
+                </span>
+            </div>
+
+            <div id="feature2" class="feature">
+                <div class="feature-image">
+                    <img data-src="/assets/feature-images/feature-image-1.jpg" src="/assets/feature-images/blur.svg" alt="">
+                </div>
+                <div class="feature-text-container">
+                    <p class="feature-text">
+                        Find any article which you have read in the past.
+                    </p>
+                    <p class="feature-text">
+                        More lines of content.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-accordion" data-feature-id="3">
+                Filter your database
+                <span class="accordion-icon-container">
+                    <img class="accordion-icon" src="/assets/chevron-down.svg" />
+                </span>
+            </div>
+
+            <div id="feature3" class="feature">
+                <div class="feature-image">
+                    <img data-src="/assets/feature-images/feature-image-1.jpg" src="/assets/feature-images/blur.svg" alt="">
+                </div>
+                <div class="feature-text-container">
+                    <p class="feature-text">
+                        Filter your database of your browsing history.
+                    </p>
+                    <p class="feature-text">
+                        More lines of content.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="iframe-container">
     </div>
