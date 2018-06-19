@@ -100,7 +100,8 @@ body.desktop-version .annotation .cta-line.demo-line {
         justify-content: space-between;
         align-items: flex-end;
         margin-bottom: 10px;
-        margin-top: auto;
+        margin-top: 20px;
+        flex: 1 30%;
     }
 
 .annotation .search-text {
@@ -116,7 +117,6 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .copy-button {
         max-width: 230px;
         width: 160px;
-        height: 30px;
         margin: 0 auto;
         padding: 8px 8px;
         text-align: center;
@@ -211,7 +211,6 @@ body.desktop-version .annotation .cta-line.demo-line {
         display: flex;
         width: 180px;
         margin: 15px 0 3px 0;
-        height: 30px;
         line-height: 30px;
         padding: 8px 0px;
         border-radius: 5px;
@@ -317,8 +316,8 @@ body.desktop-version .annotation .cta-line.demo-line {
             color: #3eb995;
             font-size: 1.4em;
             display: none;
-            width: 96%;
-            padding: 10px 2%;
+            width: 100%;
+            padding: 10px 0%;
             text-align: center;
             font-weight: 600;
             cursor: pointer;
@@ -427,11 +426,6 @@ body.content-not-embeddable .annotation .title-and-url {
             text-align: center;
     }
 
-    .annotation .info {
-            flex: 1 40%;
-            align-items: flex-start;
-    }
-
     .annotation .info-bar {
             margin-top: 0;
     }
@@ -443,11 +437,14 @@ body.content-not-embeddable .annotation .title-and-url {
 
     .annotation .middle {
             flex-direction: column;
-            width: 65%;
+            min-width: 60%;
+            padding: 10px 20%;
             justify-content: center;
     }
 
     .annotation .info {
+            flex: 1 40%;
+            align-items: flex-start;
             border-bottom: 1px solid #e7e7e7;
             padding-bottom: 20px;
     }
@@ -464,6 +461,7 @@ body.content-not-embeddable .annotation .title-and-url {
             }
 
             .annotation .info .copy-button {
+                margin-top: 8px;
                 width: 95%;
                 max-width: 95%;
                 line-height: 30px;
@@ -537,8 +535,13 @@ body.content-not-embeddable .annotation .title-and-url {
                     margin-top: 20px;
                     font-size: 1.3em;
                     align-items: center;
-                    text-align: center;
+                    text-align: center
                 }
+
+                .annotation .about-memex .feature .feature-text-container .feature-sub-text {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -583,7 +586,6 @@ body.content-not-embeddable .annotation .title-and-url {
                 padding-left: 5px;
                 padding-right: 5px;
                 font-weight: 300;
-
             }
 
             .annotation .about-memex .feature {
