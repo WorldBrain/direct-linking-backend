@@ -75,7 +75,7 @@ body.desktop-version .annotation .cta-line.demo-line {
         padding-bottom: 15px;
         padding-right: 20px;
         font-style: italic;
-        font-weight: 200;
+        font-weight: 400;
         font-size: 1.3em;
         max-width: 700px;
     }
@@ -229,7 +229,7 @@ body.desktop-version .annotation .cta-line.demo-line {
         color: rgb(182, 182, 182);
         margin: 0;
         padding: 0;
-        font-weight: 100;
+        font-weight: 300;
         font-size: 0.8em;
         width: 180px;
         text-align: center;
@@ -246,9 +246,9 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .about-memex .about-memex-header {
             color: #3eb995;
             font-size: 3em;
-            font-weight: 100;
+            font-weight: 00;
             text-align: center;
-            margin-top: 20vh
+            margin-top: 10vh
         }
 
 .annotation .about-memex .about-memex-header .sub {
@@ -368,17 +368,25 @@ body.desktop-version .annotation .cta-line.demo-line {
     flex-basis: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 30px;
     align-items: flex-start;
     color: #545454;
     font-size: 1.25em;
-    font-weight: 100;
+    font-weight: 300;
     -webkit-animation: fadeIn 0.5s ease-in;
             animation: fadeIn 0.5s ease-in;
 }
 
 .annotation .about-memex .feature .feature-text-container .feature-text {
     max-width: 400px;
+    margin-left: 10px;
+}
+
+.annotation .about-memex .feature .feature-text-container .feature-sub-text {
+    max-width: 400px;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 30px;
     margin-left: 10px;
 }
 
@@ -1245,7 +1253,7 @@ body.content-not-embeddable .annotation .title-and-url {
                 font-size: 1.1em;
                 text-align: center;
                 padding-bottom: 3%;
-                font-weight: 100;
+                font-weight: 300;
             }
 
             .demo .initial-selection-helper .highlight-test-text, .demo .initial-selection-helper .divider {
@@ -1439,7 +1447,7 @@ body.loading .loading-indicator div:nth-child(n+3) {
             font-size: 1.1em;
             text-align: center;
             padding-bottom: 3%;
-            font-weight: 100;
+            font-weight: 300;
             margin-bottom: 0;
     }
 
@@ -1611,4 +1619,8 @@ body.loading .loading-indicator div:nth-child(n+3) {
   100% {
     opacity: 1;
   }
+}
+
+a {
+    color: #3EB995;
 }
