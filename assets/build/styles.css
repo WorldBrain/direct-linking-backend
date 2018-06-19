@@ -171,9 +171,11 @@ body.desktop-version .annotation .cta-line.demo-line {
     }
 
 .annotation .cta-line {
-        width: 60%;
-        line-height: 22px;
-        color: #303433
+        width: 100%;
+        line-height: 32px;
+        color: #303433;
+        font-size: 25px;
+        text-align: left
     }
 
 .annotation .cta-line .cta-highlight {
@@ -185,7 +187,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .cta-download {
-        margin-top: 30px
+        margin-top: 50px
     }
 
 .annotation .cta-download .cta-download-line {
@@ -264,13 +266,14 @@ body.desktop-version .annotation .cta-line.demo-line {
 
 .annotation .about-memex .features-list-container .features-list {
                 list-style: none;
-                border-bottom: 1px #b1b1b1 solid
+                border-bottom: 1px #b1b1b1 solid;
+                font-size: 20px
             }
 
 .annotation .about-memex .features-list-container .features-list > li {
     display: inline-block;
-    padding: 10px 15px;
     margin: 0;
+    padding: 10px 15px;
     font-weight: 500;
     cursor: pointer;
     border-color: white;
@@ -280,20 +283,27 @@ body.desktop-version .annotation .cta-line.demo-line {
 
 .annotation .about-memex .features-list-container .features-list > li .coming-soon {
     background-color: #3eb995;
-    padding: 3px 4px;
-    font-size: 0.5em;
+    padding: 3px 6px;
+    font-size: 0.7em;
     border-radius: 10px;
     color: white;
+    width: 100px;
+    text-align: center;
     vertical-align: middle;
     position: absolute;
-    left: calc(50% - (54.22px/2));
+    left: calc(47% - (100px/2));
 
-    /*  54.22 = width of the 'coming soon' pill */
-    bottom: -10px;
+    /*  70 = width of the 'coming soon' pill */
+    bottom: -18px;
 }
 
 .annotation .about-memex .features-list-container .features-list > li.active {
     border-bottom: 3px #3eb995 solid;
+    padding-bottom: 15px;
+}
+
+.annotation .about-memex .features-list-container .features-list > li.active > .coming-soon {
+    bottom: -13px;
 }
 
 .annotation .about-memex .feature-container {
@@ -343,15 +353,11 @@ body.desktop-version .annotation .cta-line.demo-line {
         }
 
 .annotation .about-memex .feature .feature-image {
-    flex-basis: 50%;
-    display: flex;
     justify-content: space-between;
-    max-width: 800px;
+    max-height: 40%;
 }
 
 .annotation .about-memex .feature .feature-image img {
-    width: 800px;
-    height: 500px;
     transition: -webkit-filter 0.5s linear;
     transition: filter 0.5s linear;
     transition: filter 0.5s linear, -webkit-filter 0.5s linear;
@@ -360,8 +366,6 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .about-memex .feature .feature-image img[data-src] {
     -webkit-filter: blur(13px);
             filter: blur(13px);
-    width: 800px;
-    height: 500px;
 }
 
 .annotation .about-memex .feature .feature-text-container {
@@ -378,7 +382,6 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .about-memex .feature .feature-text-container .feature-text {
-    max-width: 400px;
     margin-left: 10px;
 }
 
@@ -415,6 +418,14 @@ body.content-not-embeddable .annotation .title-and-url {
         }
 
 @media (max-width: 1025px) {
+
+    .annotation .cta-container {
+            margin-top: 40px;
+    }
+
+    .annotation .cta-line {
+            text-align: center;
+    }
 
     .annotation .info {
             flex: 1 40%;
@@ -466,6 +477,7 @@ body.content-not-embeddable .annotation .title-and-url {
             margin-left: 0;
     }
 
+
             .annotation .cta-container .cta-line, .annotation .cta-container .cta-button, .annotation .cta-container .cta-button-text, .annotation .cta-container .cta-download {
                 width: 100%;
             }
@@ -488,12 +500,12 @@ body.content-not-embeddable .annotation .title-and-url {
     }
 
             .annotation .about-memex .about-memex-header {
-                margin-top: 1vh;
+                margin-top: 3vh;
                 font-size: 2.5em;
             }
 
             .annotation .about-memex .features-list-container {
-                margin-top: 2vh;
+                margin-top: 4vh;
             }
 
                 .annotation .about-memex .features-list-container .features-list > li {
@@ -518,20 +530,15 @@ body.content-not-embeddable .annotation .title-and-url {
                 .annotation .about-memex .feature .feature-image img {
         width: auto;
         height: auto;
-        max-width: 600px;
-        max-height: 400px;
+        max-height: 300px;
     }
 
                 .annotation .about-memex .feature .feature-text-container {
                     margin-top: 20px;
                     font-size: 1.3em;
                     align-items: center;
-                    text-align: center
+                    text-align: center;
                 }
-
-                .annotation .about-memex .feature .feature-text-container .feature-text {
-        width: 70%;
-    }
 }
 
 @media (max-width: 600px) {
@@ -548,6 +555,10 @@ body.content-not-embeddable .annotation .title-and-url {
 
     .annotation .only-desktop {
             display: none;
+    }
+
+    .annotation .cta-line {
+            text-align: center;
     }
 
             .annotation .about-memex .about-memex-header {
@@ -582,7 +593,6 @@ body.content-not-embeddable .annotation .title-and-url {
     }
 
             .annotation .about-memex .feature .feature-image img {
-                    max-width: 500px;
                     max-height: 300px;
     }
 

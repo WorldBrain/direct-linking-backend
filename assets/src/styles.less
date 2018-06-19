@@ -165,9 +165,11 @@ body {
     }
 
     .cta-line {
-        width: 60%;
-        line-height: 22px;
+        width: 100%;
+        line-height: 32px;
         color: #303433;
+        font-size: 25px;
+        text-align: left;
 
         & .cta-highlight {
             background-color: #3eb99550;
@@ -178,7 +180,7 @@ body {
     }
 
     .cta-download {
-        margin-top: 30px;
+        margin-top: 50px;
 
         & .cta-download-line {
             font-weight: 800;
@@ -256,11 +258,12 @@ body {
             .features-list {
                 list-style: none;
                 border-bottom: 1px #b1b1b1 solid;
+                font-size: 20px;
 
                 & > li {
                     display: inline-block;
-                    padding: 10px 15px;
                     margin: 0;
+                    padding: 10px 15px;
                     font-weight: 500;
                     cursor: pointer;
                     border-color: white;
@@ -269,19 +272,28 @@ body {
 
                     & .coming-soon {
                         background-color: #3eb995;
-                        padding: 3px 4px;
-                        font-size: 0.5em;
+                        padding: 3px 6px;
+                        font-size: 0.7em;
                         border-radius: 10px;
                         color: white;
+                        width: 100px;    
+                        text-align: center;
                         vertical-align: middle;
                         position: absolute;
-                        left: calc(50% - (54.22px/2)); /* 54.22 = width of the 'coming soon' pill */
-                        bottom: -10px;
+                        left: calc(47% - (100px/2)); /* 70 = width of the 'coming soon' pill */
+                        bottom: -18px;
                     }
                 }
 
                 & > li.active {
                     border-bottom: 3px #3eb995 solid;
+                    padding-bottom: 15px;
+
+                    & > .coming-soon {
+                        bottom: -13px;
+
+                    }
+
                 }
             }
         }
@@ -329,21 +341,15 @@ body {
             margin: 20px 100px;
 
             & .feature-image {
-                flex-basis: 50%;
-                display: flex;
                 justify-content: space-between;
-                max-width: 800px;
+                max-height: 40%;
 
                 & img {
-                    width: 800px;
-                    height: 500px;
                     transition: filter 0.5s linear;
                 }
 
                 & img[data-src] {
                     filter: blur(13px);
-                    width: 800px;
-                    height: 500px;
                 }
             }
 
@@ -359,7 +365,6 @@ body {
                 animation: fadeIn 0.5s ease-in;
 
                 & .feature-text {
-                    max-width: 400px;
                     margin-left: 10px;
                 }
 
@@ -404,6 +409,14 @@ body {
     }
 
     @media (max-width: 1025px) {
+
+        .cta-container {
+            margin-top: 40px;
+        }
+
+        .cta-line {
+            text-align: center;
+        }
 
         .info {
             flex: 1 40%;
@@ -454,6 +467,7 @@ body {
             padding-bottom: 15px;
             margin-left: 0;
 
+
             .cta-line, .cta-button, .cta-button-text, .cta-download {
                 width: 100%;
             }
@@ -476,12 +490,12 @@ body {
             display: flex;
 
             .about-memex-header {
-                margin-top: 1vh;
+                margin-top: 3vh;
                 font-size: 2.5em;
             }
 
             .features-list-container {
-                margin-top: 2vh;
+                margin-top: 4vh;
 
                 .features-list > li {
                     padding: 10px 8px;
@@ -504,8 +518,7 @@ body {
                     & img {
                         width: auto;
                         height: auto;
-                        max-width: 600px;
-                        max-height: 400px;
+                        max-height: 300px;
                     }
                 }
 
@@ -514,10 +527,6 @@ body {
                     font-size: 1.3em;
                     align-items: center;
                     text-align: center;
-
-                    & .feature-text {
-                        width: 70%;
-                    }
                 }
             }
         }
@@ -537,6 +546,10 @@ body {
 
         .only-desktop {
             display: none;
+        }
+
+        .cta-line {
+            text-align: center;
         }
 
         .about-memex {
@@ -572,7 +585,6 @@ body {
                 }
 
                 .feature-image img {
-                    max-width: 500px;
                     max-height: 300px;
                 }
 
