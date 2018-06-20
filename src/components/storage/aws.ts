@@ -3,6 +3,7 @@ const _ = require('lodash')
 import * as fs from 'fs'
 import * as path from 'path'
 import * as shortid from 'shortid'
+import * as promiseRetry from 'promise-retry'
 import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
 import { normalizeUrlForStorage } from '../../utils/urls'
@@ -109,7 +110,13 @@ export class AwsStorage implements Storage {
     return data
   }
 
-  async _putObject({key, body, type, mime} : {key : string, body, type? : 'html' | 'json' | 'buffer', mime? : string}) {
+  async _putObject(params : {key : string, body, type? : 'html' | 'json' | 'buffer', mime? : string}) {
+    await promiseRetry((retry, number) => {
+      return this._putObjectDirectly(params).catch(retry)
+    })
+  }
+
+  async _putObjectDirectly({key, body, type, mime} : {key : string, body, type? : 'html' | 'json' | 'buffer', mime? : string}) {
     if (type === 'json') {
       body = JSON.stringify(body)
     }
