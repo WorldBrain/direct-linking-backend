@@ -76,11 +76,11 @@ export function setupAccordions() {
             const $feature = this.nextElementSibling
 
             $icon.classList.toggle('up')
-
+            window.dobe = $feature
             if ($feature.style.maxHeight)
                 $feature.style.maxHeight = null
             else
-                $feature.style.maxHeight = '400px'
+                $feature.style.maxHeight = '600px'
 
             const featureId = parseInt(this.dataset.featureId, 10)
             modifyState('activeFeature', featureId)
