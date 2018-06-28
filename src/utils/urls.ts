@@ -14,7 +14,7 @@ export function normalizeUrlForStorage(url : string) : string {
     ...BASE_NORMALIZATION_OPTIONS,
     stripFragment: true
   })
-  url = _cleanNormalizedUrl(url)
+  url = _cleanNormalizedUrl(url, {stripQuery: false})
   return url
 }
 
@@ -54,9 +54,11 @@ export function _stripTrailingSlashes(url : string) {
   return url.replace(/\/+$/, "")
 }
 
-export function _cleanNormalizedUrl(url : string) {
+export function _cleanNormalizedUrl(url : string, {stripQuery = true} = {}) {
   url = _stripProtocol(url)
-  url = _stripQuery(url)
+  if (stripQuery) {
+    url = _stripQuery(url)
+  }
   url = _stripTrailingSlashes(url)
   return url
 }

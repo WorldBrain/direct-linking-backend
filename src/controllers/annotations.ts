@@ -39,14 +39,11 @@ import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-g
         // TODO: What to do here?
       }
 
-      const storageUrl = normalizeUrlForStorage(annotation.url)
       const document = await documentRetriever.retrieveDocument({url: normalizeUrlForRetrieval(annotation.url)})
       const metadata = await metadataExtractor.extractPageMetadata(document)
-      const images = await documentRetriever.retrieveDocumentImages({metadata})
       await Promise.all([
-        storage.storeMetadata({url: storageUrl, metadata}),
-        storage.storeDocument({url: storageUrl, document}),
-        storage.storeDocumentImages({url: storageUrl, images})
+        storage.storeMetadata({url: annotation.url, metadata}),
+        storage.storeDocument({url: annotation.url, document}),
       ])
       
       // Only store annotation after everything else has been stored successfuly
@@ -56,7 +53,7 @@ import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-g
       await storage.storeAnnotationSkeleton({annotation, skeleton})
 
       const link = await annotationLinkBuilder.buildAnnotationLink({id, url: annotation.url})
-      return {link, id, storageUrl}
+      return {link, id}
     }
   }
   

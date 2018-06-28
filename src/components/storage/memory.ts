@@ -36,23 +36,6 @@ export class MemoryStorage implements Storage {
       return this.metadata[url]
     }
   
-    async storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) {
-      await Promise.all(_.map(images, (image, type) => this.storeDocumentImage({url, type, image})))
-    }
-  
-    async storeDocumentImage({url, type, image} : {url : string, type : string, image : RetrievedDocumentImage}) {
-      const format = image.mime.split('/')[1]
-      this.images[url] = this.images[url] || {}
-      this.images[url][type] = {content: image.content, format}
-    }
-    
-    async getCachedDocumentImageUrl({url, type}) {
-      const image = this.images[url][type]
-      const dataUri = new DataUri()
-      dataUri.format('.' + image.format, image.content)
-      return dataUri.content
-    }
-  
     async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {
       this.documents[url] = document
     }

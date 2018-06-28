@@ -18,11 +18,6 @@ export interface RetrievedDocumentImage {
 
 export abstract class DocumentRetriever {
   abstract retrieveDocument({url} : {url : string}) : Promise<RetrievedDocument>
-  abstract retrieveDocumentImage({metadata, type} : {metadata : PageMetadata, type : string}) : Promise<RetrievedDocumentImage>
-
-  async retrieveDocumentImages({metadata} : {metadata : PageMetadata}) : Promise<{[type : string]: RetrievedDocumentImage}> {
-    return await asyncMapValues(metadata.imageUrls, (imageUrl, type) => this.retrieveDocumentImage({metadata, type}))
-  }
 }
 
 //
@@ -32,7 +27,6 @@ export abstract class DocumentRetriever {
 export interface SingleDocument {
   url : string
   document : RetrievedDocument
-  images : {[type : string]: RetrievedDocumentImage}
 }
 
 export class SingleDocumentRetrievalError extends Error {}
@@ -48,12 +42,6 @@ export class SingleDocumentRetriever extends DocumentRetriever {
     }
 
     return {...this.single.document}
-  }
-
-  async retrieveDocumentImage({metadata, type}) {
-    const content = new Buffer('')
-    this.single.images[type].content.copy(content)
-    return {...this.single.images[type], content}
   }
 }
 
@@ -74,21 +62,6 @@ export class HttpDocumentRetriever extends DocumentRetriever {
     const mime = response.headers['content-type'].split(';')[0]
     const embeddable = _deduceEmbeddableFromHeaders(response.headers)
     return {url, content: response.body, mime, embeddable}
-  }
-
-  async retrieveDocumentImage({metadata, type}) {
-    // THROWS: RequestError: Error: ESOCKETTIMEDOUT
-    
-    const response = await request({
-      uri: metadata.imageUrls[type],
-      resolveWithFullResponse: true,
-      encoding: null,
-      timeout: 3 * 1000
-    })
-    return {
-      content: new Buffer(response.body),
-      mime: response.headers['content-type'].split(';')[0]
-    }
   }
 }
 

@@ -52,19 +52,6 @@ export class AwsStorage implements Storage {
     return await this._getObject({key, type: 'json'})
   }
 
-  async storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) {
-    await Promise.all(_.map(images, (image, type) => this.storeDocumentImage({url, type, image})))
-  }
-
-  async storeDocumentImage({url, type, image} : {url : string, type : string, image : RetrievedDocumentImage}) {
-    const key = path.join(encodeURIComponent(url), `image-${type}`)
-    await this._putObject({key, body: image.content, type: 'buffer', mime: image.mime})
-  }
-  
-  async getCachedDocumentImageUrl({url, type}) {
-    return `http://${this.bucketName}.s3-website.${process.env.AWS_REGION}.amazonaws.com/${url}`
-  }
-
   async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {
     const key = encodeURIComponent(url) + '/document.json'
     await this._putObject({key, body: document, type: 'json'})

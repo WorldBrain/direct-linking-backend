@@ -43,22 +43,6 @@ export class DiskStorage implements Storage {
       return JSON.parse(fs.readFileSync(filePath).toString())
     }
   
-    async storeDocumentImages({url, images} : {url : string, images : {[type : string]: RetrievedDocumentImage}}) {
-      await Promise.all(_.map(images, (image, type) => this.storeDocumentImage({url, type, image})))
-    }
-  
-    async storeDocumentImage({url, type, image} : {url : string, type : string, image : RetrievedDocumentImage}) {
-      const urlDir = this._getUrlDirPath({url})
-      const filePath = path.join(urlDir, `image-${type}`)
-      fs.writeFileSync(filePath, image.content)
-    }
-    
-    async getCachedDocumentImageUrl({url, type}) {
-      const urlDir = encodeURIComponent(url)
-      const filePath = path.join(urlDir, `image-${type}`)
-      return '/' + filePath
-    }
-  
     async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {
       const urlDir = this._getUrlDirPath({url})
       const filePath = path.join(urlDir, 'document.json')
