@@ -1,16 +1,12 @@
 import * as AWS from 'aws-sdk'
 const _ = require('lodash')
-import * as fs from 'fs'
-import * as path from 'path'
 import * as shortid from 'shortid'
 import * as promiseRetry from 'promise-retry'
 import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
-import { normalizeUrlForStorage } from '../../utils/urls'
-import { RetrievedDocument, RetrievedDocumentImage } from '../document-retriever'
-import { mkdirSyncIfNotExists, mkdirPathSync } from '../../utils/fs'
+import { normalizeUrlForMetadataStorage, normalizeUrlForSkeletonStorage } from '../../utils/urls'
+import { RetrievedDocument } from '../document-retriever'
 import { Storage } from './types'
-import { S3 } from 'aws-sdk';
 
 export interface AwsStorageConfig {
   bucketName : string
@@ -29,8 +25,7 @@ export class AwsStorage implements Storage {
 
   async storeAnnotation({annotation} : {annotation : Annotation}) {
     annotation.id = await this._generateAnnotationId()
-    annotation.storageUrl = normalizeUrlForStorage(annotation.url)
-
+    
     const key = annotation.id + '/annotation.json'
     await this._putObject({key, body: annotation, type: 'json'})
 
@@ -43,36 +38,36 @@ export class AwsStorage implements Storage {
   }
 
   async storeMetadata({url, metadata} : {url : string, metadata : PageMetadata}) {
-    const key = encodeURIComponent(url) + '/metadata.json';
+    const key = encodeURIComponent(normalizeUrlForMetadataStorage(url)) + '/metadata.json';
     await this._putObject({key, body: metadata, type: 'json'})
   }
 
   async getStoredMetadataForUrl(url : string) {
-    const key = encodeURIComponent(url) + '/metadata.json'
+    const key = encodeURIComponent(normalizeUrlForMetadataStorage(url)) + '/metadata.json'
     return await this._getObject({key, type: 'json'})
   }
 
   async storeDocument({url, document} : {url : string, document : RetrievedDocument}) : Promise<void> {
-    const key = encodeURIComponent(url) + '/document.json'
+    const key = encodeURIComponent(normalizeUrlForMetadataStorage(url)) + '/document.json'
     await this._putObject({key, body: document, type: 'json'})
   }
 
   async getCachedDocument(url : string) : Promise<RetrievedDocument> {
-    const key = encodeURIComponent(url) + '/document.json'
+    const key = encodeURIComponent(normalizeUrlForMetadataStorage(url)) + '/document.json'
     return await this._getObject({key, type: 'json'})
   }
 
   async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
     const isDir = annotation.url.substr(-1) === '/'
-    let key = `${annotation.id}/${annotation.storageUrl}`
+    let key = `${annotation.id}/${normalizeUrlForSkeletonStorage(annotation.url)}`
     if (isDir) {
       key += '/index.html'
     }
     await this._putObject({key, body: skeleton, type: 'html'})
   }
 
-  async getStoredAnnotationSkeleton({annotation}) {
-    const key = `${annotation.id}/${annotation.storageUrl}/index.html`
+  async getStoredAnnotationSkeleton({annotation} : {annotation : Annotation}) {
+    const key = `${annotation.id}/${normalizeUrlForSkeletonStorage(annotation.url)}/index.html`
     return await this._getObject({key, type: 'text'})
   }
 

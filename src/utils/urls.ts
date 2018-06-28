@@ -9,7 +9,7 @@ const BASE_NORMALIZATION_OPTIONS = {
   removeTrailingSlash: true,
 }
 
-export function normalizeUrlForStorage(url : string) : string {
+export function normalizeUrlForMetadataStorage(url : string) : string {
   url = normalizeUrl(url, {
     ...BASE_NORMALIZATION_OPTIONS,
     stripFragment: true
@@ -18,12 +18,21 @@ export function normalizeUrlForStorage(url : string) : string {
   return url
 }
 
-export function normalizeUrlForLinkGeneration(url : string) {
+export function normalizeUrlForSkeletonStorage(url : string) {
   url = normalizeUrl(url, {
     ...BASE_NORMALIZATION_OPTIONS,
     stripFragment: false
   })
   url = _cleanNormalizedUrl(url)
+  return url
+}
+
+export function normalizeUrlForLinkGeneration(url : string) {
+  url = normalizeUrl(url, {
+    ...BASE_NORMALIZATION_OPTIONS,
+    stripFragment: false
+  })
+  url = _cleanNormalizedUrl(url, {stripQuery: false})
   return url
 }
 

@@ -1,9 +1,8 @@
 const _ = require('lodash')
-import * as DataUri from 'datauri'
 import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
 import { RetrievedDocument, RetrievedDocumentImage } from '../document-retriever'
-import { normalizeUrlForStorage } from '../../utils/urls'
+import { normalizeUrlForSkeletonStorage } from '../../utils/urls'
 import { Storage, AnnotationAlreadyExists } from './types'
 
 export class MemoryStorage implements Storage {
@@ -15,7 +14,6 @@ export class MemoryStorage implements Storage {
     
     async storeAnnotation({annotation} : {annotation : Annotation}) {
       annotation.id = annotation.id || Object.keys(this.annotations).length.toString()
-      annotation.storageUrl = normalizeUrlForStorage(annotation.url)
   
       if (this.annotations[annotation.id]) {
         throw new AnnotationAlreadyExists(annotation.id)
@@ -45,11 +43,11 @@ export class MemoryStorage implements Storage {
     }
   
     async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
-      this.skeletons[annotation.storageUrl] = skeleton
+      this.skeletons[normalizeUrlForSkeletonStorage(annotation.url)] = skeleton
     }
 
     async getStoredAnnotationSkeleton({annotation} : {annotation : Annotation}) : Promise<string> {
-      return this.skeletons[annotation.storageUrl]
+      return this.skeletons[normalizeUrlForSkeletonStorage(annotation.url)]
     }
   }
   

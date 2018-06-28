@@ -14,7 +14,10 @@ export function parseCommandLineOptions() {
         let options = {}
         if (optionsString) {
             const optionStrings = optionsString.split(',')
-            const optionPairs = optionStrings.map(optionString => optionString.split('='))
+            const optionPairs = optionStrings.map(optionString => {
+                const parts = optionString.split('=')
+                return [parts[0], parts.slice(1).join('=')]
+            })
             options = _.fromPairs(optionPairs)
         }
         return <DevShortcutCommand>{name, options}

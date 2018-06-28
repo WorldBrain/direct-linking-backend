@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { Annotation } from "../../types/annotations"
 import { PageMetadata } from '../../types/metadata'
-import { normalizeUrlForStorage } from '../../utils/urls'
+import { normalizeUrlForSkeletonStorage, normalizeUrlForMetadataStorage } from '../../utils/urls'
 import { RetrievedDocument, RetrievedDocumentImage } from '../document-retriever'
 import { mkdirSyncIfNotExists, mkdirPathSync } from '../../utils/fs'
 import { Storage } from './types'
@@ -17,8 +17,7 @@ export class DiskStorage implements Storage {
   
     async storeAnnotation({annotation} : {annotation : Annotation}) {
       annotation.id = annotation.id || this._generateAnnotationId()
-      annotation.storageUrl = normalizeUrlForStorage(annotation.url)
-  
+      
       const annotationDir = this._createAnnotationDirIfNecessary({annotation})
       const annotationPath = path.join(annotationDir, 'annotation.json')
       fs.writeFileSync(annotationPath, JSON.stringify(annotation))
@@ -57,21 +56,15 @@ export class DiskStorage implements Storage {
   
     async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
       const annotationDir = this._createAnnotationDirIfNecessary({annotation})
-      if (!annotation.storageUrl) {
-        // TODO: Throw an error?
-      }
-      const htmlDir = path.join(annotationDir, annotation.storageUrl)
+      const htmlDir = path.join(annotationDir, normalizeUrlForSkeletonStorage(annotation.url))
       mkdirPathSync(htmlDir)
       const htmlPath = path.join(htmlDir, 'index.html')
       fs.writeFileSync(htmlPath, skeleton)
     }
 
     async getStoredAnnotationSkeleton({annotation} : {annotation : Annotation}) : Promise<string> {
-      if (!annotation.storageUrl) {
-        // TODO: Throw an error?
-      }
       const annotationDir = this._getAnnotationDirPath({annotation})
-      const htmlDir = path.join(annotationDir, annotation.storageUrl)
+      const htmlDir = path.join(annotationDir, normalizeUrlForSkeletonStorage(annotation.url))
       const htmlPath = path.join(htmlDir, 'index.html')
       return fs.readFileSync(htmlPath).toString()
     }
@@ -87,7 +80,7 @@ export class DiskStorage implements Storage {
     }
   
     _getUrlDirPath({url}) : string {
-      return path.join(this.basePath, encodeURIComponent(url))
+      return path.join(this.basePath, encodeURIComponent(normalizeUrlForMetadataStorage(url)))
     }
   
     _createUrlDirIfNecessary({url} : {url : string}) : string {
