@@ -1,12 +1,23 @@
-export function deduceDocumentUrlWithoutProtocol() {
+export function deduceDocumentDirWithoutProtocol({withQuery = true} = {}) {
     const curPath = window.location.pathname
-    const url = curPath.split('/').slice(2).join('/')
-    const withoutTrailingSlash = url.substr(url.length - 1) === '/' ? url.slice(0, -1) : url
-    return withoutTrailingSlash
+    let url = curPath.split('/').slice(2).join('/')
+    console.log(withQuery, window.location.search)
+    if (withQuery && window.location.search) {
+        url += window.location.search
+    } else {
+        // Strip only one trailing slash
+        while (url.substr(url.length - 1) === '/') {
+            url = url.slice(0, -1)
+        }
+    }
+    return url
 }
 
 export function deduceMetadataUrl() {
-    return '/' + encodeURIComponent(encodeURIComponent(deduceDocumentUrlWithoutProtocol())) + '/metadata.json'
+    function path(withQuery) {
+        return '/' + encodeURIComponent(encodeURIComponent(deduceDocumentDirWithoutProtocol({withQuery}))) + '/metadata.json'
+    }
+    return [path(true), path(false)]
 }
 
 export function deduceAnnotationUrl() {

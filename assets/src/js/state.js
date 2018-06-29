@@ -51,15 +51,36 @@ export async function fetchResource({url, type, key}) {
         progress: 'pristine',
         content: null
     })
+
+    let error
     try {
-        const response = await fetch(url)
-        const data = await response[type].bind(response)()
-        modifyState(`resources.${key}.progress`, 'done')
-        modifyState(`resources.${key}.content`, data)
+        if (typeof url === 'string') {
+            url = [url]
+        }
+
+        let data
+        for (const curUrl of url) {
+            const response = await fetch(curUrl)
+            if (response.ok) {
+                data = await response[type].bind(response)()
+                break
+            }
+        }
+
+        if (data) {
+            modifyState(`resources.${key}.progress`, 'done')
+            modifyState(`resources.${key}.content`, data)
+        } else {
+            error = new Error('Could not fetch page metadata')
+        }
     } catch (e) {
+        error = e
+    }
+
+    if (error) {
         modifyState(`resources.${key}.progress`, 'error')
-        modifyState(`resources.${key}.error`, e)
-        throw e
+        modifyState(`resources.${key}.error`, error)
+        throw error
     }
 }
 

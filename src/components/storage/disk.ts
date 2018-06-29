@@ -55,10 +55,24 @@ export class DiskStorage implements Storage {
     }
   
     async storeAnnotationSkeleton({annotation, skeleton} : {annotation : Annotation, skeleton : string}) : Promise<void> {
+      const isDir = annotation.url.substr(-1) === '/'
       const annotationDir = this._createAnnotationDirIfNecessary({annotation})
-      const htmlDir = path.join(annotationDir, normalizeUrlForSkeletonStorage(annotation.url))
+      const normalizedUrl = normalizeUrlForSkeletonStorage(annotation.url)
+
+      let subDir, fileName
+      if (isDir) {
+        subDir = normalizedUrl
+        fileName = 'index.html'
+      } else {
+        const parts = normalizedUrl.split('/')
+        subDir = parts.slice(0, -1).join('/')
+        fileName = parts.slice(-1)[0]
+        console.log(parts, '|', subDir)
+      }
+
+      const htmlDir = path.join(annotationDir, subDir)
       mkdirPathSync(htmlDir)
-      const htmlPath = path.join(htmlDir, 'index.html')
+      const htmlPath = path.join(htmlDir, fileName)
       fs.writeFileSync(htmlPath, skeleton)
     }
 
