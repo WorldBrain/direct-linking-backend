@@ -3,14 +3,17 @@ import * as state from '../state'
 import * as actions from './actions'
 import * as rendering from './rendering'
 import * as interactions from './interactions'
-import { trackEvent } from './utils'
+import { getAnnotationId } from './utils'
+import { trackEvent } from './backend'
 
 export const load = loader(async () => {
+    const id = getAnnotationId()
+
     await Promise.all([
         actions.fetchAnnotationTemplate(),
         actions.fetchMetadata(),
         actions.fetchAnnotation(),
-        trackEvent(),
+        trackEvent({id, type: 'view-memex-link'}),
     ])
 })
 
@@ -26,9 +29,13 @@ export async function init() {
     interactions.attachCopyAndGoListener()
     interactions.setupToggleTrunctation()
     interactions.setupLiveDemoButton()
+<<<<<<< HEAD
     interactions.setupFeaturesList()
     interactions.setupLazyLoad()
     interactions.setupAccordions()
+=======
+    interactions.setupDownloadButton()
+>>>>>>> Added tracking for download button and viewing
     rendering.injectIframeIfNeeded()
     rendering.setListActiveClass()
 }

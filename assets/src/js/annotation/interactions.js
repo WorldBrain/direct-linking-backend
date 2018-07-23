@@ -1,8 +1,9 @@
 import { getState, getResource, modifyState } from '../state'
 import { copyToClipboard } from '../utils'
 import { goToDemo } from '../router'
-import { isEmbeddingDisabledOnDeviceSize } from './utils'
 import { lazyLoadFeatureImage } from './rendering'
+import { isEmbeddingDisabledOnDeviceSize, getAnnotationId } from './utils'
+import { trackEvent } from './backend'
 
 export function attachCopyAndGoListener() {
     document.querySelector('.copy-button').addEventListener('click', event => {
@@ -30,7 +31,6 @@ export function setupToggleTrunctation() {
         document.querySelector('.quote').classList.add('show-more')
     })
 }
-
 
 export function setupLiveDemoButton() {
     document.querySelector('.btn-live-demo').addEventListener('click', () => {
@@ -89,5 +89,14 @@ export function setupAccordions() {
                 lazyLoadFeatureImage()
             }, 200);
         })
+    })
+}
+
+export function setupDownloadButton() {
+    const id = getAnnotationId()
+
+    document.querySelector('.cta-button').addEventListener('click', async () => {
+        await trackEvent({id, type: 'download-button-click-memex-link'})
+        window.location.href = "https://worldbrain.io/memexlink"
     })
 }
