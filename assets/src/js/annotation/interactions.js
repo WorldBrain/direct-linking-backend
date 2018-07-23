@@ -95,7 +95,7 @@ export function setupAccordions() {
 export function setupDownloadButton() {
     const id = getAnnotationId()
 
-    document.querySelectorAll('.cta-button')[1].addEventListener('click', async () => {
+    document.querySelector('.cta-button').addEventListener('click', async () => {
         await trackEvent({id, type: 'download-button-click-memex-link'})
         window.location.href = "https://worldbrain.io/memexlink"
     })
