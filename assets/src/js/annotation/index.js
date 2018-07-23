@@ -29,13 +29,10 @@ export async function init() {
     interactions.attachCopyAndGoListener()
     interactions.setupToggleTrunctation()
     interactions.setupLiveDemoButton()
-<<<<<<< HEAD
+    interactions.setupDownloadButton()
     interactions.setupFeaturesList()
     interactions.setupLazyLoad()
     interactions.setupAccordions()
-=======
-    interactions.setupDownloadButton()
->>>>>>> Added tracking for download button and viewing
     rendering.injectIframeIfNeeded()
     rendering.setListActiveClass()
 }
