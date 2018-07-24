@@ -7,6 +7,7 @@ import { HtmlMetadataExtractor } from './metadata-extractor'
 import { Storage } from './storage/types'
 import { DiskStorage } from './storage/disk'
 import { AwsStorage } from './storage';
+import { Analytics, AnalyticsDefinition } from './analytics'
 
 export interface AppComponents {
   annotationLinkBuilder : AnnotationLinkBuilder
@@ -15,6 +16,7 @@ export interface AppComponents {
   documentRetriever : DocumentRetriever
   metadataExtractor : HtmlMetadataExtractor
   storage : Storage
+  analytics: AnalyticsDefinition
 }
 
 export interface AppComponentsConfig {
@@ -44,5 +46,6 @@ export function createAppComponents(config : AppComponentsConfig) : AppComponent
         })
       }
     }),
+    analytics: allowOverride('analytics', () => new Analytics()),
   }
 }

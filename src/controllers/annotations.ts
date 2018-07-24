@@ -7,7 +7,7 @@ import { DocumentRetriever } from '../components/document-retriever'
 import { MetadataExtractor } from '../components/metadata-extractor';
 import { normalizeUrlForStorage, normalizeUrlForRetrieval } from '../utils/urls'
 import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-generator'
-import { trackEvent } from '../../assets/src/js/annotation/backend'
+import { AnalyticsDefinition } from '../components/analytics'
 
 // export function retrieveAnnotation(
 //     {storage, documentRetriever} :
@@ -29,10 +29,10 @@ import { trackEvent } from '../../assets/src/js/annotation/backend'
 //   }
   
   export function putAnnotation(
-    {annotationValidator, annotationLinkBuilder, annotationSkeletonGenerator, storage, documentRetriever, metadataExtractor} :
+    {annotationValidator, annotationLinkBuilder, annotationSkeletonGenerator, storage, documentRetriever, metadataExtractor, analytics} :
     {annotationValidator : AnnotationValidator, annotationLinkBuilder : AnnotationLinkBuilder
      annotationSkeletonGenerator : AnnotationSkeletonGenerator,
-     storage : Storage, documentRetriever : DocumentRetriever, metadataExtractor : MetadataExtractor}
+     storage : Storage, documentRetriever : DocumentRetriever, metadataExtractor : MetadataExtractor, analytics: AnalyticsDefinition}
   ) {
     return async function handleAnnotationPutRequest({unvalidatedAnnotation}) {
       const annotation = await annotationValidator(unvalidatedAnnotation)
@@ -56,7 +56,7 @@ import { trackEvent } from '../../assets/src/js/annotation/backend'
       const skeleton = annotationSkeletonGenerator.generateSkeleton({annotation, metadata})
       await storage.storeAnnotationSkeleton({annotation, skeleton})
 
-      await trackEvent({id, type: 'create-memex-link'})
+      await analytics.trackEvent({id, type: 'create-memex-link'})
       const link = await annotationLinkBuilder.buildAnnotationLink({id, url: annotation.url})
       return {link, id, storageUrl}
     }
