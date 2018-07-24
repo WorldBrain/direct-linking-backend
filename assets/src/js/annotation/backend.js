@@ -1,4 +1,7 @@
-const API_HOST = process.env.TIER === 'production'
+import { getDeploymentTier } from './util'
+
+const developmentTier = getDeploymentTier()
+const API_HOST = developmentTier() === 'production'
     ? 'https://2s1jj0js02.execute-api.eu-central-1.amazonaws.com/production'
     : 'https://a8495szyaa.execute-api.eu-central-1.amazonaws.com/staging'
 

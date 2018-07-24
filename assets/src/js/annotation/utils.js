@@ -28,3 +28,8 @@ export function getAnnotationId() {
     const curPath = window.location.pathname
     return curPath.split('/')[1]
 }
+
+export function getDeploymentTier() {
+    const host = window.location.hostname
+    return (host === 'localhost' || host.startsWith('staging'))? 'developement': 'production'
+}
