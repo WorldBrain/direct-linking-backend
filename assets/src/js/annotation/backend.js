@@ -1,7 +1,7 @@
-import { getDeploymentTier } from './util'
+import { getDeploymentTier } from './utils'
 
 const developmentTier = getDeploymentTier()
-const API_HOST = developmentTier() === 'production'
+const API_HOST = developmentTier === 'production'
     ? 'https://2s1jj0js02.execute-api.eu-central-1.amazonaws.com/production'
     : 'https://a8495szyaa.execute-api.eu-central-1.amazonaws.com/staging'
 

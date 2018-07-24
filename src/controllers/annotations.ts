@@ -6,7 +6,8 @@ import { DocumentRetriever } from '../components/document-retriever'
 // import { compareUrlsQuickAndDirty } from '../utils/urls'
 import { MetadataExtractor } from '../components/metadata-extractor';
 import { normalizeUrlForStorage, normalizeUrlForRetrieval } from '../utils/urls'
-import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-generator';
+import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-generator'
+import { trackEvent } from '../../assets/src/js/annotation/backend'
 
 // export function retrieveAnnotation(
 //     {storage, documentRetriever} :
@@ -55,6 +56,7 @@ import { AnnotationSkeletonGenerator } from '../components/annotation-skeleton-g
       const skeleton = annotationSkeletonGenerator.generateSkeleton({annotation, metadata})
       await storage.storeAnnotationSkeleton({annotation, skeleton})
 
+      await trackEvent({id, type: 'create-memex-link'})
       const link = await annotationLinkBuilder.buildAnnotationLink({id, url: annotation.url})
       return {link, id, storageUrl}
     }
