@@ -152,12 +152,12 @@ export class AwsStorage implements Storage {
 
 function _isPathFree(s3, bucket, key) {
   return s3.headObject({Bucket: bucket, Key: key}).promise()
-    .then(() => Promise.resolve(false))
-    .catch(function (err) {
-      if (err.code == 'NotFound') {
-        return Promise.resolve(true)
-      } else {
-        return Promise.reject(err)
-      }
-    })
+      .then(() => Promise.resolve(true))
+      .catch(function (err) {
+        if (err.code == 'NotFound' || err.code == 'Forbidden') {
+          return Promise.resolve(false)
+        } else {
+          return Promise.reject(err)
+        }
+      })
 }
