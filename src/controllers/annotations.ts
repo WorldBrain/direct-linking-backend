@@ -32,7 +32,7 @@ import { AnalyticsDefinition } from '../components/analytics'
     {annotationValidator, annotationLinkBuilder, annotationSkeletonGenerator, storage, documentRetriever, metadataExtractor, analytics} :
     {annotationValidator : AnnotationValidator, annotationLinkBuilder : AnnotationLinkBuilder
      annotationSkeletonGenerator : AnnotationSkeletonGenerator,
-     storage : Storage, documentRetriever : DocumentRetriever, metadataExtractor : MetadataExtractor, analytics: AnalyticsDefinition}
+     storage : Storage, documentRetriever : DocumentRetriever, metadataExtractor : MetadataExtractor, analytics?: AnalyticsDefinition}
   ) {
     return async function handleAnnotationPutRequest({unvalidatedAnnotation}) {
       const annotation = await annotationValidator(unvalidatedAnnotation)
@@ -56,7 +56,7 @@ import { AnalyticsDefinition } from '../components/analytics'
       const skeleton = annotationSkeletonGenerator.generateSkeleton({annotation, metadata})
       await storage.storeAnnotationSkeleton({annotation, skeleton})
 
-      await analytics.trackEvent({id, type: 'create-memex-link'})
+      await analytics.trackEvent({id, type: 'create-memex-link'}).catch(err => console.error(err))
       const link = await annotationLinkBuilder.buildAnnotationLink({id, url: annotation.url})
       return {link, id, storageUrl}
     }
