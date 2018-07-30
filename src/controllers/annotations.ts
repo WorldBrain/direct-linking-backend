@@ -56,7 +56,9 @@ import { AnalyticsDefinition } from '../components/analytics'
       const skeleton = annotationSkeletonGenerator.generateSkeleton({annotation, metadata})
       await storage.storeAnnotationSkeleton({annotation, skeleton})
 
-      await analytics.trackEvent({id, type: 'create-memex-link'}).catch(err => console.error(err))
+      if (analytics) {
+        await analytics.trackEvent({id, type: 'create-memex-link'}).catch(err => console.error('Analytics error:', err))
+      }
       const link = await annotationLinkBuilder.buildAnnotationLink({id, url: annotation.url})
       return {link, id, storageUrl}
     }
