@@ -16,7 +16,7 @@ export interface AppComponents {
   documentRetriever : DocumentRetriever
   metadataExtractor : HtmlMetadataExtractor
   storage : Storage
-  analytics: AnalyticsDefinition
+  analytics?: AnalyticsDefinition
 }
 
 export interface AppComponentsConfig {
