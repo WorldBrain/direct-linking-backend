@@ -63,4 +63,3 @@ import { AnalyticsDefinition } from '../components/analytics'
       return {link, id, storageUrl}
     }
   }
-  

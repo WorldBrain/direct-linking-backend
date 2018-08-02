@@ -20,9 +20,14 @@ export async function trackEvent({ id, type }) {
         }]
     }
 
-    const res = await fetch(API_HOST + API_PATH, {
-        method: 'POST',
-        headers: JSON_HEADER,
-        body: JSON.stringify(data),
-    })
+    try {
+        const res = await fetch(API_HOST + API_PATH, {
+            method: 'POST',
+            headers: JSON_HEADER,
+            body: JSON.stringify(data),
+        })
+    } catch (e) {
+        console.error('Error tracking event %s', type)
+        console.error(e)
+    }
 }
