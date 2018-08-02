@@ -40,7 +40,8 @@ describe('Annotation upload controller integration test', () => {
                     document: dummyDocument,
                     images: {logo: dummyImage},
                 }),
-                metadataExtractor: new DummyMetadataExtractor({expectedUrl: inputUrl, metdata: dummyMetadata})
+                metadataExtractor: new DummyMetadataExtractor({expectedUrl: inputUrl, metdata: dummyMetadata}),
+                analytics: {trackEvent: async () => {}}
             })
 
             const anchors = [{range: 'something'}]
