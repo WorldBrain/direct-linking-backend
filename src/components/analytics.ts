@@ -3,7 +3,7 @@ import * as request from 'request-promise-native'
 
 const developmentTier = getDeploymentTier()
 const API_HOST = developmentTier === 'production'
-    ? 'https://2s1jj0js02.execute-api.eu-central-1.amazonaws.com/production'
+    ? 'https://203bqy2f93.execute-api.eu-central-1.amazonaws.com/production'
     : 'https://a8495szyaa.execute-api.eu-central-1.amazonaws.com/staging'
 
 const API_PATH = '/event'
