@@ -10,21 +10,77 @@
     width: device-width;
 }
 
-* {
-    font-family: Lato;
-    margin: 0;
-    padding: 0;
+html {
+    scroll-behavior: smooth;    
 }
 
 body {
-    color: #777;
+    color: #4A4A4A;
     font-size: 16px;
+    font-family: Open Sans;
     width: 100%;
     height: 100%;
 }
 
+hr {
+width: 100px;
+margin-left: 0px;
+height: 3px;
+background-color: black;
+}
+
+.download_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.download_bar_bottom {
+    position: relative;
+    top: 150px;
+    margin-bottom: 150px;
+}
+
+.browser {
+    width: 35px;
+    margin-top: 3px;
+    height: auto;
+    margin-left: 20px;
+}
+
+.firefox {
+    width: 37px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.learn-more {
+    text-decoration: none;
+        display: flex;
+        margin: 15px 0 3px 0;
+        line-height: 30px;
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: Uni Neue;
+        font-style: italic;
+        letter-spacing: 2px;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: #3eb995;
+        border-style: solid;
+        border-color: #3eb995;
+        border-width: 2px
+}
+
+.learn-more:hover {
+    background-color: white;
+    color: #3eb995;
+}
+
 .annotation .info-bar {
-        margin-top: 20vh;
+        margin-top: 10vh;
     }
 
 .annotation .content {
@@ -68,16 +124,18 @@ body.desktop-version .annotation .cta-line.demo-line {
         padding: 15px 0;
         font-size: 1em;
         font-weight: 800;
+        color: #173766;
     }
 
 .annotation .quote {
         order: 2;
-        padding-bottom: 15px;
         padding-right: 20px;
         font-style: italic;
+        font-family: IBM Plex Serif !important;
         font-weight: 400;
-        font-size: 1.3em;
+        font-size: 1.4em;
         max-width: 700px;
+        margin-bottom: 40px;
     }
 
 .annotation .title-and-url {
@@ -91,6 +149,7 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .title-and-url .url {
     color: #bcbcbc;
     font-size: 0.8em;
+    margin-top: -30px;
 }
 
 .annotation .find-instructions {
@@ -100,9 +159,8 @@ body.desktop-version .annotation .cta-line.demo-line {
         justify-content: space-between;
         align-items: flex-end;
         margin-bottom: 10px;
-        margin-top: 20px;
-        flex: 1 30%;
-    }
+        margin-top: 20px
+        }
 
 .annotation .search-text {
         display: block;
@@ -121,15 +179,20 @@ body.desktop-version .annotation .cta-line.demo-line {
         padding: 8px 8px;
         text-align: center;
         line-height: 30px;
-        font-size: 1em;
+        font-size: 1.1em; 
         border-radius: 5px;
         cursor: pointer;
         background-color: white;
-        color: #000;
+        color: #3eb995;
         font-weight: 500;
-        border: 1px solid #c2c2c2;
+        border: 2px solid #3eb995;
         transition: background-color 0.2s ease-in
     }
+
+.annotation .copy-button:hover {
+    background-color: #3eb995;
+    color: white;
+}
 
 .annotation .copy-button.copied {
     line-height: 15px;
@@ -167,14 +230,14 @@ body.desktop-version .annotation .cta-line.demo-line {
         align-items: flex-start;
         justify-content: flex-start;
         margin: 20px 0px 10px 20px;
-        flex: 1 20%;
+        flex: 1 30%;
     }
 
 .annotation .cta-line {
         width: 100%;
         line-height: 32px;
         color: #303433;
-        font-size: 25px;
+        font-size: 20px;
         text-align: left
     }
 
@@ -187,7 +250,9 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .cta-download {
-        margin-top: 50px
+        margin-top: 15px;
+        margin-bottom: 35px;
+        color: #173766
     }
 
 .annotation .cta-download .cta-download-line {
@@ -210,21 +275,26 @@ body.desktop-version .annotation .cta-line.demo-line {
         text-decoration: none;
         display: flex;
         width: 180px;
-        margin: 15px 0 3px 0;
         line-height: 30px;
-        padding: 8px 0px;
+        padding: 8px 15px;
         border-radius: 5px;
         cursor: pointer;
         align-items: center;
         justify-content: center;
-        color: #fff;
         background-color: #3eb995;
+        font-family: Uni Neue;
+        font-style: italic;
+        letter-spacing: 2px;
+        border-style: solid;
+        border-color: #3eb995;
+        border-width: 2px;
+        color: white
     }
 
-.annotation .cta-button span {
-            display: block;
-            font-size: 1em;
-        }
+.annotation .cta-button:hover {
+    background-color: white;
+    color: #3eb995;
+}
 
 .annotation .cta-button-text {
         color: rgb(182, 182, 182);
@@ -241,32 +311,40 @@ body.desktop-version .annotation .cta-line.demo-line {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
     }
 
 .annotation .about-memex .about-memex-header {
-            color: #3eb995;
+            color: #173766;
             font-size: 3em;
             font-weight: 00;
             text-align: center;
-            margin-top: 10vh
+            margin-top: 21vh;
+            margin-bottom: 4vh;
+            font-family: Uni Neue;
+            font-style: italic
         }
 
 .annotation .about-memex .about-memex-header .sub {
-    color: grey;
-    font-size: 0.68em;
+    color: #3eb995;
+    font-size: 0.5em;
+    font-family: Open Sans;
+    font-style: normal;
 }
 
 .annotation .about-memex .features-list-container {
             display: flex;
-            margin-top: 10vh;
             justify-content: center;
+            position:absolute;
+            top:100vh;
+            -webkit-transform: translateY(-100%);
+                    transform: translateY(-100%);
         }
 
 .annotation .about-memex .features-list-container .features-list {
                 list-style: none;
                 border-bottom: 1px #b1b1b1 solid;
-                font-size: 20px
+                font-size: 20px;
+                padding: 0px
             }
 
 .annotation .about-memex .features-list-container .features-list > li {
@@ -280,22 +358,6 @@ body.desktop-version .annotation .cta-line.demo-line {
     position: relative;
 }
 
-.annotation .about-memex .features-list-container .features-list > li .coming-soon {
-    background-color: #3eb995;
-    padding: 3px 6px;
-    font-size: 0.7em;
-    border-radius: 10px;
-    color: white;
-    width: 100px;
-    text-align: center;
-    vertical-align: middle;
-    position: absolute;
-    left: calc(47% - (100px/2));
-
-    /*  70 = width of the 'coming soon' pill */
-    bottom: -18px;
-}
-
 .annotation .about-memex .features-list-container .features-list > li.active {
     border-bottom: 3px #3eb995 solid;
     padding-bottom: 15px;
@@ -306,10 +368,14 @@ body.desktop-version .annotation .cta-line.demo-line {
 }
 
 .annotation .about-memex .feature-container {
-            min-height: 78vh;
+            margin-bottom: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            top: 160px;
+            min-height: 500px;
+            margin-bottom: 50px;
         }
 
 .annotation .about-memex .feature-accordion {
@@ -354,34 +420,48 @@ body.desktop-version .annotation .cta-line.demo-line {
 .annotation .about-memex .feature .feature-image {
     justify-content: space-between;
     max-height: 40%;
+    min-width: 60%;
 }
 
 .annotation .about-memex .feature .feature-image img {
     transition: -webkit-filter 0.5s linear;
     transition: filter 0.5s linear;
     transition: filter 0.5s linear, -webkit-filter 0.5s linear;
+    max-width: 85%;
+    float: right;
+    margin-right: 100px;
 }
 
 .annotation .about-memex .feature .feature-image img[data-src] {
     -webkit-filter: blur(13px);
             filter: blur(13px);
+    min-width: 60%;
 }
 
 .annotation .about-memex .feature .feature-text-container {
-    flex-basis: 60%;
+    flex-basis: 90%;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
     align-items: flex-start;
-    color: #545454;
-    font-size: 1.25em;
     font-weight: 300;
     -webkit-animation: fadeIn 0.5s ease-in;
             animation: fadeIn 0.5s ease-in;
 }
 
 .annotation .about-memex .feature .feature-text-container .feature-text {
-    margin-left: 10px;
+    color: #3eb995;
+}
+
+.annotation .about-memex .feature .feature-text-container .feature-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #173766;
+}
+
+.annotation .about-memex .feature .feature-text-container .feature-text {
+    font-size: 18px;
+    line-height: 30px;
 }
 
 .annotation .about-memex .feature .feature-text-container .feature-sub-text {
@@ -418,8 +498,12 @@ body.content-not-embeddable .annotation .title-and-url {
 
 @media (max-width: 1025px) {
 
-    .annotation .cta-container {
-            margin-top: 40px;
+    .annotation .download_bar_top {
+            align-self: center;
+    }
+
+    .annotation .download_bar_bottom {
+            display: none;
     }
 
     .annotation .cta-line {
@@ -470,7 +554,6 @@ body.content-not-embeddable .annotation .title-and-url {
 
     .annotation .cta-container {
             flex: 1 40%;
-            border-bottom: 1px solid #e7e7e7;
             padding-bottom: 15px;
             margin-left: 0;
     }
@@ -503,7 +586,9 @@ body.content-not-embeddable .annotation .title-and-url {
             }
 
             .annotation .about-memex .features-list-container {
-                margin-top: 4vh;
+                width:100%;
+                position: relative;
+                top: 20vh;
             }
 
                 .annotation .about-memex .features-list-container .features-list > li {
@@ -513,27 +598,31 @@ body.content-not-embeddable .annotation .title-and-url {
 
             .annotation .about-memex .feature-container {
                 align-items: flex-start;
-                min-height: 0;
+                position: relative;
+                top: 70px;
+                min-height: 400px;
             }
 
             .annotation .about-memex .feature {
                 flex-direction: column;
+
             }
 
                 .annotation .about-memex .feature .feature-image {
                     display: flex;
-                    justify-content: center
+                    justify-content: center;
+                    max-width: 100%
                 }
 
                 .annotation .about-memex .feature .feature-image img {
-        width: auto;
+        max-width: 100%;
         height: auto;
-        max-height: 300px;
+        max-height: 370px;
+        margin-right: 0px;
     }
 
                 .annotation .about-memex .feature .feature-text-container {
                     margin-top: 20px;
-                    font-size: 1.3em;
                     align-items: center;
                     text-align: center
                 }
@@ -542,6 +631,10 @@ body.content-not-embeddable .annotation .title-and-url {
         margin-left: 0;
         margin-bottom: 10px;
     }
+
+                .annotation .about-memex .feature hr {
+                    margin-left: auto;
+                }
 }
 
 @media (max-width: 600px) {
@@ -830,7 +923,7 @@ body.content-not-embeddable .annotation .title-and-url {
           text-overflow: ellipsis;
           width: 95%;
           padding: 0 0;
-          margin-top: 3px;
+          margin-top: -30px;
           cursor: pointer;
 }
 
@@ -1650,7 +1743,39 @@ body.loading .loading-indicator div:nth-child(n+3) {
     opacity: 1;
   }
 }
-
-a {
-    color: #3EB995;
+.downArrow{
+    bottom: 45%;
+    left: 50%;
+}
+.bounce {
+    -webkit-animation: bounce 3s infinite;
+    animation: bounce 2s infinite;
+}
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
 }

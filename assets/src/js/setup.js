@@ -3,7 +3,7 @@ import { loader } from './utils'
 function loadGoogleFonts() {
     return new Promise(function (resolve, reject) {
         window.WebFontConfig = {
-            google: { families: ['Lato'] },
+            google: { families: ['Open Sans', 'IBM Plex Serif', 'Uni Neue']},
             active: resolve,
             inactive: resolve
          };
