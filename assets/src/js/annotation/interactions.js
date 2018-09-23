@@ -96,6 +96,6 @@ export function setupDownloadButton() {
     const id = getAnnotationId()
 
     document.querySelectorAll('.cta-button-fn').forEach(el => el.addEventListener('click', async () => {
-        await trackEvent({id, type: 'download-button-click-memex-link'})
+        await trackEvent({id, type: 'download-button-click-memex-link'})    
     }))
 }

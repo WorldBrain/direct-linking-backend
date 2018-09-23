@@ -36,8 +36,8 @@ background-color: black;
 }
 
 .download_bar_bottom {
-    position: relative;
-    top: 150px;
+    position: absolute;
+    top: 160vh;
     margin-bottom: 150px;
 }
 
@@ -318,10 +318,11 @@ body.desktop-version .annotation .cta-line.demo-line {
             font-size: 3em;
             font-weight: 00;
             text-align: center;
-            margin-top: 21vh;
+            margin-top: 16vh;
             margin-bottom: 4vh;
             font-family: Uni Neue;
-            font-style: italic
+            font-style: italic;
+            position: absolute
         }
 
 .annotation .about-memex .about-memex-header .sub {
@@ -373,8 +374,8 @@ body.desktop-version .annotation .cta-line.demo-line {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            top: 160px;
+            position: absolute;
+            top: 100vh;
             min-height: 500px;
             margin-bottom: 50px;
         }
@@ -1746,7 +1747,9 @@ body.loading .loading-indicator div:nth-child(n+3) {
 }
 .downArrow{
     bottom: 45%;
-    left: 50%;
+    position: absolute;
+    left: 47%;
+    top: 17vh;
 }
 .bounce {
     -webkit-animation: bounce 3s infinite;
