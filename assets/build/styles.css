@@ -329,6 +329,7 @@ body.desktop-version .annotation .cta-line.demo-line {
     font-size: 0.5em;
     font-family: Open Sans;
     font-style: normal;
+    margin-top: 10px;
 }
 
 .annotation .about-memex .features-list-container {
@@ -588,7 +589,7 @@ body.content-not-embeddable .annotation .title-and-url {
             .annotation .about-memex .features-list-container {
                 width:100%;
                 position: relative;
-                top: 20vh;
+                top: 15vh;
             }
 
                 .annotation .about-memex .features-list-container .features-list > li {
