@@ -583,14 +583,15 @@ body.content-not-embeddable .annotation .title-and-url {
     }
 
             .annotation .about-memex .about-memex-header {
-                margin-top: 3vh;
+                margin-top: 9vh;
                 font-size: 2.5em;
+                position: absolute;
             }
 
             .annotation .about-memex .features-list-container {
                 width:100%;
-                position: relative;
-                top: 15vh;
+                position: absolute;
+                top: 100vh;
             }
 
                 .annotation .about-memex .features-list-container .features-list > li {
@@ -600,8 +601,8 @@ body.content-not-embeddable .annotation .title-and-url {
 
             .annotation .about-memex .feature-container {
                 align-items: flex-start;
-                position: relative;
-                top: 70px;
+                position: absolute;
+                top: 100vh;
                 min-height: 400px;
             }
 
