@@ -17,8 +17,9 @@ body {
 hr {
 width: 100px;
 margin-left: 0px;
-height: 3px;
+height: 2px;
 background-color: black;
+border-color: black;
 }
 
 .download_bar {
@@ -28,9 +29,9 @@ background-color: black;
 }
 
 .download_bar_bottom {
-    position: absolute;
-    top: 160vh;
-    margin-bottom: 150px;
+    position: relative;
+    top: 15vh;
+    margin-bottom: 200px;
 }
 
 .browser {
@@ -64,6 +65,7 @@ background-color: black;
         border-style: solid;
         border-color: #3eb995;
         border-width: 2px;
+        min-height: 30px;
 
         &:hover {
             background-color: white;
@@ -92,7 +94,10 @@ background-color: black;
         margin: 0;
         width: 100%;
         justify-content: space-between;
-        padding: 10px 150px;
+        padding-left: 40px;
+        padding-right: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .cta-line.demo-line {
@@ -143,6 +148,7 @@ background-color: black;
             color: #bcbcbc;
             font-size: 0.8em;
             margin-top: -30px
+            margin-right: 100px
         }
     }
 
@@ -311,11 +317,11 @@ background-color: black;
             font-size: 3em;
             font-weight: 00;
             text-align: center;
-            margin-top: 16vh;
+            margin-top: 5vh;
             margin-bottom: 4vh;
             font-family: Uni Neue;
             font-style: italic;
-            position: absolute;
+            position: relative;
 
             & .sub {
                 color: #3eb995;
@@ -329,8 +335,8 @@ background-color: black;
         .features-list-container {
             display: flex;
             justify-content: center;
-            position:absolute;
-            top:100vh;
+            position: relative;
+            top: 25vh;
             transform: translateY(-100%);
 
             .features-list {
@@ -368,8 +374,8 @@ background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            top: 100vh;
+            position: relative;
+            top: 15vh;
             min-height: 500px;
             margin-bottom: 50px;
         }
@@ -407,7 +413,6 @@ background-color: black;
             justify-content: center;
             width: 100%;
             flex-direction: row;
-            margin: 20px 100px;
 
             & .feature-image {
                 justify-content: space-between;
@@ -433,6 +438,7 @@ background-color: black;
                 flex-direction: column;
                 align-items: flex-start;
                 font-weight: 300;
+                padding-right: 60px;
                 animation: fadeIn 0.5s ease-in;
 
                 & .feature-text {
@@ -491,7 +497,7 @@ background-color: black;
         }
     }
 
-    @media (max-width: 1025px) {
+    @media (min-width: 601px and max-width: 1025px) {
 
         .download_bar_top {
             align-self: center;
@@ -507,6 +513,7 @@ background-color: black;
 
         .info-bar {
             margin-top: 0;
+            padding-left: 40px;
         }
 
         .content {
@@ -519,10 +526,11 @@ background-color: black;
             min-width: 60%;
             padding: 10px 20%;
             justify-content: center;
+            padding-left: 40px;
+            padding-right: 50px;
         }
 
         .info {
-            flex: 1 40%;
             align-items: flex-start;
             border-bottom: 1px solid #e7e7e7;
             padding-bottom: 20px;
@@ -554,7 +562,7 @@ background-color: black;
 
 
             .cta-line, .cta-button, .cta-button-text, .cta-download {
-                width: 100%;
+                align-self: center;
             }
 
             .cta-line {
@@ -575,14 +583,15 @@ background-color: black;
             display: flex;
 
             .about-memex-header {
-                margin-top: 3vh;
+                margin-top: 5vh;
+                position: relative;
                 font-size: 2.5em;
             }
 
             .features-list-container {
                 width:100%;
                 position: relative;
-                top: 15vh;
+                top: 30vh;
 
                 .features-list > li {
                     padding: 10px 8px;
@@ -593,17 +602,18 @@ background-color: black;
             .feature-container {
                 align-items: flex-start;
                 position: relative;
-                top: 70px;
+                top: 30vh;
                 min-height: 400px;
+                flex-direction: column;
             }
 
             .feature {
+                display: flex;
                 flex-direction: column;
 
                 .feature-image {
                     display: flex;
                     justify-content: center;
-                    max-width: 100%;
 
                     & img {
                         max-width: 100%;
@@ -624,7 +634,12 @@ background-color: black;
                     }
                 }
 
-                hr {
+                .feature-text {
+                    width: 75%;
+                }
+
+                 hr {
+                    width: 100px;
                     margin-left: auto;
                 }
 
@@ -634,14 +649,54 @@ background-color: black;
     }
 
     @media (max-width: 600px) {
+        
+        .annotation {
+            margin-top: 0px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin-top: -50px;
+        }
+
+        .download_bar {
+            align-self: center;
+        }
+
+        .cta-download {
+            text-align: center;
+        }
+
+        .find-instructions {
+            width: 100%;
+        }
+
+        .copy-button {
+            max-width: 300px;
+            width: 300px;
+        }
+
+        .divider {
+            display: none;
+        }
+
         .middle {
             width: 100%;
             padding: 10px;
+            display: flex;
+            flex-direction: column;
         }
 
         .info, .cta-container {
-            width: 80%;
+            width: 100%;
             margin: 0 auto;
+        }
+
+        .cta-line, .cta-button, .cta-button-text, .cta-download {
+                width: 100%;
+                align-self: center;
         }
 
         .only-desktop {
@@ -650,24 +705,36 @@ background-color: black;
 
         .cta-line {
             text-align: center;
+            margin-top: 50px;
         }
 
         .about-memex {
+            width: 95%;
 
             .about-memex-header {
-                font-size: 1.65em;
+                font-size: 2.2em !important;
+                width: 90%;
             }
 
             .features-list-container {
                 display: none;
             }
 
+            .sub {
+                display: none !important;
+            }
+
+            .bounce {
+                display: none;
+            }
+
             .feature-container {
                 flex-direction: column;
-                margin-top: 3vh;
                 justify-content: flex-start;
-                padding-right: 10px;
-                padding-left: 10px;
+                position: relative;
+                margin-right: 30px;
+                margin-left: 30px;
+                margin-top: -130px;
             }
 
             .feature-accordion {
@@ -676,26 +743,47 @@ background-color: black;
                 padding-left: 5px;
                 padding-right: 5px;
                 font-weight: 300;
+                background: none;
             }
 
             .feature {
                 display: flex;
+                flex-direction: column;
                 margin: 0 0;
+                width: 110%;
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.2s ease-out;
+
+                    & .feature-image {
+                        width: 120%;
+
+                        & img {
+                            transition: filter 0.5s linear;
+                            width: 100%;
+                            margin-right: 0px;
+                            float: none;
+                            max-height: 300px !important;
+                        }
+
+                        & img[data-src] {
+                            filter: blur(13px);
+                        }
+                    }
 
                 &.active {
                     margin-top: 20px;
                 }
 
-                .feature-image img {
-                    max-height: 300px;
+                .feature-text-container {
+                    text-align: center;
+                    padding-right: 0px !important;
                 }
 
                 .feature-text-container .feature-text {
                     width: 85%;
                     font-size: 1em;
+                    text-align: center;
                 }
 
                 .feature-text-container .feature-sub-text {
@@ -704,8 +792,24 @@ background-color: black;
                 }
             }
 
+            .learn-more {
+                margin-bottom: 60px;
+                align-self: center;
+                min-height: 30px;
+            }
+
+            .download_bar_bottom {
+                display: none;
+            }
         }
     }
+
+
+          hr {
+                margin-left: auto;
+                min-height: 2px;
+            }
+
 
     @media (max-width: 450px) {
         .middle {
@@ -1654,9 +1758,8 @@ body.loading .loading-indicator {
 }
 .downArrow{
     bottom: 45%;
-    position: absolute;
-    left: 47%;
-    top: 17vh;
+    position: relative;
+    top: 3vh;
 }
 .bounce {
     -moz-animation: bounce 3s infinite;
